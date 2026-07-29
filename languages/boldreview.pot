@@ -1,0 +1,3055 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: BoldReview\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-07-28 11:22+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.8.7; wp-7.0.2; php-8.2.30\n"
+"X-Domain: boldreview"
+
+#. 1: date, 2: time
+#: src/Admin/Bdrvw_ReviewsListTable.php:558
+#, php-format
+msgid "%1$s at %2$s"
+msgstr ""
+
+#. 1: average rating, 2: number of reviews.
+#: src/Admin/Bdrvw_PostColumns.php:162
+#, php-format
+msgid "%1$s out of 5 from %2$s review"
+msgid_plural "%1$s out of 5 from %2$s reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#. 1: review count, 2: average rating.
+#: src/Frontend/Bdrvw_ReviewRenderer.php:478
+#, php-format
+msgid "%1$s Review ( %2$s out of 5 )"
+msgid_plural "%1$s Reviews ( %2$s out of 5 )"
+msgstr[0] ""
+msgstr[1] ""
+
+#. 1: reviewer name, 2: review text.
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:593
+#, php-format
+msgid "%1$s reviewed on Google: %2$s"
+msgstr ""
+
+#. %d: number of cards per row.
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:791
+msgid "%d card per row"
+msgid_plural "%d cards per row"
+msgstr[0] ""
+msgstr[1] ""
+
+#. %d: criterion count.
+#: src/Admin/Bdrvw_SettingsPage.php:1484
+msgid "%d criterion"
+msgid_plural "%d criteria"
+msgstr[0] ""
+msgstr[1] ""
+
+#. %d: number of files that were skipped.
+#: src/Admin/Bdrvw_Assets.php:126
+msgid "%d file(s) were skipped — the review is at its photo limit."
+msgstr ""
+
+#. %d: number of files that were skipped.
+#: src/Frontend/Bdrvw_Assets.php:83
+msgid "%d file(s) were skipped — too many, or too large."
+msgstr ""
+
+#. %d: rating value 1-5.
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1602
+msgid "%d of 5 stars"
+msgstr ""
+
+#. %d: rating value 1-5.
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1581
+msgid "%d out of 5"
+msgstr ""
+
+#. %s: total number of reviews.
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:804
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:868
+#, php-format
+msgid "%s Google reviews"
+msgstr ""
+
+#. %s: rating value, e.g. "4.5".
+#. %s: average rating.
+#. %s: rating value, e.g. 4.6.
+#. %s: rating value.
+#: src/Admin/Bdrvw_ReviewsListTable.php:499
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1041
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:548
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1171
+#, php-format
+msgid "%s out of 5"
+msgstr ""
+
+#. %s: rating value.
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1623
+#, php-format
+msgid "%s out of 5 stars"
+msgstr ""
+
+#. %s: reviewer name.
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:515
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1150
+#, php-format
+msgid "%s profile picture"
+msgstr ""
+
+#. %s: number of reviews.
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1292
+#, php-format
+msgid "%s review"
+msgid_plural "%s reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#. %s: business name.
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:896
+#, php-format
+msgid "%s reviews"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:737
+msgid "(installed)"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:159 src/Admin/Bdrvw_ReviewPanel.php:509
+msgid "(item removed)"
+msgstr ""
+
+#: src/Integrations/Bdrvw_WooCommerce.php:183
+msgid "(verified owner)"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:109
+msgid "1 star & above"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1077
+msgid "1 star &amp; up (all reviews)"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:684
+msgid "123 Demo Street, Sample City"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:108
+msgid "2 star & above"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1078
+msgid "2 stars &amp; up"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:696
+msgid "2 weeks ago"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:107
+msgid "3 star & above"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1079
+msgid "3 stars &amp; up"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:714
+msgid "3 weeks ago"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:106
+msgid "4 star & above"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1080
+msgid "4 stars &amp; up"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:723
+msgid "5 days ago"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:105
+msgid "5 star"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1081
+msgid "5 stars only"
+msgstr ""
+
+#. 1: site name, 2: review status (pending/approved).
+#: src/Core/Bdrvw_Notifier.php:69
+#, php-format
+msgid "[%1$s] New review submitted (%2$s)"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:856
+msgid ""
+"A business profile card with the average rating above the reviews. Style 3 "
+"adds a “Write a review” button that links to your Google page."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:74
+msgid "A compact review badge that opens the reviews in a slide-in panel."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:851
+msgid ""
+"A compact, single-column feed of reviews. Great for narrow columns and "
+"sidebars."
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"A modern, review system for posts, pages and products with a beautiful admin "
+"dashboard."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:705
+msgid "a month ago"
+msgstr ""
+
+#. %s: site name.
+#: src/Core/Bdrvw_Notifier.php:76
+#, php-format
+msgid "A new review has been submitted on %s."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:846
+msgid ""
+"A responsive card grid (1–4 columns). Best for a dedicated reviews section "
+"on a page."
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:583
+msgid "A review has already been submitted from this device for this item."
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:596
+msgid ""
+"A review has already been submitted from this email address for this item."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1557
+msgid "A short summary shown under the heading."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1565
+msgid "A short summary that frames how visitors should read these ratings."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:484
+msgid ""
+"A site-wide key is defined in wp-config.php. Remove that constant if you "
+"want to manage the key from this screen."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:861
+msgid ""
+"A small review badge that opens the full reviews in a slide-in panel — "
+"perfect for tucking into a corner of any page."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:563
+msgid "Accumulate reviews"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:683
+msgid "Acme Coffee Co."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:140
+msgid "Action"
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:117
+msgid "Active Modules"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1377
+msgid "Add criteria group"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1640
+msgid "Add criterion"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1210
+msgid ""
+"Add up to 3 custom criteria (e.g. Quality, Value, Service). Each criterion "
+"gets its own 1–5 star rating on the form."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:829
+msgid ""
+"Addresses that may review the same item as often as they like — your own "
+"team, a testing account. One per line."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:237 src/Admin/Bdrvw_SettingsPage.php:794
+msgid "Advanced Settings"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:470
+msgid "After the content (default)"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:169
+msgid "All"
+msgstr ""
+
+#. %s: plural post-type label, e.g. "Posts".
+#: src/Admin/Bdrvw_SettingsPage.php:1661
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:82 src/Admin/Bdrvw_DashboardPage.php:118
+#: src/Admin/Bdrvw_SettingsPage.php:117
+msgid "All Modules"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:237
+msgid "All ratings"
+msgstr ""
+
+#: src/Admin/Bdrvw_AdminMenu.php:103 src/Admin/Bdrvw_AdminMenu.php:104
+#: src/Admin/Bdrvw_DashboardPage.php:106 src/Admin/Bdrvw_SettingsPage.php:141
+msgid "All Reviews"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:90
+msgid "All time"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:227
+msgid "All types"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:865
+msgid "All-in-one"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:880
+msgid "Allow customers to upload images with their review."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:879
+msgid "Allow photo review"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:351
+msgid ""
+"Allow reviews on these post types. Posts are enabled by default — add or "
+"remove any others."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:936
+msgid "Allow video review"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:527
+msgid "Allow visitors and registered users to submit reviews."
+msgstr ""
+
+#. %s: Google Maps URL link label.
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:605
+#, php-format
+msgid "Alternatively, you can enter either your Place ID or your %s."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:235 src/Admin/Bdrvw_ReviewPanel.php:534
+#: src/Admin/Bdrvw_ReviewsListTable.php:381
+#: src/Frontend/Bdrvw_ReviewRenderer.php:636
+msgid "Anonymous"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:394
+msgid "Anyone"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:471
+msgid "API key"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:447
+msgid "API Key & Refresh Interval"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:796
+msgid ""
+"Applies to Grid (cards per row). List and Sidebar always use a single column."
+" Tablet caps at 2, mobile at 1."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:287
+#: src/Admin/Bdrvw_ReviewsListTable.php:596
+msgid "Approve"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:48 src/Admin/Bdrvw_ReviewsListTable.php:171
+msgid "Approved"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:413 src/Core/Bdrvw_Photos.php:81
+msgid "Attachment"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1060
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:935
+msgid "Attribute"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:709
+msgid "Author name"
+msgstr ""
+
+#. %s: review author name.
+#: src/Core/Bdrvw_Notifier.php:83
+#, php-format
+msgid "Author: %s"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:526
+msgid "Auto-approve reviews"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1157
+msgid "Available in Pro"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:988
+msgid "Available on Higher Plans"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:707
+msgid "Avatar"
+msgstr ""
+
+#. %s: avg rating.
+#: src/Frontend/Bdrvw_ReviewRenderer.php:415
+#, php-format
+msgid "Avg %s"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:636
+msgid "badword&#10;another phrase&#10;spammy@example.com"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1415
+msgid "Banner — a gradient profile header over a clean white body."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:143
+#: src/Admin/Bdrvw_SettingsPage.php:1133
+msgid "Bar"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:123
+#: src/Admin/Bdrvw_SettingsPage.php:1436 src/Admin/Bdrvw_SettingsPage.php:1755
+msgid "Bars"
+msgstr ""
+
+#. %s: total number of reviews.
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:975
+#, php-format
+msgid "Based on %s reviews"
+msgstr ""
+
+#. %s: post/product title.
+#: src/Frontend/Bdrvw_ReviewRenderer.php:395
+#, php-format
+msgid "Be the first to review “%s”"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:471
+msgid "Before the content"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:698
+msgid ""
+"Best espresso in town! The baristas know their craft and the pastries are "
+"exceptional."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:962
+msgid "Best for"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:124
+#: src/Admin/Bdrvw_SettingsPage.php:1437 src/Admin/Bdrvw_SettingsPage.php:1756
+msgid "Big score card"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:600 src/Admin/Bdrvw_SettingsPage.php:607
+msgid "Blacklist"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:642
+msgid "Blacklist Action"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:632
+msgid "Blacklist words"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:844
+msgid "Blocked IP addresses"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1127
+msgid "Blocked words"
+msgstr ""
+
+#. Name of the plugin
+#: src/Admin/Bdrvw_AdminMenu.php:83 src/Admin/Bdrvw_AdminMenu.php:84
+msgid "BoldReview"
+msgstr ""
+
+#. %s: version number.
+#: src/Admin/Bdrvw_ToolsPage.php:734
+#, php-format
+msgid "BoldReview %s"
+msgstr ""
+
+#. %s: version number.
+#: src/Admin/Bdrvw_ToolsPage.php:848
+#, php-format
+msgid "BoldReview is now running version %s."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostColumns.php:94
+msgid "BoldReview Rating"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1054
+msgid ""
+"Both shortcodes accept these optional attributes. Layout and template always "
+"follow your Display settings, so they are not shortcode attributes."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:803
+msgid "By Email Address"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:804
+msgid "By IP Address"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:554
+msgid "Cache is empty — connect a business below to populate it."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:442 src/Admin/Bdrvw_ReviewPanel.php:561
+msgid "Cancel"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:382
+msgid "Cancelled"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:989
+msgid "Card Display"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:112
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:890
+msgid "Cards Only"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:783
+msgid "Cards per row"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:876
+msgid "Cards per row for the Grid layout only, 1 to 4. Defaults to 3."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1285
+msgid "Centered — logo on top, details centred below."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:675
+msgid "Choose how each review is laid out on the frontend."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:673
+msgid "Choose how the reviews block is arranged."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1126
+msgid "Choose input style"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:643
+msgid ""
+"Choose what happens when a review is blacklisted. “Require approval” holds "
+"it as pending; “Reject submission” discards it without saving."
+msgstr ""
+
+#. %s: shortcode tag wrapped in <code>.
+#: src/Admin/Bdrvw_SettingsPage.php:485
+#, php-format
+msgid ""
+"Choose where the review form auto-appears on single posts/pages. Pick "
+"“Disabled” if you only want to place it manually via the %s shortcode."
+msgstr ""
+
+#. %s: link to the WordPress Discussion Settings page.
+#: src/Admin/Bdrvw_SettingsPage.php:613
+#, php-format
+msgid ""
+"Choose which blacklist to use for reviews. The <a href=\"%s\">Disallowed "
+"Comment Keys</a> option can be found on the WordPress Discussion Settings "
+"page."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1283
+msgid "Classic — logo, name, stars and review count in a row."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:890
+msgid "Clean stacked cards, no header"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsPage.php:95
+msgid "Close"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:908
+msgid "Close reviews"
+msgstr ""
+
+#: src/Core/Bdrvw_Modules.php:38
+msgid ""
+"Collect first-party reviews on your own site and control how they appear on "
+"the frontend."
+msgstr ""
+
+#: src/Core/Bdrvw_Modules.php:37
+msgid "Collection Review"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:686
+msgid "Comment"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:702
+msgid "Comment Box Fields"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:682
+msgid "Comment-style layout: avatar, author meta, stars, title and content."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:74
+msgid "Comments"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1287
+msgid "Compact pill — a small rounded review badge."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:64
+msgid "Compact vertical list, great for narrow columns."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:381
+msgid "Completed"
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:150
+msgid "Configure"
+msgstr ""
+
+#: src/Core/Bdrvw_Modules.php:39
+msgid ""
+"Configure the review form, fields, criteria and frontend rating display in "
+"one place."
+msgstr ""
+
+#: src/Core/Bdrvw_Modules.php:61
+msgid ""
+"Connect a Google Place ID to import star ratings and snippets directly from "
+"Google."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:42
+msgid "Connect Google"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Ajax.php:172
+msgid "Connected to Google Business successfully."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:688
+msgid "contact us"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1025
+msgid ""
+"Control how many reviews show, the minimum rating, the review date format, "
+"and how the review text is displayed."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:823
+msgid "Copied!"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1040
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:823
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:824
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:910
+msgid "Copy"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1030
+msgid ""
+"Copy a shortcode and paste it into any post, page, or widget to place the "
+"review form or list exactly where you want it."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:900
+msgid ""
+"Copy a shortcode and paste it into any post, page, or widget to show your "
+"Google reviews exactly where you want them."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Ajax.php:133
+msgid ""
+"Could not fetch place details. Check that your API key is valid and the "
+"Places API is enabled."
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:118
+msgid "Could not load this review. Please try again."
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:124 src/Ajax/Bdrvw_Handler.php:261
+msgid "Could not post the reply. Please try again."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:774
+msgid ""
+"Could not reach wordpress.org for the release list. Try again in a moment."
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:111
+msgid "Could not reset module. Please try again."
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:107
+msgid "Could not save settings. Please try again."
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:634
+msgid "Could not save your review. Please try again."
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:122
+msgid "Could not save. Please try again."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:354
+msgid "Could not start the export."
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:100
+msgid "Could not update module. Please try again."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1342
+msgid ""
+"Create one or more criteria groups (e.g. Quality, Price, Service). Each "
+"group is targeted by picking posts — or \"All\" of a post type — from the "
+"dropdowns below. The dropdowns mirror the post types you enabled in the "
+"General tab."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:892
+msgid "Crisp cards on a tinted surface"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:151
+msgid "Crisp high-contrast cards on a soft tinted surface."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1614
+msgid "Criteria"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:126
+#: src/Admin/Bdrvw_SettingsPage.php:1439 src/Admin/Bdrvw_SettingsPage.php:1758
+msgid "Criteria fill bars"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1341
+msgid "Criteria Groups"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:130
+#: src/Admin/Bdrvw_SettingsPage.php:1443 src/Admin/Bdrvw_SettingsPage.php:1762
+msgid "Criteria list + total card"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:713
+msgid "Criteria ratings"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1398 src/Admin/Bdrvw_SettingsPage.php:1628
+msgid "Criterion label (e.g. Quality)"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:452
+msgid "CSV file"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:92
+msgid "Custom date"
+msgstr ""
+
+#: src/Admin/Bdrvw_AdminMenu.php:94 src/Admin/Bdrvw_AdminMenu.php:95
+#: src/Admin/Bdrvw_DashboardPage.php:78 src/Admin/Bdrvw_SettingsPage.php:113
+msgid "Dashboard"
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:76
+msgid "Dashboard navigation"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:710
+msgid "Date"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:147
+msgid "Date range"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1305
+msgid "Default"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:887
+msgid "Default — works in every layout"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:725
+msgid "Delete failed."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:290 src/Admin/Bdrvw_ReviewsListTable.php:292
+#: src/Admin/Bdrvw_ReviewsListTable.php:591
+msgid "Delete permanently"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:97 src/Admin/Bdrvw_ReviewPanel.php:288
+#: src/Admin/Bdrvw_ReviewsListTable.php:622
+msgid "Delete this review permanently?"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:375 src/Admin/Bdrvw_SettingsPage.php:1556
+msgid "Description"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:961
+msgid "Design"
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:153 src/Admin/Bdrvw_SettingsPage.php:166
+msgid "Disable module"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:472
+msgid "Disabled — use shortcode manually"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:643
+msgid "Disconnect"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:951
+msgid "Discord notifications"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:235
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:44
+msgid "Display"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:403
+msgid ""
+"Display a \"Verified owner\" badge on reviews left by customers who "
+"purchased the product."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:480
+msgid "Display Position"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:317
+msgid "Display profile pictures for reviewers when available."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:302
+msgid "Display responses from the business owner beneath reviews."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:552
+msgid ""
+"Display the aggregated rating summary above the reviews on the frontend."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:322
+msgid "Display the Google logo on each review card."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1596
+msgid "Display the overall average score above this group’s reviews."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:562
+msgid "Display the overall average score in the global summary."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:327
+msgid "Display the star rating for each review."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:125
+#: src/Admin/Bdrvw_SettingsPage.php:1438 src/Admin/Bdrvw_SettingsPage.php:1757
+msgid "Donut progress arc"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:310
+msgid ""
+"Download your reviews, comments and replies as a CSV file. Pick a date range "
+"to export only what was submitted in that window."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:145
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:891
+msgid "Drop Shadow"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:818
+msgid ""
+"Drop this anywhere on your site. It updates as you change the layout or "
+"template."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1230
+msgid "e.g. Customer service"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1228
+msgid "e.g. Quality"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1510
+msgid "e.g. Restaurant"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1229
+msgid "e.g. Value for money"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1548
+msgid "e.g. What our customers say"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1615
+msgid "Each criterion gets its own 1–5 rating on the form."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:194 src/Admin/Bdrvw_ReviewsListTable.php:465
+#: src/Ajax/Bdrvw_Handler.php:292
+msgid "Edit reply"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:195 src/Admin/Bdrvw_ReviewsListTable.php:465
+#: src/Ajax/Bdrvw_Handler.php:292
+msgid "Edit review"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1413
+msgid ""
+"Editorial — crisp cards with a Google-colour side ribbon and a quote "
+"watermark."
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:103
+msgid "Edits below will affect what visitors see on your site."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:407
+msgid "Eligibility for send reviews"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:400
+msgid "Email address"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:506
+msgid "Email admin on new review"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:828
+msgid "Email whitelist"
+msgstr ""
+
+#. %s: review author email address.
+#: src/Core/Bdrvw_Notifier.php:86
+#, php-format
+msgid "Email: %s"
+msgstr ""
+
+#. %s: module display name (e.g. "Google Reviews").
+#: src/Admin/Bdrvw_SettingsPage.php:161
+#, php-format
+msgid "Enable %s"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1106
+msgid ""
+"Enable a field to show it on the review form. The label text only applies "
+"while the field is enabled."
+msgstr ""
+
+#. %s: URL to the General Settings tab.
+#: src/Admin/Bdrvw_SettingsPage.php:1352
+#, php-format
+msgid ""
+"Enable at least one post type under <a href=\"%s\">General Settings</a> to "
+"target criteria groups."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:528
+msgid "Enable author review"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:104
+msgid "Enable it to apply these settings on the frontend."
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:153 src/Admin/Bdrvw_SettingsPage.php:166
+msgid "Enable module"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:312
+msgid "Enable previous and next controls for sliders."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:527
+msgid "Enable user review"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1158
+msgid "Enabled"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:350
+msgid "Enabled post types"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:169
+msgid "End date"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:633
+msgid ""
+"Enter one word or phrase per line. A review is flagged when any of these "
+"appears in the reviewer name, email, website, IP or review text. Applies "
+"when the BoldReview Blacklist is selected above."
+msgstr ""
+
+#. %d: number of minutes.
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:442
+msgid "Every %d minutes"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:432
+msgid "Every 1 hour"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:434
+msgid "Every 12 hours"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:435
+msgid "Every 24 hours"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:436
+msgid "Every 3 days"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:431
+msgid "Every 5 minutes"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:433
+msgid "Every 6 hours"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:437
+msgid "Every 7 days (recommended)"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:929
+msgid ""
+"Every attribute is optional — leave one out and it uses your saved default."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:439
+msgid "Every month"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:438
+msgid "Every two weeks"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1062
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:937
+msgid "Example"
+msgstr ""
+
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1333
+msgid "Excellent"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1055
+msgid "Excellent rating"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:447
+msgid "Exclude pages"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:323
+msgid "Export CSV"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:309
+msgid "Export reviews"
+msgstr ""
+
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1339
+msgid "Fair"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1061
+msgid "Fair rating"
+msgstr ""
+
+#. %s: comma-separated list of file extensions, e.g. ".jpg, .png".
+#: src/Core/Bdrvw_Photos.php:115
+#, php-format
+msgid "File Support: %s"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:251
+msgid "Filter"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:235
+msgid "Filter by rating"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:225
+msgid "Filter by type"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:795
+msgid "Fine-tune how BoldReview behaves behind the scenes."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:878
+msgid ""
+"For [bdrvw_google] only: template_1 to template_6 (same as style1 to style6)."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:877
+msgid ""
+"For the all-in-one [bdrvw_google] tag only: grid, list, sidebar, or popup."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:233 src/Admin/Bdrvw_SettingsPage.php:1105
+msgid "Form Fields"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:716
+msgid ""
+"Friendly staff, latte art on point, the seasonal drinks are creative. "
+"Becoming a regular."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1417
+msgid "Frosted Pastel — left-aligned soft tinted glass cards."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:387
+msgid "Full name"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:128
+#: src/Admin/Bdrvw_SettingsPage.php:1441 src/Admin/Bdrvw_SettingsPage.php:1760
+msgid "Gauges"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:331
+msgid "General"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:232
+msgid "General Setting"
+msgstr ""
+
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1337
+msgid "Good"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1059
+msgid "Good rating"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:607
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:611
+msgid "Google"
+msgstr ""
+
+#. %s: Google API error message.
+#: src/Modules/GoogleReviews/Bdrvw_Ajax.php:132
+#, php-format
+msgid "Google API error: %s"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:585
+msgid "Google Business Profile name or location"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:455
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:516
+msgid "Google Cloud Console"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:606
+msgid "Google Maps URL"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:769
+msgid "Google reCAPTCHA"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:577
+msgid ""
+"Google returns at most 5 reviews per request. With this on, each refresh "
+"keeps previously-fetched reviews instead of replacing them, so your "
+"displayed set can grow beyond 5 over time as Google rotates which reviews it "
+"returns (up to 50 stored). A shorter Update Interval fills it faster."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1052
+msgid ""
+"Google returns up to 5 reviews per request. To display more than 5, turn on "
+"“Accumulate reviews” in the Connect Google tab (stores up to 50 over time)."
+msgstr ""
+
+#: src/Core/Bdrvw_Modules.php:59
+msgid "Google Reviews"
+msgstr ""
+
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1335
+msgid "Great"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:58
+msgid "Grid"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:845
+msgid "Grid layout"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1501
+msgid "Group name"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:241
+msgid "Guest"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:126
+#: src/Admin/Bdrvw_SettingsPage.php:1439 src/Admin/Bdrvw_SettingsPage.php:1758
+msgid "H-bars"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:128
+#: src/Admin/Bdrvw_SettingsPage.php:1441 src/Admin/Bdrvw_SettingsPage.php:1760
+msgid "Half-circle dials"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1538
+msgid "Heading"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:568
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1036
+msgid "Hide"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1128
+msgid ""
+"Hide any review whose text contains a blocked word (comma- or line-separated)"
+". Matching is case-insensitive and whole-word."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:296
+msgid "Hide rating label"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1071
+msgid "Hide reviews rated below this value."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:291
+msgid "Hide reviews without text"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:307
+msgid "Highlight verified reviewers with a checkmark badge."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1096
+msgid ""
+"How each review’s date is shown. “Relative” needs no exact date; the others "
+"use the review’s posted date."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1112
+msgid ""
+"How long review text is handled: truncate behind a “Read more” toggle, show "
+"in full, or keep a fixed-height scrollable box."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:511
+msgid ""
+"How many reviews a single visitor (or logged-in user) can submit on the same "
+"post. Set 0 for unlimited."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1019
+msgid ""
+"How many reviews to load per page. Defaults to your “Reviews per page” "
+"setting."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:872
+msgid ""
+"How many reviews to show. Falls back to your saved “Maximum reviews” limit."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:509
+msgid "How reviews are fetched (old vs. new Places API)"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1127
+msgid "How the main rating and each criterion are picked on the review form."
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://themewant.com/"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://themewant.com/"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:133
+msgid "ID"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1018
+msgid ""
+"ID of the post/page to show reviews for. Defaults to the current post — set "
+"this when placing the shortcode on a different page."
+msgstr ""
+
+#. %s: contact link.
+#: src/Admin/Bdrvw_ToolsPage.php:687
+#, php-format
+msgid ""
+"If you are using this tool to fix a problem with BoldReview, please %s so "
+"that it can be fixed for everyone."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:190
+msgid "Import / Export"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:459
+msgid "Import CSV"
+msgstr ""
+
+#. 1: imported count, 2: skipped count, 3: failed count.
+#: src/Admin/Bdrvw_ToolsPage.php:584
+#, php-format
+msgid "Import finished: %1$s added, %2$s skipped, %3$s could not be imported."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:442
+msgid "Import reviews"
+msgstr ""
+
+#. %s: name of the person being replied to, rendered as a link.
+#: src/Admin/Bdrvw_ReviewPanel.php:615
+#, php-format
+msgid "In reply to %s."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:137
+msgid "In response to"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:408
+msgid "In which order status your customer will be able to send reviews?"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:68 src/Ajax/Bdrvw_Handler.php:162
+#: src/Ajax/Bdrvw_Handler.php:214 src/Ajax/Bdrvw_Handler.php:303
+#: src/Ajax/Bdrvw_Handler.php:359 src/Ajax/Bdrvw_Handler.php:395
+#: src/Ajax/Bdrvw_Handler.php:422 src/Ajax/Bdrvw_Handler.php:684
+#: src/Ajax/Bdrvw_Handler.php:712 src/Modules/GoogleReviews/Bdrvw_Ajax.php:74
+msgid "Insufficient permissions."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1502
+msgid "Internal label so you can tell groups apart."
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:318
+msgid "Invalid post type."
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:694 src/Ajax/Bdrvw_Handler.php:721
+msgid "Invalid request."
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:473
+msgid "Invalid target post."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1168 src/Admin/Bdrvw_SettingsPage.php:1190
+msgid "Label text"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:91
+msgid "Last 30 days"
+msgstr ""
+
+#. %s: human-readable time difference.
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:550
+#, php-format
+msgid "Last refreshed: %s ago."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:43
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:672
+msgid "Layout"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:937
+msgid ""
+"Let customers attach a short video to their review, alongside the photos the "
+"free plugin already accepts."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1217
+msgid ""
+"Let visitors rate each criterion on the review form so they can score "
+"different criteria separately. Define the criteria below."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:150
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:892
+msgid "Light Contrast"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:597
+msgid "Like this review"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:812
+msgid "Limit reviews by"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:63
+msgid "List"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:850
+msgid "List layout"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:803
+msgid "Live preview"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:117
+msgid "Loading more…"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:479
+msgid "Locked by BDRVW_GOOGLE_API_KEY constant in wp-config.php"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:707
+msgid ""
+"Lovely atmosphere, great Wi-Fi for working. Coffee is solid; could use a few "
+"more pastry choices."
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:102 src/Admin/Bdrvw_SettingsPage.php:137
+msgid "Manage"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:288
+msgid "Mark as Pending"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:599
+msgid "Mark as pending"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:290
+msgid "Mark as Spam"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:510
+msgid "Max reviews per user per post"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1051
+msgid "Maximum reviews to display"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1070
+msgid "Minimum rating to show"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Ajax.php:123
+msgid "Missing place id."
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:66
+msgid "Mix &amp; match review sources. Enable just the modules you need."
+msgstr ""
+
+#: src/Core/Bdrvw_Notifier.php:102
+msgid "Moderate this review:"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:162
+msgid "module"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:99
+msgid "Module disabled"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:98
+msgid "Module enabled"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:110 src/Ajax/Bdrvw_Handler.php:412
+msgid "Module reset to defaults"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:93
+msgid "Module settings"
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:88 src/Admin/Bdrvw_SettingsPage.php:111
+#: src/Admin/Bdrvw_SettingsPage.php:123
+msgid "Modules"
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:122
+msgid "Modules currently powering review collection on your site."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:294 src/Admin/Bdrvw_ReviewsListTable.php:605
+msgid "Move to spam"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:297 src/Admin/Bdrvw_ReviewsListTable.php:291
+msgid "Move to Trash"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:607
+msgid "Move to trash"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:208
+msgid "Move your reviews in and out, and roll the plugin back"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1280
+msgid "Need more than 3 criteria?"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:112 src/Admin/Bdrvw_SettingsPage.php:1427
+msgid "New group"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:526
+msgid "New reviews go live without moderation."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:247
+msgid "Newest first"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1009
+msgid "Next review"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:479
+msgid "No CSV file was uploaded."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:708
+msgid "No earlier releases are available to roll back to right now."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:341
+msgid "No Google reviews to display yet."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:802
+msgid "No Limit"
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:131
+msgid ""
+"No modules are active yet. Switch one on from \"All Modules\" to get started."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:502
+msgid "No rating"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostColumns.php:166
+msgid "No rating yet"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:115
+msgid "No results found"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:637
+msgid "No reviews found."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:872
+msgid "Notification email template"
+msgstr ""
+
+#. %s: singular name of the post type being edited, e.g. "product".
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:193
+#, php-format
+msgid ""
+"Off = use the global Display style. On = use the styles picked below on this "
+"%s only."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:248
+msgid "Oldest first"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:380
+msgid "On hold"
+msgstr ""
+
+#. %s: shortcode tag wrapped in <code>.
+#: src/Admin/Bdrvw_SettingsPage.php:1079
+#, php-format
+msgid ""
+"On your enabled post types the %s block already appears automatically based "
+"on the Display Position setting in the General tab — you only need the "
+"shortcode for manual placement."
+msgstr ""
+
+#. %s: post title the review was left on.
+#: src/Core/Bdrvw_Notifier.php:80
+#, php-format
+msgid "On: %s"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:292
+msgid "Only display reviews that include written feedback."
+msgstr ""
+
+#: src/Integrations/Bdrvw_WooCommerce.php:131
+#: src/Integrations/Bdrvw_WooCommerce.php:205
+#: src/Integrations/Bdrvw_WooCommerce.php:210
+msgid ""
+"Only logged in customers who have purchased this product may leave a review."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:525
+msgid "Only logged-in users can submit reviews."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:874
+msgid ""
+"Only show reviews rated this many stars or higher (1–5). Overrides the saved "
+"“Minimum rating” setting for this shortcode."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:875
+msgid ""
+"Only show reviews with exactly this star rating (1–5). Takes priority over "
+"min_rating."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1053
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:928
+msgid "Optional attributes"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:776
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:851
+msgid "Our business"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1013
+msgid ""
+"Outputs only the approved reviews list (with the rating summary) for the "
+"current post — without the submission form. Handy when you want to show "
+"reviews in one place and the form in another."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1008
+msgid ""
+"Outputs the existing reviews for the current post followed by the submission "
+"form. This is the same block that auto-appears on your enabled post types — "
+"use the shortcode to place it manually anywhere (e.g. when Display Position "
+"is set to “Disabled”)."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:123
+#: src/Admin/Bdrvw_SettingsPage.php:1436 src/Admin/Bdrvw_SettingsPage.php:1755
+msgid "Overall average + count"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:354
+msgid "Overall rating"
+msgstr ""
+
+#. %s: singular name of the post type being edited, e.g. "product".
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:185
+#, php-format
+msgid "Override style for this %s"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1022
+msgid ""
+"Override the rating-input control shown in the form for this shortcode only. "
+"Accepts: stars, slider, bar, square, pill. Leave it off to use your Rating "
+"Input setting."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1021
+msgid ""
+"Override the rating-summary design for this shortcode only. Accepts: bars, "
+"point, pie, hbars, stripes, gauge, tiles, overview. Leave it off to use your "
+"Rating Summary setting."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:130
+#: src/Admin/Bdrvw_SettingsPage.php:1443 src/Admin/Bdrvw_SettingsPage.php:1762
+msgid "Overview"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:575
+msgid "Owner reply"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:533
+msgid "Pagination limit for the frontend reviews list."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1005
+msgid "Paid"
+msgstr ""
+
+#. 1: setup guide link, 2: Google Cloud Console link.
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:453
+#, php-format
+msgid ""
+"Paste your Google Places API key to load real reviews from your Business "
+"Profile. Need one? Follow our %1$s or open the %2$s."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:47 src/Admin/Bdrvw_ReviewsListTable.php:170
+msgid "Pending"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:378
+msgid "Pending payment"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:260
+msgid "Photos"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1649
+msgid ""
+"Pick specific items, or choose \"All …\" to target every item of that post "
+"type. One dropdown per post type enabled in General settings."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:448
+msgid ""
+"Pick specific WordPress pages where the review form should NOT auto-show."
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:123
+msgid ""
+"Pick the review sources and features you want. Toggle them on, then click "
+"\"Configure\" to fine-tune each one."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:125
+#: src/Admin/Bdrvw_SettingsPage.php:1438 src/Admin/Bdrvw_SettingsPage.php:1757
+msgid "Pie"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:145
+#: src/Admin/Bdrvw_SettingsPage.php:1135
+msgid "Pills"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:243
+msgid "Place from Google Maps URL"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:505 src/Ajax/Bdrvw_Handler.php:528
+#: src/Frontend/Bdrvw_Assets.php:81
+msgid "Please choose a rating."
+msgstr ""
+
+#: src/Frontend/Bdrvw_Assets.php:79
+msgid "Please complete the required fields."
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:535
+msgid "Please correct the errors and try again."
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:88 src/Ajax/Bdrvw_Handler.php:517
+msgid "Please enter a valid email address."
+msgstr ""
+
+#: src/Frontend/Bdrvw_ReviewRenderer.php:329
+msgid "Please log in to submit a review."
+msgstr ""
+
+#: src/Frontend/Bdrvw_Assets.php:80
+msgid "Please rate at least one criterion before submitting."
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:234
+msgid "Please write a reply first."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:124
+#: src/Admin/Bdrvw_SettingsPage.php:1437 src/Admin/Bdrvw_SettingsPage.php:1756
+msgid "Point"
+msgstr ""
+
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1341
+msgid "Poor"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:73
+msgid "Popup"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:860
+msgid "Popup layout"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:176
+msgid "post"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:952
+msgid ""
+"Post every new review straight into a Discord channel through an incoming "
+"webhook."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:533
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1093
+msgid "Posted on Google"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1006
+msgid "Previous review"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:181
+msgid "Price:"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:379
+msgid "Processing"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:716
+msgid "Product header on the form"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:107
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:889
+msgid "Profile Header"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:763
+msgid ""
+"Protect the review submission form from spam and bot entries with Google "
+"reCAPTCHA."
+msgstr ""
+
+#: src/Core/Bdrvw_Modules.php:60
+msgid ""
+"Pull verified reviews from your Google Business Profile and showcase social "
+"proof."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:102
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:888
+msgid "Quote Style"
+msgstr ""
+
+#. %d: rating value 1-5.
+#: src/Admin/Bdrvw_ReviewPanel.php:667 src/Admin/Bdrvw_SettingsPage.php:1809
+msgid "Rate %d out of 5"
+msgstr ""
+
+#. %s: rating value.
+#: src/Frontend/Bdrvw_ReviewRenderer.php:558
+#: src/Frontend/Bdrvw_ReviewRenderer.php:585
+#, php-format
+msgid "Rated %s out of 5"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:136
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1063
+msgid "Rating"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1289
+msgid "Rating focus — a large rating number beside the stars."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:212
+#: src/Admin/Bdrvw_SettingsPage.php:1116
+msgid "Rating input style"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:62
+msgid "Rating Style"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:234
+msgid "Rating Summary"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1519
+msgid "Rating summary enable"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:547
+msgid "Rating Summary Style"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:200
+msgid "Rating summary style"
+msgstr ""
+
+#. %d: review rating out of 5.
+#: src/Core/Bdrvw_Notifier.php:89
+msgid "Rating: %d / 5"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:567
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1035
+msgid "Read more"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:236 src/Admin/Bdrvw_SettingsPage.php:762
+msgid "reCAPTCHA"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:702
+msgid "Refresh list"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:241
+msgid "Registered user"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:679
+msgid ""
+"Reinstall an earlier release of BoldReview. Your reviews and settings are "
+"left untouched — only the plugin files are replaced."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:289
+#: src/Admin/Bdrvw_ReviewsListTable.php:602
+msgid "Reject"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:590
+msgid "Reject submission"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:49 src/Admin/Bdrvw_ReviewsListTable.php:172
+msgid "Rejected"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1035
+msgid "Relative — e.g. “2 weeks ago”"
+msgstr ""
+
+#. %s: number of releases.
+#: src/Admin/Bdrvw_ToolsPage.php:777
+#, php-format
+msgid "Release list refreshed — %s versions available."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1401 src/Admin/Bdrvw_SettingsPage.php:1631
+msgid "Remove criterion"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1491
+msgid "Remove group"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:119 src/Core/Bdrvw_Photos.php:169
+#: src/Frontend/Bdrvw_Assets.php:84
+msgid "Remove photo"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:297
+msgid "Remove the \"X out of 5\" text shown beside star ratings."
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:113
+msgid "Remove this criteria group?"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:866
+msgid ""
+"Renders using whatever you saved on the Layout tab. Add layout and template "
+"attributes to override it without opening the settings."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:748
+msgid "Replace the installed plugin files with the selected release?"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:75
+msgid "Replies"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:436
+#: src/Admin/Bdrvw_ReviewsListTable.php:461
+msgid "Reply"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:294
+msgid "Reply details"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:123 src/Ajax/Bdrvw_Handler.php:275
+msgid "Reply posted"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:289
+msgid "Reply to review"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:151
+msgid "Reply updated"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:589
+msgid "Require approval"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1162 src/Admin/Bdrvw_SettingsPage.php:1184
+msgid "Required"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:498
+msgid ""
+"Required APIs to enable in Google Cloud: Places API + Maps JavaScript API. "
+"Restrict the key to your site domain for safety."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:176
+msgid "Reset"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:108
+msgid "Reset this module to defaults? Unsaved changes will be lost."
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:109
+msgid "Resetting…"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:59
+msgid "Responsive 2–3 column card grid."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:283 src/Admin/Bdrvw_ReviewsListTable.php:590
+msgid "Restore"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:525
+msgid "Restrict to registered users"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:389
+msgid "Restrict who may review WooCommerce products."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:189 src/Admin/Bdrvw_ReviewsListTable.php:134
+msgid "Review"
+msgstr ""
+
+#. %s: number of reviews.
+#: src/Integrations/Bdrvw_WooCommerce.php:108
+#, php-format
+msgid "Review (%s)"
+msgid_plural "Reviews (%s)"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:452
+msgid "Review actions"
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:65 src/Admin/Bdrvw_SettingsPage.php:92
+msgid "Review Collection"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:712
+msgid "Review content"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1209
+msgid "Review Criteria"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1216
+msgid "Review criteria on form"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:294
+msgid "Review details"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1007
+msgid "Review form + reviews list"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1024
+msgid "Review Limits"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:78 src/Ajax/Bdrvw_Handler.php:174
+#: src/Ajax/Bdrvw_Handler.php:224
+msgid "Review not found."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:430
+msgid "Review status"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1098
+msgid "Review summary"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1111
+msgid "Review text"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:361
+msgid "Review Title"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:711 src/Admin/Bdrvw_SettingsPage.php:1097
+msgid "Review title"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:121 src/Ajax/Bdrvw_Handler.php:152
+msgid "Review updated"
+msgstr ""
+
+#: src/Core/Bdrvw_Notifier.php:98
+msgid "Review:"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:135
+msgid "Reviewer"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:715 src/Admin/Bdrvw_SettingsPage.php:1095
+msgid "Reviewer email"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1094
+msgid "Reviewer name"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:975
+msgid ""
+"Reviewer photos, star ratings, the Google logo, verified badges, business "
+"replies, the minimum rating and date format are set once on the Display tab "
+"— they apply to every shortcode automatically."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:707
+msgid "Reviewer’s avatar image."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:73 src/Admin/Bdrvw_ReviewsPage.php:59
+msgid "Reviews"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:481
+msgid "Reviews are disabled for this content."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:398
+msgid "Reviews can only be left by \"verified owners\""
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1012
+msgid "Reviews list only"
+msgstr ""
+
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1644
+msgid "Reviews pagination"
+msgstr ""
+
+#: src/Admin/Bdrvw_AdminMenu.php:194 src/Admin/Bdrvw_SettingsPage.php:532
+msgid "Reviews per page"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:191
+msgid "Rollback"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:678 src/Admin/Bdrvw_ToolsPage.php:750
+msgid "Rollback plugin"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:716
+msgid "Rollback version to"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:179
+msgid "Save"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:471
+msgid "Save Reply"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:472
+msgid "Save Review"
+msgstr ""
+
+#: src/Admin/Bdrvw_DashboardPage.php:170 src/Admin/Bdrvw_SettingsPage.php:194
+msgid "Saved"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:105 src/Admin/Bdrvw_Assets.php:120
+msgid "Saving…"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:129
+#: src/Admin/Bdrvw_SettingsPage.php:1442 src/Admin/Bdrvw_SettingsPage.php:1761
+msgid "Score cards"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:601
+msgid ""
+"Screen incoming reviews for banned words. When the reviewer name, email, "
+"website, IP or review text matches, the chosen action is taken automatically."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1046
+msgid "Scrollable box (fixed height)"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:277
+msgid "Search"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsPage.php:69
+msgid "Search by reviewer, product or keyword"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:275
+msgid "Search by reviewer, product or keyword…"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:116
+msgid "Searching…"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:114
+msgid "Search…"
+msgstr ""
+
+#: src/Admin/Bdrvw_AdminMenu.php:144 src/Ajax/Bdrvw_Handler.php:72
+#: src/Ajax/Bdrvw_Handler.php:166 src/Ajax/Bdrvw_Handler.php:218
+#: src/Ajax/Bdrvw_Handler.php:307 src/Ajax/Bdrvw_Handler.php:363
+#: src/Ajax/Bdrvw_Handler.php:399 src/Ajax/Bdrvw_Handler.php:426
+#: src/Ajax/Bdrvw_Handler.php:455 src/Ajax/Bdrvw_Handler.php:688
+#: src/Ajax/Bdrvw_Handler.php:716 src/Modules/GoogleReviews/Bdrvw_Ajax.php:67
+msgid "Security check failed."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:127
+#: src/Admin/Bdrvw_SettingsPage.php:1440 src/Admin/Bdrvw_SettingsPage.php:1759
+msgid "Segmented meter"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1095
+msgid "Select date format"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:361
+msgid "Select post types…"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:506
+msgid ""
+"Send a notification email to the site admin every time a visitor submits a "
+"review."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:967
+msgid ""
+"Send new reviews to a Slack channel through an incoming webhook, so the team "
+"sees them without opening the admin."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:564
+msgid "Send Reply"
+msgstr ""
+
+#: src/Admin/Bdrvw_AdminMenu.php:115 src/Admin/Bdrvw_AdminMenu.php:116
+#: src/Admin/Bdrvw_SettingsPage.php:151
+msgid "Settings"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:335
+msgid "Settings based on CPT"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:106 src/Ajax/Bdrvw_Handler.php:385
+msgid "Settings saved successfully"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:84
+msgid "Settings saved."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:601
+msgid "Share this review"
+msgstr ""
+
+#: src/Frontend/Bdrvw_ReviewRenderer.php:628
+msgid "Shop owner replied"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1539
+msgid "Short title shown above the criteria."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:817
+msgid "Shortcode"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1029
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:899
+msgid "Shortcodes"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:403
+msgid "Show \"Verified owner\" label on customer reviews"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1520
+msgid "Show a heading and description above this group on the frontend."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:562 src/Admin/Bdrvw_SettingsPage.php:1595
+msgid "Show average rating"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:301
+msgid "Show business replies"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1045
+msgid "Show full review"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:311
+msgid "Show navigation arrows"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1648
+msgid "Show on"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:321
+msgid "Show platform logo"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:552
+msgid "Show rating summary"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:316
+msgid "Show reviewer photos"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:326
+msgid "Show star ratings"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1117
+msgid ""
+"Show the overall rating field on the review form and pick its style below. "
+"Turn off to hide the rating field entirely — visitors can then submit a "
+"review without giving an overall rating."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:528
+msgid "Show the post author’s aggregated rating alongside reviews."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:716
+msgid ""
+"Show the product’s image and title at the top of the review form, so the "
+"shopper can see what they are reviewing. Products only — it never appears on "
+"posts."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:715
+msgid ""
+"Show the reviewer’s email next to the author name in the meta line. Requires "
+"the “Reviewer email” form field to be enabled too."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:714
+msgid ""
+"Show the reviewer’s submitted website as a clickable link below the review "
+"title. Requires the “Website URL” form field to be enabled too."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:713
+msgid ""
+"Show this reviewer’s per-criterion scores under their review. The overall "
+"criteria averages still show in the summary at the top."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:306
+msgid "Show verified badge"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:806
+msgid "Showing connected business data."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:807
+msgid ""
+"Showing demo data. Connect a Google Business Profile in the Connect Google "
+"tab to see real reviews."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:68
+msgid "Sidebar"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:855
+msgid "Sidebar layout"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:889
+msgid "Sidebar with “Write a review”"
+msgstr ""
+
+#. %s: example date in the site's configured format.
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1041
+#, php-format
+msgid "Site default (%s)"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:966
+msgid "Slack notifications"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:142
+#: src/Admin/Bdrvw_SettingsPage.php:1132
+msgid "Slider"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:879
+msgid ""
+"Slider layout only: auto-advance delay in milliseconds. Leave out to keep "
+"autoplay off."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:881
+msgid "Slider layout only: gap between slides in pixels. Defaults to 16."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:883
+msgid ""
+"Slider layout only: show the pagination dots (true or false). Defaults to "
+"true."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:882
+msgid ""
+"Slider layout only: show the prev/next arrows (true or false). Defaults to "
+"the Display-tab setting."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:880
+msgid ""
+"Slider layout only: slide transition duration in milliseconds. Defaults to "
+"Swiper’s built-in speed."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:891
+msgid "Soft floating cards"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:146
+msgid "Soft floating cards with a deep, diffuse shadow."
+msgstr ""
+
+#: src/Frontend/Bdrvw_Assets.php:77
+msgid "Something went wrong. Please try again."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:245
+msgid "Sort reviews"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:873
+msgid ""
+"Sort reviews by date: “desc” shows newest first, “asc” shows oldest first. "
+"Leave out to keep Google’s default order. Works with every shortcode."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:50 src/Admin/Bdrvw_ReviewsListTable.php:173
+msgid "Spam"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1411
+msgid ""
+"Spotlight — centred testimonial cards with a haloed avatar and a deep, "
+"lifted shadow."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:144
+#: src/Admin/Bdrvw_SettingsPage.php:1134
+msgid "Squares"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:97
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:887
+msgid "Standard Card"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1180
+msgid "Star rating"
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:141
+#: src/Admin/Bdrvw_SettingsPage.php:1131
+msgid "Stars"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:708
+msgid "Stars rating"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:164
+msgid "Start date"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:600
+msgid ""
+"Start typing your Google Business Profile name or your location, then select "
+"your business from the drop-down list."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:138
+msgid "Status"
+msgstr ""
+
+#. %s: review status (pending/approved).
+#: src/Core/Bdrvw_Notifier.php:91
+#, php-format
+msgid "Status: %s"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:454
+msgid "step-by-step setup guide"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:69
+msgid "Sticky business card on the left, reviews on the right."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:813
+msgid ""
+"Stop the same visitor reviewing a post twice while logged out, matching them "
+"on the email address they gave or the IP they submitted from. “No Limit” "
+"leaves this to the per-user limit in General Settings."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:127
+#: src/Admin/Bdrvw_SettingsPage.php:1440 src/Admin/Bdrvw_SettingsPage.php:1759
+msgid "Stripes"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:725
+msgid ""
+"Stumbled in on a rainy afternoon and stayed for hours. Cozy, well-lit, and "
+"the cortado was perfect."
+msgstr ""
+
+#. %d: style number.
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:122
+msgid "Style %d"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:96
+msgid "Style 1"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:101
+msgid "Style 2"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:106
+msgid "Style 3"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:111
+msgid "Style 4"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:953
+msgid "Styles"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:845
+msgid ""
+"Submissions from these addresses are refused outright, whether or not they "
+"have reviewed before. One per line; a trailing * matches a range, e.g. 203.0."
+"113.*"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:139
+msgid "Submitted on"
+msgstr ""
+
+#: src/Frontend/Bdrvw_Assets.php:76
+msgid "Submitting…"
+msgstr ""
+
+#: src/Frontend/Bdrvw_ReviewRenderer.php:840
+#: src/Frontend/Bdrvw_ReviewRenderer.php:1258
+msgid "Summary"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:556 src/Admin/Bdrvw_SettingsPage.php:1573
+msgid "Summary style"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:674 src/Admin/Bdrvw_SettingsPage.php:681
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:704
+msgid "Template"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:888
+msgid "Testimonial-style bubbles"
+msgstr ""
+
+#: src/Frontend/Bdrvw_Assets.php:78
+msgid "Thanks! Your review has been received."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:514
+msgid ""
+"That CSV is missing the post_id and content columns — export a file from "
+"BoldReview to see the expected format."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:501
+msgid "That file is empty."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:800
+msgid "That version is not available to roll back to."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:708
+msgid "The 1–5 star rating shown at the top of the review."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:712
+msgid "The body of the review."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:548
+msgid ""
+"The global rating-summary layout used on every post and page. Author-review "
+"groups in the Rating Summary tab override this for the specific posts or "
+"pages they target."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:710
+msgid "The publication date of the review."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:709
+msgid "The reviewer’s name."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:834
+msgid ""
+"The rollback could not be completed. Check that the plugin folder is "
+"writable."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:954
+msgid ""
+"The style attribute picks the card design. Not every layout offers every "
+"style — the Layout tab only shows the ones that fit."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:711
+msgid "The title text of the review."
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:486 src/Admin/Bdrvw_ToolsPage.php:493
+msgid "The uploaded file could not be read."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:871
+msgid ""
+"The visual card style, style1 through style6 (see the styles below). Falls "
+"back to your saved style."
+msgstr ""
+
+#. Author of the plugin
+msgid "Themewant"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:513
+msgid "This field is required."
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:101
+msgid "This module is active"
+msgstr ""
+
+#: src/Admin/Bdrvw_Assets.php:102
+msgid "This module is disabled"
+msgstr ""
+
+#. %s: Google Cloud Console link.
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:515
+#, php-format
+msgid ""
+"This plugin uses both the new and the legacy &#8220;old&#8221; Google Places "
+"API automatically. If your key has the <strong>old Places API</strong> "
+"enabled, reviews are sorted <strong>newest first</strong> and the plugin can "
+"collect <strong>more than 5</strong> reviews over time. Keys created after "
+"March&nbsp;2025 often support only the <em>new</em> Places API, which "
+"returns up to 5 reviews sorted by relevance (not by date). To get more, "
+"newer reviews: enable &#8220;Places API&#8221; on your project in the %s, "
+"then keep <strong>Accumulate reviews</strong> turned on below."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1264
+msgid ""
+"This review template is available in BoldReview Pro. Activate the Pro add-on "
+"to display it."
+msgstr ""
+
+#: src/Admin/Bdrvw_PostStyleMetaBox.php:129
+#: src/Admin/Bdrvw_SettingsPage.php:1442 src/Admin/Bdrvw_SettingsPage.php:1761
+msgid "Tiles"
+msgstr ""
+
+#. %s: review title.
+#: src/Core/Bdrvw_Notifier.php:94
+#, php-format
+msgid "Title: %s"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:990
+msgid "Toggle which elements appear on each review card."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:703
+msgid "Toggle which parts of the comment template appear on the frontend."
+msgstr ""
+
+#: src/Admin/Bdrvw_AdminMenu.php:124 src/Admin/Bdrvw_AdminMenu.php:125
+#: src/Admin/Bdrvw_ToolsPage.php:207
+msgid "Tools"
+msgstr ""
+
+#. %s: number of reviews.
+#: src/Frontend/Bdrvw_ReviewRenderer.php:973
+#, php-format
+msgid "Total %s review"
+msgid_plural "Total %s reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:51 src/Admin/Bdrvw_ReviewsListTable.php:174
+msgid "Trash"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1044
+msgid "Truncate with “Read more”"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:593
+msgid "Type your google business profile name,location, place id, google map "
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:184 src/Ajax/Bdrvw_Handler.php:378
+#: src/Ajax/Bdrvw_Handler.php:404 src/Ajax/Bdrvw_Handler.php:433
+msgid "Unknown module."
+msgstr ""
+
+#: src/Core/Bdrvw_Sanitizer.php:556
+msgid "Untitled group"
+msgstr ""
+
+#. 1: number of photos allowed, 2: size limit, e.g. "5 MB".
+#: src/Core/Bdrvw_Photos.php:124
+#, php-format
+msgid "Up to %1$s photos, %2$s each"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:136 src/Ajax/Bdrvw_Handler.php:699
+msgid "Update failed."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:535
+msgid "Update Interval"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:99 src/Admin/Bdrvw_SettingsPage.php:1282
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: src/Core/Bdrvw_Photos.php:138
+msgid "Upload"
+msgstr ""
+
+#: src/Admin/Bdrvw_ToolsPage.php:443
+msgid ""
+"Upload a CSV exported from BoldReview. Every row in the file is imported; a "
+"review that is already here is left alone."
+msgstr ""
+
+#: src/Core/Bdrvw_Photos.php:104
+msgid "Upload Image"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:45
+msgid "Usage Guide"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:582
+msgid "Use the BoldReview Blacklist"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:581
+msgid "Use the WordPress Disallowed Comment Keys"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Client.php:230
+msgid "Use this Place ID"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:238
+msgid "Uses"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:960
+msgid "Value"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:552
+msgid "Verified Google review"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:770
+msgid ""
+"Verify every submission with reCAPTCHA v2 or v3 — site key, secret key and "
+"the score threshold that decides what gets through."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1057
+msgid "Very good rating"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewsListTable.php:456
+msgid "View details"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:557
+msgid ""
+"Visual layout for the global rating summary. Each preview matches the "
+"frontend output."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1574
+msgid ""
+"Visual layout used for this group’s aggregate. Each preview matches the "
+"frontend output."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:714 src/Admin/Bdrvw_SettingsPage.php:1096
+msgid "Website URL"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1061
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:936
+msgid "What it does"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:332
+msgid ""
+"Where the review form appears, who can submit, and how submissions are "
+"moderated."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:1020
+msgid "Which page of reviews to start on. Defaults to 1."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:388
+msgid "Who can send reviews on your shop?"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:813
+msgid "Write a review"
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:812
+msgid "Write a review on Google"
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:368
+msgid "Write Review Title"
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:873
+msgid ""
+"Write your own admin notification email instead of the built-in one, using "
+"placeholders such as {review_title}, {review_content}, {review_author} and "
+"{review_rating}."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:554
+msgid "Write your reply…"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:227
+msgid "You can only reply to a review."
+msgstr ""
+
+#. %d: number of reviews allowed per user per post.
+#: src/Ajax/Bdrvw_Handler.php:560
+msgid "You can only submit %d review for this item."
+msgid_plural "You can only submit %d reviews for this item."
+msgstr[0] ""
+msgstr[1] ""
+
+#. %s: version number.
+#: src/Admin/Bdrvw_ToolsPage.php:697
+#, php-format
+msgid ""
+"You currently have version %s installed. Pick any published release below to "
+"switch to it."
+msgstr ""
+
+#: src/Admin/Bdrvw_AdminMenu.php:140 src/Admin/Bdrvw_ToolsPage.php:336
+#: src/Admin/Bdrvw_ToolsPage.php:472 src/Admin/Bdrvw_ToolsPage.php:765
+#: src/Admin/Bdrvw_ToolsPage.php:792
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:920
+msgid ""
+"You don’t have to type any of these by hand. Open the Layout tab, pick a "
+"layout and style, and copy the ready-made shortcode from the box at the "
+"bottom."
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:557
+msgid "You have already submitted a review for this item."
+msgstr ""
+
+#: src/Admin/Bdrvw_ReviewPanel.php:548
+msgid "Your reply"
+msgstr ""
+
+#: src/Ajax/Bdrvw_Handler.php:576 src/Ajax/Bdrvw_Handler.php:608
+msgid "Your review could not be submitted."
+msgstr ""
+
+#: src/Admin/Bdrvw_SettingsPage.php:102 src/Admin/Bdrvw_ToolsPage.php:213
+msgid "← Back to Dashboard"
+msgstr ""

@@ -1,0 +1,1690 @@
+/*
+ * Google Reviews frontend — shared block + 5 layouts + 2 templates.
+ * BEM-style selectors so themes can override without specificity wars.
+ */
+
+.bdrvw-google {
+	--brg-text:      #0f172a;
+	--brg-muted:     #64748b;
+	--brg-border:    #e5e7eb;
+	--brg-bg:        #ffffff;
+	--brg-bg-alt:    #f8fafc;
+	--brg-star:      #f59e0b;
+	--brg-shadow:    0 1px 2px rgba(15,23,42,.04), 0 6px 16px rgba(15,23,42,.06);
+
+	color: var(--brg-text);
+	font-size: 15px;
+	line-height: 1.5;
+	margin: 0 0 32px;
+}
+.bdrvw-google *,
+.bdrvw-google *::before,
+.bdrvw-google *::after { box-sizing: border-box; }
+
+/* =====================================================================
+ * Theme-proofing for our <button> controls.
+ *
+ * Many themes and page builders (Elementor, etc.) style every button —
+ * background, border, padding, min-width, text-transform, box-shadow,
+ * sometimes full width — via selectors like `button[type="button"]` or
+ * `.elementor button` that outrank our component classes (a plain class
+ * loses to `button[type=...]`). Those styles bleed into the review
+ * buttons and break the layout — most visibly the clickable popup badge,
+ * which is meant to be chrome-less so the card inside it carries the look.
+ *
+ * We neutralise that theme chrome on our own buttons and re-assert the
+ * intended look at a higher specificity (scoped under .bdrvw-google) with
+ * !important, so it stays stable whatever the active theme does. Scoped
+ * to .bdrvw-google, so nothing outside our widgets is affected.
+ * ===================================================================== */
+.bdrvw-google button {
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	box-shadow: none !important;
+	text-transform: none !important;
+	letter-spacing: normal !important;
+	text-shadow: none !important;
+	min-width: 0 !important;
+	min-height: 0 !important;
+	line-height: normal !important;
+	text-decoration: none !important;
+	font-family: inherit !important;
+}
+
+/* Popup trigger badge — no button chrome; the inner card is the design. */
+.bdrvw-google button.bdrvw-google__popup-badge {
+	width: max-content !important;
+	max-width: 100% !important;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: none !important;
+	background-color: transparent !important;
+	color: inherit !important;
+	font: inherit !important;
+	text-align: left !important;
+	cursor: pointer !important;
+}
+
+/* Offcanvas close — round icon button, no theme fill / border / colour. The
+   icon SVG uses stroke="currentColor", so `color` drives the chevron; we lock it
+   here (with the theme's button styles !important-ed away) so it never inherits
+   the theme accent, and the hover fill stays a light tint the dark icon shows on. */
+.bdrvw-google button.bdrvw-google__offcanvas-close {
+	width: 32px !important;
+	height: 32px !important;
+	margin-left: auto !important;
+	padding: 0 !important;
+	border: 0 !important;
+	border-radius: 50% !important;
+	background: none !important;
+	background-color: transparent !important;
+	color: #5f6368 !important;
+	-webkit-appearance: none !important;
+	appearance: none !important;
+	box-shadow: none !important;
+	display: inline-flex !important;
+	align-items: center !important;
+	justify-content: center !important;
+	cursor: pointer !important;
+}
+.bdrvw-google button.bdrvw-google__offcanvas-close:hover {
+	background: var(--brg-bg-alt) !important;
+	background-color: var(--brg-bg-alt) !important;
+	color: #111827 !important;
+}
+/* Neutralise the theme's focus/active button background (which otherwise covers
+   the icon after a click); keep the plain face unless the button is hovered. */
+.bdrvw-google button.bdrvw-google__offcanvas-close:focus:not(:hover),
+.bdrvw-google button.bdrvw-google__offcanvas-close:active:not(:hover) {
+	background: none !important;
+	background-color: transparent !important;
+	color: #5f6368 !important;
+	outline: none !important;
+}
+.bdrvw-google button.bdrvw-google__offcanvas-close:focus-visible {
+	outline: none !important;
+	box-shadow: 0 0 0 3px rgba(26, 115, 232, .35) !important;
+}
+
+/* Like / share — chrome-less icon buttons in the card actions row. */
+.bdrvw-google button.bdrvw-google__grid-like,
+.bdrvw-google button.bdrvw-google__grid-share {
+	margin: 0 !important;
+	padding: 0 !important;
+	border: 0 !important;
+	background: none !important;
+	background-color: transparent !important;
+	cursor: pointer !important;
+}
+
+.bdrvw-google--empty {
+	padding: 20px;
+	border: 1px dashed var(--brg-border);
+	border-radius: 12px;
+	color: var(--brg-muted);
+	text-align: center;
+}
+
+/* Shown when a shortcode requests a premium (Pro) style that isn't active. */
+.bdrvw-google--premium-locked {
+	border-style: solid;
+	border-color: #e7d9a8;
+	background: linear-gradient(180deg, #fffdf5, #fdf6e3);
+	color: #7a6a3a;
+	font-weight: 500;
+}
+.bdrvw-google--premium-locked::before {
+	content: "\1F512"; /* 🔒 */
+	display: block;
+	font-size: 22px;
+	margin-bottom: 6px;
+}
+
+/* Business header (top of most layouts) -------------------------------- */
+.bdrvw-google__header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	flex-wrap: wrap;
+	padding: 14px 16px;
+	background: var(--brg-bg);
+	border: 1px solid var(--brg-border);
+	border-radius: 14px;
+	margin-bottom: 14px;
+	box-shadow: var(--brg-shadow);
+}
+.bdrvw-google__header-meta { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.bdrvw-google__name    { font-size: 16px; color: var(--brg-text); display: block; }
+.bdrvw-google__address { font-size: 12px; color: var(--brg-muted); display: block; }
+.bdrvw-google__header-rating {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+}
+.bdrvw-google__avg { font-size: 22px; font-weight: 700; color: var(--brg-text); }
+.bdrvw-google__total { font-size: 12px; color: var(--brg-muted); margin-left: 6px; }
+
+/* Stars ---------------------------------------------------------------- */
+.bdrvw-google__stars { color: var(--brg-star); letter-spacing: 1px; font-size: 16px; line-height: 1; }
+.bdrvw-google__star { display: inline-block; }
+.bdrvw-google__star.is-half {
+	background: linear-gradient(90deg, var(--brg-star) 50%, #d1d5db 50%);
+	-webkit-background-clip: text;
+	background-clip: text;
+	color: transparent;
+}
+
+/* Card — template 1 (Card) -------------------------------------------- */
+.bdrvw-google__card {
+	position: relative;
+	background: var(--brg-bg);
+	border: 1px solid var(--brg-border);
+	border-radius: 12px;
+	padding: 14px;
+	box-shadow: var(--brg-shadow);
+}
+/* Google "G" badge — pinned top-right on every card (template 1 + 2). */
+.bdrvw-google__card-platform {
+	position: absolute;
+	top: 12px;
+	right: 12px;
+	width: 22px;
+	height: 22px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+.bdrvw-google__card-platform svg { width: 22px; height: 22px; }
+/* Leave room so the brand badge doesn't overlap the header text. */
+.bdrvw-google__card--template-1 .bdrvw-google__card-head { padding-right: 28px; }
+.bdrvw-google__card--template-2 .bdrvw-google__card-body { padding-right: 28px; }
+/* Avatar placeholder SVG fills the round circle just like in grid. */
+.bdrvw-google__avatar--placeholder {
+	display: inline-flex;
+	overflow: hidden;
+	background: #e5e7eb;
+}
+.bdrvw-google__avatar--placeholder svg {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.bdrvw-google__card--template-1 .bdrvw-google__card-head {
+	display: flex;
+	align-items: flex-start;
+	gap: 12px;
+	margin-bottom: 8px;
+}
+.bdrvw-google__avatar {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+	object-fit: cover;
+	flex-shrink: 0;
+}
+.bdrvw-google__avatar--initial {
+	background: linear-gradient(135deg, #818cf8, #c084fc);
+	color: #fff;
+	font-weight: 700;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	text-transform: uppercase;
+}
+.bdrvw-google__author-block { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.bdrvw-google__author { color: var(--brg-text); font-size: 14px; }
+.bdrvw-google__time   { color: var(--brg-muted); font-size: 12px; }
+.bdrvw-google__content { color: var(--brg-text); font-size: 14px; line-height: 1.5; margin: 6px 0 0; }
+
+/* Card — template 2 (Quote) ------------------------------------------- */
+.bdrvw-google__card--template-2 {
+	position: relative;
+	padding: 16px 16px 14px;
+	background: linear-gradient(180deg, #fff 0%, #fdfcff 100%);
+	border-radius: 16px;
+}
+.bdrvw-google__quote {
+	position: absolute;
+	top: 6px;
+	left: 14px;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 42px;
+	line-height: 1;
+	color: var(--brg-star);
+	opacity: .9;
+}
+.bdrvw-google__card--template-2 .bdrvw-google__card-body {
+	padding-top: 24px;
+}
+.bdrvw-google__card--template-2 .bdrvw-google__content {
+	font-style: italic;
+	color: var(--brg-text);
+}
+.bdrvw-google__card--template-2 .bdrvw-google__card-foot {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: 12px;
+	border-top: 1px dashed var(--brg-border);
+	padding-top: 10px;
+}
+.bdrvw-google__card--template-2 .bdrvw-google__avatar { width: 40px; height: 40px; }
+.bdrvw-google__card--template-2 .bdrvw-google__author  { font-size: 13px; }
+.bdrvw-google__card--template-2 .bdrvw-google__time    { font-size: 11px; display: block; }
+
+/* Layout: all (stacked) ----------------------------------------------- */
+.bdrvw-google__feed {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+/* Layout: sidebar + Style 2 — single-column review slider with rating header */
+.bdrvw-google__sbslider {
+	position: relative;
+	width: 100%;
+	background: #f3f4f6;
+	border-radius: 16px;
+	padding: 20px 20px 18px;
+}
+.bdrvw-google__sbslider-label {
+	display: block;
+	font-size: 17px;
+	font-weight: 700;
+	color: var(--brg-text);
+}
+.bdrvw-google__sbslider-sub {
+	display: block;
+	margin-top: 2px;
+	font-size: 13px;
+	color: var(--brg-muted);
+}
+.bdrvw-google__sbslider-rate {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	margin-top: 10px;
+}
+.bdrvw-google__sbslider-google {
+	font-family: Arial, "Helvetica Neue", sans-serif;
+	font-weight: 700;
+	font-size: 22px;
+	letter-spacing: -.5px;
+	line-height: 1;
+}
+.bdrvw-google__sbslider-rate .bdrvw-google__stars { font-size: 20px; }
+.bdrvw-google__sbslider-divider {
+	height: 1px;
+	margin: 14px 0;
+	background: #e2e4e8;
+}
+/* Clip horizontally so neighbouring slides stay hidden during transitions, but
+   never clip vertically — an expanded "Read more" review must be able to grow
+   past Swiper's auto-height frame without the Hide button getting cut off. */
+.bdrvw-google__sbslider-swiper { overflow-x: clip; overflow-y: visible; }
+.bdrvw-google__sbslider-swiper .swiper-slide { height: auto; display: flex; }
+.bdrvw-google__sbslide {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 110px;
+}
+.bdrvw-google__sbslide-text {
+	margin: 0 0 16px;
+	font-size: 15px;
+	line-height: 1.55;
+	color: var(--brg-text);
+	word-wrap: break-word;
+}
+/* Collapsed long review — clamps to ~6 lines, transitions to its real height
+   (JS sets the inline max-height target so the animation matches the content). */
+.bdrvw-google__sbslide-text.is-truncatable {
+	max-height: calc(1.55em * 4);
+	overflow: hidden;
+	position: relative;
+	transition: max-height .4s cubic-bezier(.4, 0, .2, 1);
+}
+.bdrvw-google__sbslide-text.is-truncatable::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 1.6em;
+	background: linear-gradient(to bottom, rgba(243, 244, 246, 0), rgba(243, 244, 246, 1));
+	pointer-events: none;
+	opacity: 1;
+	transition: opacity .3s ease;
+}
+.bdrvw-google__sbslide-text.is-open::after { opacity: 0; }
+/* "Scroll" review-text mode — fixed height with an internal scrollbar; no Read more. */
+.bdrvw-google__sbslide-text.is-scroll {
+	max-height: calc(1.55em * 6);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	scrollbar-width: thin;
+}
+.bdrvw-google__sbslide-text.is-scroll::-webkit-scrollbar { width: 6px; }
+.bdrvw-google__sbslide-text.is-scroll::-webkit-scrollbar-thumb { background: #cbd0d6; border-radius: 3px; }
+.bdrvw-google__sbslide-more {
+	align-self: flex-start;
+	margin: -6px 0 16px;
+	font-size: 13px;
+	font-weight: 600;
+	color: #1a73e8;
+	cursor: pointer;
+	user-select: none;
+	transition: color .15s ease;
+}
+.bdrvw-google__sbslide-more:hover,
+.bdrvw-google__sbslide-more:focus-visible { color: #1558b0; outline: none; }
+.bdrvw-google__sbslide-foot {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-top: auto;
+	padding-right: 84px; /* clear of the nav arrows */
+}
+.bdrvw-google__sbslide-foot .bdrvw-google__avatar { width: 40px; height: 40px; }
+.bdrvw-google__sbslide-meta { display: flex; flex-direction: column; min-width: 0; }
+.bdrvw-google__sbslide-meta strong { font-size: 14px; color: var(--brg-text); }
+.bdrvw-google__sbslide-meta span { font-size: 12px; color: var(--brg-muted); }
+/* Nav arrows pinned bottom-right, aligned with the reviewer foot */
+.bdrvw-google__sbslider-nav {
+	position: absolute;
+	right: 20px;
+	bottom: 18px;
+	display: flex;
+	gap: 8px;
+}
+.bdrvw-google__sbslider-nav .swiper-button-prev,
+.bdrvw-google__sbslider-nav .swiper-button-next {
+	position: static;
+	margin: 0;
+	/* Lock a perfect circle even when the host (e.g. an RTL/Arabic theme)
+	   pushes its own button padding / min-width / box-sizing in — without the
+	   reset below those leak in and stretch the circle into an oval. */
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	appearance: none;
+	padding: 0;
+	width: 34px;
+	height: 34px;
+	min-width: 34px;
+	flex: 0 0 34px;
+	line-height: 1;
+	border-radius: 50%;
+	background: #fff;
+	border: 1px solid #e2e4e8;
+	box-shadow: 0 1px 2px rgba(15,23,42,.06);
+	color: #3c4043;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+.bdrvw-google__sbslider-nav .swiper-button-prev:hover,
+.bdrvw-google__sbslider-nav .swiper-button-next:hover { border-color: #1a73e8; background: #1a73e8; color: #fff; }
+/* Icon SVG hard-codes stroke="#5f6368" as a presentation attribute; a CSS
+   stroke on the path overrides it, so the chevron turns white on hover. */
+.bdrvw-google__sbslider-nav .swiper-button-prev:hover > svg path,
+.bdrvw-google__sbslider-nav .swiper-button-next:hover > svg path { stroke: #fff; }
+/* Kill the host theme's focus/active button background (some themes flash it
+   red once the arrow holds focus after a click). Keep the neutral white face
+   unless the arrow is also hovered, so the blue hover state still wins. */
+.bdrvw-google__sbslider-nav .swiper-button-prev:focus:not(:hover),
+.bdrvw-google__sbslider-nav .swiper-button-next:focus:not(:hover),
+.bdrvw-google__sbslider-nav .swiper-button-prev:active:not(:hover),
+.bdrvw-google__sbslider-nav .swiper-button-next:active:not(:hover) {
+	background: #fff;
+	border-color: #e2e4e8;
+	color: #3c4043;
+	outline: none;
+}
+/* Clear keyboard-only focus ring for accessibility. */
+.bdrvw-google__sbslider-nav .swiper-button-prev:focus-visible,
+.bdrvw-google__sbslider-nav .swiper-button-next:focus-visible {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(26, 115, 232, .35);
+}
+.bdrvw-google__sbslider-nav .swiper-button-prev::after,
+.bdrvw-google__sbslider-nav .swiper-button-next::after { display: none; }
+.bdrvw-google__sbslider-nav .swiper-navigation-icon { display: none; }
+.bdrvw-google__sbslider-nav .swiper-button-prev > svg,
+.bdrvw-google__sbslider-nav .swiper-button-next > svg {
+	width: 16px;
+	height: 16px;
+	min-width: 16px;
+	flex: 0 0 auto;
+	display: block;
+	overflow: visible;
+}
+.bdrvw-google__sbslider-nav .swiper-button-disabled { opacity: .4; cursor: default; }
+
+/* RTL (Arabic) — mirror the slider: pin the nav bottom-left and clear the
+   foot on the left, since the reviewer avatar now sits on the right. */
+[dir="rtl"] .bdrvw-google__sbslider-nav {
+	right: auto;
+	left: 20px;
+}
+[dir="rtl"] .bdrvw-google__sbslide-foot {
+	padding-right: 0;
+	padding-left: 84px;
+}
+
+/* Layout: list — image 4 reference ----------------------------------- */
+.bdrvw-google__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	background: #fff;
+	border-radius: 12px;
+	overflow: hidden;
+}
+.bdrvw-google__list > li { padding: 0; }
+.bdrvw-google__list > li + li .bdrvw-google__list-item {
+	border-top: 1px solid var(--brg-border);
+}
+.bdrvw-google__list-item {
+	display: flex;
+	gap: 14px;
+	padding: 16px 18px;
+	align-items: flex-start;
+}
+.bdrvw-google__list-avatar {
+	position: relative;
+	flex-shrink: 0;
+}
+.bdrvw-google__list-avatar .bdrvw-google__avatar {
+	width: 48px;
+	height: 48px;
+	border-radius: 50%;
+}
+.bdrvw-google__list-platform {
+	position: absolute;
+	right: -4px;
+	bottom: -2px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 0 0 1px var(--brg-border);
+}
+.bdrvw-google__list-platform svg { width: 14px; height: 14px; }
+.bdrvw-google__list-body {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+.bdrvw-google__list-name {
+	font-size: 14.5px;
+	color: var(--brg-text);
+	font-weight: 700;
+}
+.bdrvw-google__list-time {
+	font-size: 12.5px;
+	color: var(--brg-muted);
+}
+.bdrvw-google__list-text {
+	margin: 4px 0 0;
+	font-size: 14px;
+	color: var(--brg-text);
+	line-height: 1.55;
+}
+
+/* Layout: grid — cream-card design (Trustindex-style DOM) ----------------
+   Reference image: soft #f5f5f5 cards, G logo top-right, avatar + name +
+   relative time, yellow stars + verified check, body text with "Read more"
+======================================================================== */
+.bdrvw-google__grid-wrap {
+	width: 100%;
+}
+.bdrvw-google__grid {
+	display: grid;
+	/* Cards per row is driven by the --brg-cols custom property set inline by the
+	   renderer (defaults to 3). --brg-cols-md caps the tablet breakpoint at 2. */
+	grid-template-columns: repeat(var(--brg-cols, 3), 1fr);
+	gap: 18px;
+}
+/* Responsive fallback so cards don't get crushed on smaller screens. */
+@media (max-width: 980px) {
+	.bdrvw-google__grid { grid-template-columns: repeat(var(--brg-cols-md, 2), 1fr); }
+}
+@media (max-width: 600px) {
+	.bdrvw-google__grid { grid-template-columns: 1fr; }
+}
+/* List + Sidebar layouts — same card, single column, stacked. */
+.bdrvw-google__grid.bdrvw-google__list,
+.bdrvw-google__grid.bdrvw-google__sidebar {
+	grid-template-columns: 1fr;
+}
+
+/* List Style 4 — borderless feed split by thin divider lines (clean & minimal). */
+.bdrvw-google--list-template_4 .bdrvw-google__grid { gap: 0; }
+.bdrvw-google--list-template_4 .bdrvw-google__grid-card {
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid #ececf0;
+	border-radius: 0;
+}
+.bdrvw-google--list-template_4 .bdrvw-google__grid-card:hover { background: transparent; }
+.bdrvw-google--list-template_4 .bdrvw-google__grid-text-container.is-truncatable::after {
+	background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+/* Sidebar variant — tighter spacing so cards feel right in a narrow rail. */
+.bdrvw-google__grid.bdrvw-google__sidebar {
+	gap: 14px;
+}
+.bdrvw-google__grid.bdrvw-google__sidebar .bdrvw-google__grid-inner {
+	padding: 16px 18px 18px;
+	gap: 10px;
+}
+.bdrvw-google__grid-card {
+	position: relative;
+	background: #f5f5f5;
+	border-radius: 14px;
+	overflow: hidden;
+	transition: background .15s ease;
+}
+.bdrvw-google__grid-card:hover { background: #f1f1f1; }
+.bdrvw-google__grid-inner {
+	position: relative;
+	padding: 20px 22px 22px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+/* Header row ---------------------------------------------------------- */
+.bdrvw-google__grid-head {
+	position: relative;
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	align-items: center;
+	gap: 12px;
+}
+.bdrvw-google__grid-profile-img {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
+	background: #e5e7eb;
+}
+.bdrvw-google__grid-profile-img img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+.bdrvw-google__grid-profile-img .bdrvw-google__avatar--initial {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background: #c7d2fe;
+	color: #1e293b;
+	font-weight: 700;
+	font-size: 16px;
+	text-transform: uppercase;
+}
+.bdrvw-google__grid-profile-img .bdrvw-google__avatar--placeholder {
+	display: flex;
+	width: 100%;
+	height: 100%;
+}
+.bdrvw-google__grid-profile-img .bdrvw-google__avatar--placeholder svg {
+	width: 100%;
+	height: 100%;
+	display: block;
+}
+.bdrvw-google__grid-profile-details {
+	min-width: 0;
+}
+.bdrvw-google__grid-name {
+	font-size: 14px;
+	font-weight: 700;
+	color: #111827;
+	line-height: 1.25;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.bdrvw-google__grid-date {
+	font-size: 12.5px;
+	color: #6b7280;
+	margin-top: 2px;
+}
+.bdrvw-google__grid-platform {
+	order: 3;          /* always render to the right via grid */
+	justify-self: end;
+	width: 22px;
+	height: 22px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+}
+.bdrvw-google__grid-platform svg { width: 22px; height: 22px; }
+/* Push platform icon to the far right column, avatar + details on the left. */
+.bdrvw-google__grid-profile-img      { grid-column: 1; }
+.bdrvw-google__grid-profile-details  { grid-column: 2; }
+.bdrvw-google__grid-platform         { grid-column: 3; }
+
+/* Stars row ----------------------------------------------------------- */
+.bdrvw-google__grid-stars {
+	display: inline-flex;
+	align-items: center;
+	gap: 6px;
+	line-height: 1;
+}
+.bdrvw-google__grid-card .bdrvw-google__star {
+	color: #e5e7eb;
+	font-size: 17px;
+	line-height: 1;
+}
+.bdrvw-google__grid-card .bdrvw-google__star.is-full,
+.bdrvw-google__grid-card .bdrvw-google__star.is-half {
+	color: #fbbc05;
+}
+.bdrvw-google__grid-rating-text {
+	font-size: 13px;
+	font-weight: 600;
+	color: #6b7280;
+	line-height: 1;
+}
+.bdrvw-google__grid-verified {
+	display: inline-flex;
+	align-items: center;
+	margin-left: 2px;
+}
+.bdrvw-google__grid-verified svg { width: 14px; height: 14px; }
+
+/* Body text ----------------------------------------------------------- */
+.bdrvw-google__grid-text-container {
+	font-size: 14px;
+	color: #1f2937;
+	line-height: 1.55;
+	word-wrap: break-word;
+}
+/* Truncated state — max-height ≈ 4 lines, smoothly transitions to scrollHeight
+   on .is-open. JS sets the target inline style so the transition matches the
+   actual content height (no fixed 1000px jump). */
+.bdrvw-google__grid-text-container.is-truncatable {
+	max-height: calc(1.55em * 4);
+	overflow: hidden;
+	position: relative;
+	transition: max-height .4s cubic-bezier(.4, 0, .2, 1);
+}
+/* Subtle fade hint at the bottom of the collapsed content — disappears on expand. */
+.bdrvw-google__grid-text-container.is-truncatable::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 1.6em;
+	background: linear-gradient(to bottom, rgba(245, 245, 245, 0), rgba(245, 245, 245, 1));
+	pointer-events: none;
+	opacity: 1;
+	transition: opacity .3s ease;
+}
+.bdrvw-google__grid-text-container.is-open::after { opacity: 0; }
+/* "Scroll" review-text mode — fixed height with an internal scrollbar; no Read more. */
+.bdrvw-google__grid-text-container.is-scroll {
+	max-height: calc(1.55em * 6);
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	scrollbar-width: thin;
+}
+.bdrvw-google__grid-text-container.is-scroll::-webkit-scrollbar { width: 6px; }
+.bdrvw-google__grid-text-container.is-scroll::-webkit-scrollbar-thumb { background: #cbd0d6; border-radius: 3px; }
+
+/* Read more link ------------------------------------------------------ */
+.bdrvw-google__grid-read-more {
+	align-self: flex-start;
+	font-size: 13px;
+	color: #6b7280;
+	cursor: pointer;
+	margin-top: -4px;
+	transition: color .15s ease;
+	user-select: none;
+}
+.bdrvw-google__grid-read-more:hover,
+.bdrvw-google__grid-read-more:focus-visible {
+	color: #111827;
+	outline: none;
+}
+
+/* Owner reply (rarely surfaced) -------------------------------------- */
+.bdrvw-google__grid-reply {
+	background: #fff;
+	border-radius: 10px;
+	padding: 10px 12px;
+	margin-top: 2px;
+}
+.bdrvw-google__grid-reply strong {
+	display: block;
+	font-size: 12px;
+	color: #6b7280;
+	margin-bottom: 4px;
+}
+.bdrvw-google__grid-reply p {
+	margin: 0;
+	font-size: 13px;
+	color: #1f2937;
+	line-height: 1.5;
+}
+
+/* Verified badge (shared by list + grid) ------------------------------ */
+.bdrvw-google__verified {
+	display: inline-flex;
+	width: 16px;
+	height: 16px;
+}
+
+/* Owner reply (shared) ------------------------------------------------- */
+.bdrvw-google__reply {
+	margin-top: 8px;
+	padding: 10px 12px;
+	background: var(--brg-bg-alt);
+	border-radius: 8px;
+	border-left: 3px solid var(--bdrvw-brand, #6c5ce7);
+}
+.bdrvw-google__reply strong {
+	display: block;
+	font-size: 12px;
+	color: var(--brg-muted);
+	margin-bottom: 4px;
+	text-transform: uppercase;
+	letter-spacing: .03em;
+}
+.bdrvw-google__reply p {
+	margin: 0;
+	font-size: 13px;
+	color: var(--brg-text);
+}
+
+/* Grid card — template 2 (Quote) -----------------------------------------
+   Same data + DOM as Style 1, restructured with flex order: big opening
+   quote on top, stars + content first, reviewer (avatar + name + date) pinned
+   to a divided footer. The Google "G" stays anchored top-right.
+======================================================================== */
+.bdrvw-google__grid-card--template-2 {
+	background: linear-gradient(180deg, #ffffff 0%, #fbfaff 100%);
+	box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 8px 22px rgba(15,23,42,.06);
+}
+.bdrvw-google__grid-card--template-2:hover {
+	background: linear-gradient(180deg, #ffffff 0%, #f7f5ff 100%);
+}
+.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-inner {
+	padding-top: 34px;
+}
+/* Big opening quote mark, top-left. */
+.bdrvw-google__grid-quote {
+	position: absolute;
+	top: 10px;
+	left: 22px;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 46px;
+	line-height: 1;
+	color: var(--brg-star);
+	opacity: .9;
+	pointer-events: none;
+}
+
+.bdrvw-google__slide {
+    width: 100% !important;
+    max-width: 400px;
+    margin-right: 16px;
+}
+
+@media (min-width: 640px) {
+    .bdrvw-google__slide {
+        max-width: calc(50% - 8px);
+    }
+}
+
+@media (min-width: 1024px) {
+    .bdrvw-google__slide {
+        max-width: calc(33.333% - 11px);
+    }
+}
+/* Reorder the shared children: stars → text → read-more → reply → reviewer. */
+.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-stars          { order: 1; }
+.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-text-container { order: 2; }
+.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-read-more      { order: 3; }
+.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-reply          { order: 4; }
+.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-head           { order: 5; }
+/* Italic quote-style body to match the card-template-2 treatment. */
+.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-text-container {
+	font-style: italic;
+}
+/* Footer reviewer row — divider above, avatar + name/date sitting at the bottom. */
+.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-head {
+	margin-top: 4px;
+	padding-top: 14px;
+	border-top: 1px dashed var(--brg-border);
+}
+/* Keep the "G" badge in the (bottom) reviewer row — aligned at the right next to
+   the name/date — instead of pinning it to the top above the review text. */
+.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-platform {
+	position: static;
+	align-self: center;
+}
+/* The collapsed-text fade hint is keyed to the #f5f5f5 grid bg; template 2 uses
+   a white card, so retint the gradient to avoid a grey smudge. */
+.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-text-container.is-truncatable::after {
+	background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+/* Sidebar layout now reuses the grid card design — single column, tighter
+   spacing handled in the .bdrvw-google__sidebar block near the top. */
+
+/* ===================================================================== */
+/* Sidebar — Style 3: Google business profile + "Write a review" popup.  */
+/* ===================================================================== */
+/* Full width — adapts to whatever sidebar/column width it's placed in. */
+.bdrvw-google__sbprofile {
+	width: 100%;
+	max-width: 100%;
+}
+
+/* Profile header: logo + name + stars + "<n> Google reviews". */
+.bdrvw-google__sbprofile-head {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 4px 4px 16px;
+}
+.bdrvw-google__sbprofile-logo {
+	flex: 0 0 auto;
+	width: 56px;
+	height: 56px;
+	border-radius: 10px;
+	overflow: hidden;
+	background: var(--brg-bg-alt);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.bdrvw-google__sbprofile-logo img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+.bdrvw-google__sbprofile-logo-initial {
+	font-size: 26px;
+	font-weight: 700;
+	color: var(--brg-muted);
+}
+.bdrvw-google__sbprofile-meta { min-width: 0; }
+.bdrvw-google__sbprofile-name {
+	display: block;
+	font-size: 19px;
+	font-weight: 700;
+	/* The profile header always sits on the page background (only the cards get a
+	   dark skin), so use a fixed dark colour — not the themeable text var — so the
+	   business name stays clearly legible under every skin. */
+	color: #111827;
+	line-height: 1.25;
+}
+.bdrvw-google__sbprofile-rate { margin: 2px 0 3px; }
+.bdrvw-google__sbprofile-rate .bdrvw-google__stars { font-size: 20px; }
+.bdrvw-google__sbprofile-count {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	font-size: 13px;
+	color: #5f6368;
+}
+.bdrvw-google__sbprofile-g { font-weight: 700; font-size: 13px; }
+.bdrvw-google__sbprofile-count span { color: #111827; font-weight: 600; }
+.bdrvw-google__sbprofile-logo-initial { color: #5f6368; }
+
+/* "Write a review" pill — a direct link to Google's review page (new tab). */
+.bdrvw-google__sbprofile-write {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: max-content;
+	margin: 0 0 22px;
+	padding: 11px 26px;
+	font: inherit;
+	font-weight: 700;
+	color: var(--brg-text);
+	text-decoration: none;
+	background: var(--brg-bg);
+	border: 1px solid var(--brg-star);
+	border-radius: 999px;
+	cursor: pointer;
+	transition: background .15s ease, box-shadow .15s ease;
+}
+.bdrvw-google__sbprofile-write:hover {
+	background: #fff7e6;
+	color: var(--brg-text);
+	box-shadow: 0 2px 8px rgba(245,158,11,.18);
+}
+.bdrvw-google__sbprofile-write:focus-visible {
+	outline: 2px solid var(--brg-star);
+	outline-offset: 2px;
+}
+
+/* Stacked review cards — clean neutral cards with a Google-blue left accent.
+   Deliberately distinct from the amber-bordered / serif-quote look common to
+   other review widgets, so the design stands on its own. */
+.bdrvw-google__sbprofile-list {
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+}
+.bdrvw-google__sbprofile-list .bdrvw-google__grid-card {
+	background: var(--brg-bg);
+	border: 1px solid #e8eaed;
+	border-left: 3px solid #4285F4;
+	border-radius: 12px;
+	box-shadow: 0 1px 2px rgba(15,23,42,.05);
+	transition: box-shadow .15s ease, transform .15s ease;
+}
+.bdrvw-google__sbprofile-list .bdrvw-google__grid-card:hover {
+	background: var(--brg-bg);
+	box-shadow: 0 6px 18px rgba(15,23,42,.09);
+	transform: translateY(-1px);
+}
+/* Slim hairline under the reviewer row to separate it from the body text. */
+.bdrvw-google__sbprofile-list .bdrvw-google__grid-head {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f1f3f4;
+}
+/* Retint the collapsed-text fade to the white card bg (default targets #f5f5f5). */
+.bdrvw-google__sbprofile-list .bdrvw-google__grid-text-container.is-truncatable::after {
+	background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+/* ===================================================================== */
+/* Popup layout — a clickable review badge that opens a slide-in panel.   */
+/* The badge carries the selected skin; the offcanvas is one universal    */
+/* design shared by every style.                                          */
+/* ===================================================================== */
+.bdrvw-google__popup { display: inline-block; max-width: 100%; }
+
+/* Trigger badge — reset the <button>, the inner .grid-card carries the skin. */
+.bdrvw-google__popup-badge {
+	display: inline-block;
+	width: max-content;
+	max-width: 100%;
+	padding: 0;
+	border: 0;
+	background: none;
+	font: inherit;
+	text-align: left;
+	cursor: pointer;
+}
+.bdrvw-google__popup-badge .bdrvw-google__popup-card { transition: box-shadow .15s ease, transform .15s ease; }
+.bdrvw-google__popup-badge:hover .bdrvw-google__popup-card {
+	box-shadow: 0 8px 20px -10px rgba(15,23,42,.25);
+	transform: translateY(-1px);
+}
+.bdrvw-google__popup-badge:focus-visible { outline: 2px solid var(--brg-star); outline-offset: 3px; border-radius: 14px; }
+.bdrvw-google__popup-card { display: block; background: #ffffff; box-shadow: var(--brg-shadow); }
+.bdrvw-google__popup-card-inner {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 12px 16px;
+}
+.bdrvw-google__popup-logo {
+	flex: 0 0 auto;
+	width: 48px;
+	height: 48px;
+	border-radius: 8px;
+	overflow: hidden;
+	background: var(--brg-bg-alt);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.bdrvw-google__popup-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bdrvw-google__popup-logo-initial { font-size: 22px; font-weight: 700; color: #5f6368; }
+.bdrvw-google__popup-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.bdrvw-google__popup-card .bdrvw-google__grid-name { font-size: 15px; }
+.bdrvw-google__popup-rate-row { display: inline-flex; align-items: center; gap: 6px; }
+.bdrvw-google__popup-rate .bdrvw-google__stars { font-size: 16px; }
+.bdrvw-google__popup-count { font-size: 12.5px; color: #5f6368; }
+.bdrvw-google__popup-count span { color: #111827; font-weight: 600; }
+/* The big rating number only shows in the "rating" variant. */
+.bdrvw-google__popup-rating-num { display: none; font-weight: 800; color: #111827; line-height: 1; }
+
+/* --- Badge layout variants (one per non-skin style) ------------------- */
+/* Style 1 — Classic: logo left, name + stars + count stacked. (base look) */
+
+/* Style 2 — Centered: stacked + centred, larger logo. */
+.bdrvw-google__popup-card--centered .bdrvw-google__popup-card-inner {
+	flex-direction: column;
+	text-align: center;
+	gap: 8px;
+	padding: 18px 24px;
+}
+.bdrvw-google__popup-card--centered .bdrvw-google__popup-meta { align-items: center; gap: 4px; }
+.bdrvw-google__popup-card--centered .bdrvw-google__popup-logo { width: 56px; height: 56px; border-radius: 50%; }
+.bdrvw-google__popup-card--centered .bdrvw-google__grid-name { font-size: 16px; }
+
+/* Style 3 — Compact pill: small rounded chip, no review count. */
+.bdrvw-google__popup-card--compact { border-radius: 999px; }
+.bdrvw-google__popup-card--compact .bdrvw-google__popup-card-inner { padding: 7px 16px 7px 8px; gap: 9px; }
+.bdrvw-google__popup-card--compact .bdrvw-google__popup-logo { width: 34px; height: 34px; border-radius: 50%; }
+.bdrvw-google__popup-card--compact .bdrvw-google__popup-meta { gap: 0; }
+.bdrvw-google__popup-card--compact .bdrvw-google__grid-name { font-size: 13.5px; }
+.bdrvw-google__popup-card--compact .bdrvw-google__popup-rate .bdrvw-google__stars { font-size: 14px; }
+.bdrvw-google__popup-card--compact .bdrvw-google__popup-count { display: none; }
+
+/* Style 4 — Rating focus: big numeric rating beside the stars. */
+.bdrvw-google__popup-card--rating .bdrvw-google__popup-card-inner { padding: 14px 18px; }
+.bdrvw-google__popup-card--rating .bdrvw-google__popup-rating-num { display: inline-block; font-size: 22px; }
+.bdrvw-google__popup-card--rating .bdrvw-google__popup-rate-row { margin: 2px 0; }
+.bdrvw-google__popup-card--rating .bdrvw-google__popup-rate .bdrvw-google__stars { font-size: 18px; }
+
+/* Offcanvas — fixed, full-viewport scrim with a right-hand sliding panel. */
+.bdrvw-google__offcanvas {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	visibility: hidden;
+	pointer-events: none;
+}
+.bdrvw-google__offcanvas.is-open { visibility: visible; pointer-events: auto; }
+.bdrvw-google__offcanvas-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(15,23,42,.5);
+	opacity: 0;
+	transition: opacity .3s ease;
+}
+.bdrvw-google__offcanvas.is-open .bdrvw-google__offcanvas-overlay { opacity: 1; }
+.bdrvw-google__offcanvas-panel {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 100%;
+	width: 400px;
+	max-width: 92vw;
+	background: #ffffff;
+	box-shadow: -12px 0 40px rgba(15,23,42,.22);
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	transform: translateX(100%);
+	transition: transform .3s ease;
+}
+.bdrvw-google__offcanvas.is-open .bdrvw-google__offcanvas-panel { transform: translateX(0); }
+.bdrvw-google__offcanvas-head {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 16px 18px;
+	border-bottom: 1px solid var(--brg-border);
+	flex: 0 0 auto;
+}
+.bdrvw-google__offcanvas-logo {
+	flex: 0 0 auto;
+	width: 46px;
+	height: 46px;
+	border-radius: 8px;
+	overflow: hidden;
+	background: var(--brg-bg-alt);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.bdrvw-google__offcanvas-logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.bdrvw-google__offcanvas-logo .bdrvw-google__popup-logo-initial { font-size: 20px; }
+.bdrvw-google__offcanvas-meta { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.bdrvw-google__offcanvas-name { font-size: 17px; font-weight: 700; color: #111827; }
+.bdrvw-google__offcanvas-rate .bdrvw-google__stars { font-size: 16px; }
+.bdrvw-google__offcanvas-count { font-size: 12.5px; color: #5f6368; }
+.bdrvw-google__offcanvas-close {
+	margin-left: auto;
+	flex: 0 0 auto;
+	width: 32px;
+	height: 32px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 0;
+	border-radius: 50%;
+	background: none;
+	color: #5f6368;
+	cursor: pointer;
+	transition: background .15s ease, color .15s ease;
+}
+.bdrvw-google__offcanvas-close:hover { background: var(--brg-bg-alt); color: #111827; }
+.bdrvw-google__offcanvas-list {
+	flex: 1 1 auto;
+	/* min-height:0 lets this flex child shrink below its content height so the
+	   overflow-y actually scrolls INSIDE the panel (the header stays fixed)
+	   instead of the list growing past the panel and clipping at the viewport. */
+	min-height: 0;
+	overflow-y: auto;
+	overscroll-behavior: contain;
+	padding: 14px 16px 22px;
+	display: flex;
+	flex-direction: column;
+	gap: 14px;
+	scrollbar-width: thin;
+	scrollbar-color: #c7ccd1 transparent;
+}
+.bdrvw-google__offcanvas-list::-webkit-scrollbar { width: 8px; }
+.bdrvw-google__offcanvas-list::-webkit-scrollbar-track { background: transparent; }
+.bdrvw-google__offcanvas-list::-webkit-scrollbar-thumb { background: #c7ccd1; border-radius: 4px; }
+.bdrvw-google__offcanvas-list::-webkit-scrollbar-thumb:hover { background: #aab0b6; }
+/* The offcanvas review cards are the universal design — white, hairline border. */
+.bdrvw-google__offcanvas-list .bdrvw-google__grid-card {
+	background: #ffffff;
+	border: 1px solid #eceef1;
+	box-shadow: none;
+	/* Don't let the flex column squeeze the cards — keep each at its natural
+	   height so the list scrolls instead of clipping the stars + review text. */
+	flex-shrink: 0;
+}
+.bdrvw-google__offcanvas-list .bdrvw-google__grid-card:hover { background: #ffffff; }
+.bdrvw-google__offcanvas-list .bdrvw-google__grid-head {
+	padding-bottom: 10px;
+	border-bottom: 1px solid #f1f3f4;
+}
+.bdrvw-google__offcanvas-list .bdrvw-google__grid-text-container.is-truncatable::after {
+	background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+/* Lock background scroll while the offcanvas is open. */
+.bdrvw-gr-offcanvas-open { overflow: hidden; }
+
+/* ===================================================================== */
+/* Premium design skins (BoldReview Pro on the frontend; always shown in  */
+/* the admin preview). Each is a soft, minimal treatment layered over the */
+/* selected layout/template. They mostly retune the component's CSS vars  */
+/* so text + accents recolour cleanly, plus the card surface itself.      */
+/* ===================================================================== */
+
+/* 1. Drop Shadow — floating cards, deep diffuse shadow, no hard border. */
+.bdrvw-google--skin-drop-shadow .bdrvw-google__grid-card {
+	background: #ffffff;
+	border: 0;
+	border-radius: 16px;
+	box-shadow: 0 10px 30px -8px rgba(15,23,42,.18), 0 2px 6px rgba(15,23,42,.06);
+}
+.bdrvw-google--skin-drop-shadow .bdrvw-google__grid-card:hover {
+	background: #ffffff;
+	box-shadow: 0 18px 44px -10px rgba(15,23,42,.26), 0 3px 8px rgba(15,23,42,.08);
+	transform: translateY(-2px);
+}
+.bdrvw-google--skin-drop-shadow .bdrvw-google__grid-head { border-bottom: 0; }
+
+/* 3. Light Contrast — crisp cards, firm border, on a soft tinted surface. */
+.bdrvw-google--skin-light-contrast .bdrvw-google__grid-card {
+	background: #ffffff;
+	border: 1px solid #cbd5e1;
+	border-radius: 12px;
+	box-shadow: none;
+}
+.bdrvw-google--skin-light-contrast .bdrvw-google__grid-card:hover {
+	background: #ffffff;
+	border-color: #94a3b8;
+}
+
+/* White-card fade for the light skins (default fade targets #f5f5f5). */
+.bdrvw-google--skin-drop-shadow .bdrvw-google__grid-text-container.is-truncatable::after,
+.bdrvw-google--skin-light-contrast .bdrvw-google__grid-text-container.is-truncatable::after {
+	background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+/* ===================================================================== */
+/* Grid-only card treatments for Style 3 + Style 4. These styles carry a   */
+/* sidebar-specific structure elsewhere (Profile Header / Cards Only), so  */
+/* in the Grid layout they get their own free card designs instead — keyed */
+/* on the layout+template wrapper class so they never leak to other        */
+/* layouts. Free: they apply on the frontend without BoldReview Pro.       */
+/* ===================================================================== */
+
+/* Grid Style 3 — "Spotlight": a centred testimonial card. Big haloed avatar
+   over a centred name, stars and quote, the platform badge tucked into the top
+   corner, on a clean white card with a soft top tint and a deep, lifted shadow.
+   A genuinely different alignment from the left-aligned base. Slider reuses it. */
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-card,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-card {
+	background:
+		radial-gradient(135% 64% at 50% 0, rgba(66,133,244,.07), rgba(66,133,244,0) 70%),
+		#ffffff;
+	border: 1px solid #eef1f6;
+	border-radius: 20px;
+	box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 18px 44px -22px rgba(15,23,42,.35);
+	transition: box-shadow .18s ease, transform .18s ease;
+}
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-card:hover,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-card:hover {
+	box-shadow: 0 1px 2px rgba(15,23,42,.05), 0 26px 56px -22px rgba(15,23,42,.42);
+	transform: translateY(-3px);
+}
+/* Centre the whole stack. */
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-inner,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-inner {
+	align-items: center;
+	text-align: center;
+	padding-top: 26px;
+}
+/* Header becomes a centred column: avatar over name/date. */
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-head,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-head {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	border-bottom: 0;
+	position: static; /* so the absolute platform badge anchors to the card, not the header */
+}
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-profile-img,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-profile-img {
+	width: 58px;
+	height: 58px;
+	box-shadow: 0 0 0 4px #fff, 0 0 0 5px #e8eefb, 0 8px 18px -8px rgba(15,23,42,.3);
+}
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-profile-details,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-profile-details { text-align: center; }
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-name,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-name {
+	font-size: 15px;
+	white-space: normal;
+}
+/* Platform badge → top-right corner, out of the centred flow. */
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-platform,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-platform {
+	position: absolute;
+	top: 16px;
+	right: 16px;
+	justify-self: auto;
+}
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-stars,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-stars { justify-content: center; }
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-text-container,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-text-container { text-align: center; }
+.bdrvw-google--grid-template_3 .bdrvw-google__grid-text-container.is-truncatable::after,
+.bdrvw-google--slider-template_3 .bdrvw-google__grid-text-container.is-truncatable::after {
+	background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+/* Grid Style 4 — "Editorial": crisp white card with a Google-spectrum colour
+   ribbon down the left edge and a large, ghosted quotation mark watermark. Left
+   aligned but unmistakably premium and distinct from the plain base. Slider
+   reuses it too. */
+.bdrvw-google--grid-template_4 .bdrvw-google__grid-card,
+.bdrvw-google--slider-template_4 .bdrvw-google__grid-card {
+	background: linear-gradient(180deg, #ffffff, #fcfdff);
+	border: 1px solid #e9edf3;
+	border-radius: 14px;
+	box-shadow: 0 6px 20px -12px rgba(15,23,42,.22);
+	transition: box-shadow .18s ease, transform .18s ease;
+}
+/* Colour ribbon — clipped to the card's rounded left edge by overflow:hidden. */
+.bdrvw-google--grid-template_4 .bdrvw-google__grid-card::before,
+.bdrvw-google--slider-template_4 .bdrvw-google__grid-card::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: 4px;
+	z-index: 0;
+	background: linear-gradient(180deg, #4285F4, #34A853 45%, #FBBC05 72%, #EA4335);
+}
+/* Ghosted watermark quote, top-right — sits behind the content (z-index 0). */
+.bdrvw-google--grid-template_4 .bdrvw-google__grid-card::after,
+.bdrvw-google--slider-template_4 .bdrvw-google__grid-card::after {
+	content: "\201D";
+	position: absolute;
+	top: 2px;
+	right: 14px;
+	z-index: 0;
+	font-family: Georgia, "Times New Roman", serif;
+	font-size: 84px;
+	line-height: 1;
+	color: rgba(66,133,244,.08);
+	pointer-events: none;
+}
+.bdrvw-google--grid-template_4 .bdrvw-google__grid-card:hover,
+.bdrvw-google--slider-template_4 .bdrvw-google__grid-card:hover {
+	box-shadow: 0 14px 30px -14px rgba(15,23,42,.3);
+	transform: translateY(-2px);
+}
+/* Nudge the content clear of the ribbon and keep it above the watermark. */
+.bdrvw-google--grid-template_4 .bdrvw-google__grid-inner,
+.bdrvw-google--slider-template_4 .bdrvw-google__grid-inner {
+	padding-left: 24px;
+	position: relative;
+	z-index: 1;
+}
+.bdrvw-google--grid-template_4 .bdrvw-google__grid-text-container.is-truncatable::after,
+.bdrvw-google--slider-template_4 .bdrvw-google__grid-text-container.is-truncatable::after {
+	background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+/* Grid Style 5 — "Banner": a full-bleed gradient profile header (avatar + name
+   in white) over a clean white body for the stars and review. These grid/slider
+   overrides win over the Drop-Shadow skin that Style 5 also carries (later in
+   the file = higher precedence), so other layouts keep the plain skin. */
+.bdrvw-google--grid-template_5 .bdrvw-google__grid-card,
+.bdrvw-google--slider-template_5 .bdrvw-google__grid-card {
+	background: #ffffff;
+	border: 1px solid #eceef3;
+	border-radius: 16px;
+	box-shadow: 0 10px 30px -16px rgba(15,23,42,.3);
+	transition: box-shadow .18s ease, transform .18s ease;
+}
+.bdrvw-google--grid-template_5 .bdrvw-google__grid-card:hover,
+.bdrvw-google--slider-template_5 .bdrvw-google__grid-card:hover {
+	box-shadow: 0 18px 40px -16px rgba(15,23,42,.38);
+	transform: translateY(-2px);
+}
+/* Bleed the header to the card edges and paint the gradient band. */
+.bdrvw-google--grid-template_5 .bdrvw-google__grid-head,
+.bdrvw-google--slider-template_5 .bdrvw-google__grid-head {
+	margin: -20px -22px 8px;
+	padding: 18px 20px;
+	background: linear-gradient(135deg, #4285F4, #6366f1);
+	border-bottom: 0;
+}
+.bdrvw-google--grid-template_5 .bdrvw-google__grid-name,
+.bdrvw-google--slider-template_5 .bdrvw-google__grid-name { color: #ffffff; }
+.bdrvw-google--grid-template_5 .bdrvw-google__grid-date,
+.bdrvw-google--slider-template_5 .bdrvw-google__grid-date { color: rgba(255,255,255,.82); }
+.bdrvw-google--grid-template_5 .bdrvw-google__grid-profile-img,
+.bdrvw-google--slider-template_5 .bdrvw-google__grid-profile-img {
+	box-shadow: 0 0 0 3px rgba(255,255,255,.85), 0 6px 14px -6px rgba(15,23,42,.4);
+}
+/* White coin behind the Google badge so it reads on the gradient. */
+.bdrvw-google--grid-template_5 .bdrvw-google__grid-platform,
+.bdrvw-google--slider-template_5 .bdrvw-google__grid-platform {
+	width: 26px;
+	height: 26px;
+	background: #ffffff;
+	border-radius: 50%;
+	box-shadow: 0 2px 6px -2px rgba(15,23,42,.4);
+}
+.bdrvw-google--grid-template_5 .bdrvw-google__grid-text-container.is-truncatable::after,
+.bdrvw-google--slider-template_5 .bdrvw-google__grid-text-container.is-truncatable::after {
+	background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+
+/* Grid Style 6 — "Frosted Pastel": a soft tinted glass card with a rounded-
+   square avatar and an airy, premium feel. Overrides the Light-Contrast skin in
+   grid/slider only. */
+.bdrvw-google--grid-template_6 .bdrvw-google__grid-card,
+.bdrvw-google--slider-template_6 .bdrvw-google__grid-card {
+	background: linear-gradient(160deg, #f3f6ff 0%, #fdf3ff 100%);
+	border: 1px solid #ffffff;
+	border-radius: 22px;
+	box-shadow: 0 14px 34px -18px rgba(79,70,229,.32);
+	transition: box-shadow .18s ease, transform .18s ease;
+}
+.bdrvw-google--grid-template_6 .bdrvw-google__grid-card:hover,
+.bdrvw-google--slider-template_6 .bdrvw-google__grid-card:hover {
+	box-shadow: 0 22px 46px -18px rgba(79,70,229,.42);
+	transform: translateY(-2px);
+}
+/* Left-aligned reviewer block: avatar on top, name + date stacked below it. */
+.bdrvw-google--grid-template_6 .bdrvw-google__grid-head,
+.bdrvw-google--slider-template_6 .bdrvw-google__grid-head {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 10px;
+	border-bottom: 0;
+}
+.bdrvw-google--grid-template_6 .bdrvw-google__grid-profile-img,
+.bdrvw-google--slider-template_6 .bdrvw-google__grid-profile-img {
+	width: 56px;
+	height: 56px;
+	box-shadow: 0 6px 14px -8px rgba(79,70,229,.55);
+}
+/* Platform badge → a small coin on the avatar's bottom-right. */
+.bdrvw-google--grid-template_6 .bdrvw-google__grid-platform,
+.bdrvw-google--slider-template_6 .bdrvw-google__grid-platform {
+	position: absolute;
+	top: 38px;
+	left: 38px;
+	margin: 0;
+	width: 22px;
+	height: 22px;
+	background: #fff;
+	border-radius: 50%;
+	box-shadow: 0 1px 5px -1px rgba(79,70,229,.45);
+}
+.bdrvw-google--grid-template_6 .bdrvw-google__grid-name,
+.bdrvw-google--slider-template_6 .bdrvw-google__grid-name { color: #312e81; font-size: 17px; white-space: normal; }
+.bdrvw-google--grid-template_6 .bdrvw-google__grid-text-container,
+.bdrvw-google--slider-template_6 .bdrvw-google__grid-text-container { color: #3730a3; }
+.bdrvw-google--grid-template_6 .bdrvw-google__grid-text-container.is-truncatable::after,
+.bdrvw-google--slider-template_6 .bdrvw-google__grid-text-container.is-truncatable::after {
+	background: linear-gradient(to bottom, rgba(251,244,255,0), rgba(251,244,255,1));
+}
+
+/* === List Style 6 — bordered review rows =============================
+   A big avatar on the left, name / date / stars / review on the right, the
+   Google logo pinned top-right, and love + share actions at the bottom-left. */
+.bdrvw-google--list-template_6 .bdrvw-google__grid-card {
+	background: #ffffff;
+	border: 1px solid #ececf1;
+	border-radius: 10px;
+	box-shadow: none;
+}
+.bdrvw-google--list-template_6 .bdrvw-google__grid-card:hover { background: #ffffff; }
+.bdrvw-google--list-template_6 .bdrvw-google__grid-inner {
+	position: relative;
+	padding: 20px 24px;
+	gap: 8px;
+}
+.bdrvw-google--list-template_6 .bdrvw-google__grid-profile-img {
+	width: 54px;
+	height: 54px;
+}
+.bdrvw-google--list-template_6 .bdrvw-google__grid-head {
+	border-bottom: 0;
+	align-items: center;
+}
+.bdrvw-google--list-template_6 .bdrvw-google__grid-name { font-size: 17px; }
+/* Google badge → bigger, pinned to the card's top-right corner. */
+.bdrvw-google--list-template_6 .bdrvw-google__grid-platform {
+	position: absolute;
+	top: 18px;
+	right: 22px;
+	width: auto;
+	height: auto;
+}
+.bdrvw-google--list-template_6 .bdrvw-google__grid-platform svg { width: 26px; height: 26px; }
+/* Line stars + review + Read-more up under the name (clear of the avatar). */
+.bdrvw-google--list-template_6 .bdrvw-google__grid-stars,
+.bdrvw-google--list-template_6 .bdrvw-google__grid-text-container,
+.bdrvw-google--list-template_6 .bdrvw-google__grid-read-more { margin-left: 66px; }
+/* Action bar — love (with count, like the grid) + share at the bottom-left.
+   No Google pill — the logo already sits top-right. */
+.bdrvw-google--list-template_6 .bdrvw-google__grid-actions {
+	display: flex;
+	justify-content: flex-start;
+	margin-top: 8px;
+	padding-top: 0;
+	border-top: 0;
+}
+.bdrvw-google--list-template_6 .bdrvw-google__grid-google { display: none; }
+.bdrvw-google--list-template_6 .bdrvw-google__grid-actions-group {
+	display: flex;
+	align-items: center;
+	gap: 16px;
+}
+.bdrvw-google--list-template_6 .bdrvw-google__grid-like,
+.bdrvw-google--list-template_6 .bdrvw-google__grid-share {
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+	padding: 0;
+	border: 0;
+	background: none;
+	cursor: pointer;
+}
+/* Like-button heart now uses the Dashicons glyph — size it to match the
+   17px SVG it replaced (Dashicons default to 20px). */
+.bdrvw-google__grid-like .dashicons {
+	font-size: 17px;
+	width: 17px;
+	height: 17px;
+	line-height: 17px;
+}
+/* Heart = a clean pink "love" icon (filled); count in a soft grey chip. */
+.bdrvw-google--list-template_6 .bdrvw-google__grid-like { color: #ec4899; }
+.bdrvw-google--list-template_6 .bdrvw-google__grid-like svg,
+.bdrvw-google--list-template_6 .bdrvw-google__grid-like .dashicons { transition: transform .15s ease; }
+.bdrvw-google--list-template_6 .bdrvw-google__grid-like.is-liked svg,
+.bdrvw-google--list-template_6 .bdrvw-google__grid-like.is-liked .dashicons { transform: scale(1.14); }
+.bdrvw-google--list-template_6 .bdrvw-google__grid-like-count {
+	display: inline-block;
+	padding: 1px 8px;
+	border-radius: 6px;
+	background: #f1f3f5;
+	color: #4b5563;
+	font-size: 13px;
+	font-weight: 600;
+}
+.bdrvw-google--list-template_6 .bdrvw-google__grid-share { color: #4b5563; }
+.bdrvw-google--list-template_6 .bdrvw-google__grid-share:hover { color: #111827; }
+/* Fade the truncated-text hint to the white card (it was inheriting a grey
+   #f5f5f5 fade, which showed as a dull band over the text). */
+.bdrvw-google--list-template_6 .bdrvw-google__grid-text-container.is-truncatable::after {
+	background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1));
+}
+.bdrvw-google--list-template_6 .bdrvw-google__grid-read-more {
+	color: #2563eb;
+	font-weight: 600;
+}
+
+/* === Review action bar (like / share / Google) =======================
+   Rendered on every grid/slider card but hidden by default — individual styles
+   opt in by un-hiding it (e.g. Style 7 in the Pro skins). */
+.bdrvw-google__grid-actions { display: none; }
+
+/* === Share popup (Google-style) — global, used by the share button ==== */
+.bdrvw-google__share-overlay {
+	position: fixed;
+	inset: 0;
+	z-index: 100000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	background: rgba(15, 23, 42, .55);
+}
+.bdrvw-google__share-modal {
+	position: relative;
+	width: 100%;
+	max-width: 340px;
+	padding: 26px 26px 24px;
+	background: #fff;
+	border-radius: 16px;
+	box-shadow: 0 24px 60px -16px rgba(0, 0, 0, .45);
+	font-family: inherit;
+}
+.bdrvw-google__share-close {
+	position: absolute;
+	top: 12px;
+	right: 14px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 28px;
+	height: 28px;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	box-shadow: none;
+	font-size: 22px;
+	line-height: 1;
+	color: #333;
+	cursor: pointer;
+	user-select: none;
+}
+.bdrvw-google__share-close:hover { color: #000; background: none; }
+.bdrvw-google__share-title {
+	margin: 0 0 14px;
+	text-align: center;
+	font-size: 24px;
+	font-weight: 800;
+	color: #1f2937;
+}
+/* Branded option rows — colour icon + colour label. */
+.bdrvw-google__share-row {
+	display: flex;
+	align-items: center;
+	gap: 14px;
+	padding: 9px 8px;
+	border-radius: 8px;
+	font-size: 17px;
+	font-weight: 600;
+	text-decoration: none;
+}
+.bdrvw-google__share-row:hover { background: #f6f7f9; }
+.bdrvw-google__share-ico {
+	flex: 0 0 30px;
+	width: 30px;
+	height: 30px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+.bdrvw-google__share-ico svg { width: 100%; height: 100%; }
+.bdrvw-google__share-row.is-fb .bdrvw-google__share-name { color: #1877f2; }
+.bdrvw-google__share-row.is-wa .bdrvw-google__share-name { color: #25d366; }
+.bdrvw-google__share-row.is-tw .bdrvw-google__share-name { color: #1d1d1f; }
+.bdrvw-google__share-row.is-em .bdrvw-google__share-name { color: #ea4335; }
+/* Full link text + red Copy button. */
+.bdrvw-google__share-url {
+	margin: 16px 4px 18px;
+	text-align: center;
+	font-size: 14px;
+	line-height: 1.5;
+	color: #5f6368;
+	word-break: break-all;
+}
+.bdrvw-google__share-copy {
+	display: block;
+	width: -moz-fit-content;
+	width: fit-content;
+	margin: 0 auto;
+	padding: 9px 28px;
+	border: 0;
+	border-radius: 8px;
+	background: #e8243f;
+	box-shadow: none;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 1.3;
+	text-align: center;
+	text-decoration: none;
+	cursor: pointer;
+	user-select: none;
+}
+.bdrvw-google__share-copy:hover { background: #cf1f37; color: #fff; }
+
+/* Additional design skins can be registered by an add-on via the
+   `bdrvw_gr_template_skins` filter; that add-on ships its own skin CSS. */

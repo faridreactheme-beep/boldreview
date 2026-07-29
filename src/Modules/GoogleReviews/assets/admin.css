@@ -1,0 +1,673 @@
+/*
+ * Google Reviews admin tab — single-column layout.
+ *
+ * Form-row design (label column on the left, control column on the right)
+ * matches the "New Google platform" mock. Preview pane sits full-width
+ * at the bottom so admins read top-down: search → source → connect →
+ * layout → template → preview.
+ */
+
+.bdrvw-gr {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+/* === Form-row layout ================================================== */
+.bdrvw-gr__form-row {
+	display: grid;
+	grid-template-columns: 200px minmax(0, 1fr);
+	gap: 20px;
+	align-items: flex-start;
+	padding: 16px;
+	border-top: 1px solid #f1f5f9;
+}
+.bdrvw-gr__form-row:first-of-type { border-top: 0; }
+@media (max-width: 760px) {
+	.bdrvw-gr__form-row { grid-template-columns: 1fr; gap: 8px; }
+}
+.bdrvw-gr__form-row-label label {
+	font-weight: 600;
+	font-size: 13px;
+	color: #0f172a;
+}
+.bdrvw-gr__form-row.is-hidden { display: none; }
+
+/* === Search input ===================================================== */
+.bdrvw-gr__search-input {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.bdrvw-gr__query {
+	width: 100%;
+	height: 40px;
+	padding: 0 36px 0 12px;
+	border-radius: 6px;
+	border: 1px solid #d1d5db;
+	background: #fff;
+	font-size: 14px;
+}
+.bdrvw-gr__query:focus {
+	outline: 2px solid var(--bdrvw-brand, #6c5ce7);
+	outline-offset: 1px;
+	border-color: transparent;
+}
+
+.bdrvw-gr__spinner {
+	position: absolute;
+	right: 12px;
+	width: 16px;
+	height: 16px;
+	border: 2px solid #e5e7eb;
+	border-top-color: var(--bdrvw-brand, #6c5ce7);
+	border-radius: 50%;
+	display: none;
+	animation: brgr-spin 0.7s linear infinite;
+}
+.bdrvw-gr__platform-body.is-loading .bdrvw-gr__spinner { display: block; }
+@keyframes brgr-spin { to { transform: rotate(360deg); } }
+
+.bdrvw-gr__hint {
+	margin: 6px 0 0;
+	color: #64748b;
+	font-size: 12.5px;
+	line-height: 1.5;
+}
+.bdrvw-gr__hint a { color: #2563eb; }
+
+/* === Info notice (e.g. old vs. new Places API explainer) ============ */
+.bdrvw-gr__notice {
+	display: flex;
+	align-items: flex-start;
+	gap: 11px;
+	margin: 16px 0;
+	padding: 14px 16px;
+	background: #eff6ff;
+	border: 1px solid #bfdbfe;
+	border-left: 3px solid #3b82f6;
+	border-radius: 10px;
+}
+.bdrvw-gr__notice-icon {
+	flex: 0 0 auto;
+	color: #2563eb;
+	line-height: 0;
+	margin-top: 1px;
+}
+.bdrvw-gr__notice-body strong {
+	display: block;
+	font-size: 13.5px;
+	font-weight: 700;
+	color: #1e3a8a;
+	margin-bottom: 3px;
+}
+.bdrvw-gr__notice-body p {
+	margin: 0;
+	font-size: 12.5px;
+	line-height: 1.6;
+	color: #334155;
+}
+.bdrvw-gr__notice-body a { color: #2563eb; font-weight: 600; }
+
+/* === Search results dropdown ========================================= */
+.bdrvw-gr__results {
+	list-style: none;
+	margin: 8px 0 0;
+	padding: 4px;
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	background: #fff;
+	max-height: 280px;
+	overflow-y: auto;
+	box-shadow: 0 6px 20px rgba(15,23,42,.08);
+}
+.bdrvw-gr__result {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	padding: 10px 12px;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: background .12s ease;
+}
+.bdrvw-gr__result + .bdrvw-gr__result { margin-top: 2px; }
+.bdrvw-gr__result:hover { background: #f8fafc; }
+.bdrvw-gr__result.is-empty { color: #94a3b8; font-style: italic; padding: 14px 12px; cursor: default; }
+.bdrvw-gr__result.is-demo { background: linear-gradient(180deg, #fff 0%, #fdf4ff 100%); }
+.bdrvw-gr__result-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.bdrvw-gr__result-body strong { font-size: 13px; color: #111827; font-weight: 600; }
+.bdrvw-gr__result-body span { font-size: 12px; color: #64748b; }
+.bdrvw-gr__result-icon {
+	flex-shrink: 0;
+	width: 22px;
+	height: 22px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	color: #94a3b8;
+}
+
+.bdrvw-gr__powered {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 4px;
+	margin-top: 6px;
+	padding: 8px 10px 4px;
+	border-top: 1px solid #f1f5f9;
+	color: #94a3b8;
+	font-size: 11px;
+	cursor: default;
+	user-select: none;
+}
+.bdrvw-gr__powered:hover { background: transparent; }
+.bdrvw-gr__powered-g {
+	font-family: 'Product Sans', Arial, sans-serif;
+	font-weight: 500;
+	font-size: 13px;
+	letter-spacing: -0.2px;
+}
+.bdrvw-gr__powered-g span { font-size: 13px; }
+
+/* === Type pills (yellow badges on Source row) ======================== */
+.bdrvw-gr__type-pill {
+	display: inline-flex;
+	align-items: center;
+	background: #fbbf24;
+	color: #fff;
+	border-radius: 4px;
+	padding: 2px 8px;
+	font-size: 11px;
+	font-weight: 600;
+}
+
+/* === Source row (after picking a suggestion) ========================= */
+.bdrvw-gr__source {
+	display: flex;
+	gap: 16px;
+	align-items: center;
+}
+.bdrvw-gr__source-thumb {
+	width: 64px;
+	height: 64px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	background: #f3f4f6;
+}
+.bdrvw-gr__source-thumb img,
+.bdrvw-gr__source-thumb svg {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.bdrvw-gr__source-letter {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(135deg, #818cf8, #c084fc);
+	color: #fff;
+	font-size: 28px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+.bdrvw-gr__source-body { display: flex; flex-direction: column; gap: 4px; }
+.bdrvw-gr__source-name { font-size: 15px; color: #0f172a; }
+.bdrvw-gr__source-address { font-size: 13px; color: #64748b; }
+.bdrvw-gr__source-types {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 4px;
+}
+
+/* === Connect CTA ====================================================== */
+.bdrvw-gr__form-actions {
+	display: flex;
+	justify-content: flex-end;
+	padding: 16px;
+	border-top: 1px solid #f1f5f9;
+}
+.bdrvw-gr__connect-cta {
+	background: #16a34a;
+	color: #fff;
+	border: 0;
+	border-radius: 6px;
+	padding: 10px 28px;
+	font-size: 14px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background .12s ease;
+}
+.bdrvw-gr__connect-cta:hover { background: #15803d; }
+.bdrvw-gr__connect-cta:disabled {
+	background: #d1d5db;
+	cursor: not-allowed;
+}
+
+/* === Connected card =================================================== */
+.bdrvw-gr__platform-body.is-hidden,
+.bdrvw-gr__connected.is-hidden { display: none; }
+
+/* Template options not offered by the current layout (e.g. "list" has one style). */
+.bdrvw-gr__template.is-hidden { display: none; }
+
+.bdrvw-gr__connected { padding: 20px; }
+
+.bdrvw-source-box {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+	background: #fff;
+	border: 1px solid #e5e7eb;
+	border-radius: 12px;
+	padding: 18px 20px;
+	box-shadow: 0 1px 2px rgba(15, 23, 42, .04), 0 1px 3px rgba(15, 23, 42, .03);
+}
+.bdrvw-source-box__icon {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	background: #f1f5f9;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	overflow: hidden;
+}
+.bdrvw-source-box__icon img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+.bdrvw-source-box__info {
+	flex: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+	line-height: 1.45;
+}
+.bdrvw-source-box__name {
+	font-size: 15px;
+	font-weight: 600;
+	color: #0f172a;
+}
+.bdrvw-source-box__address {
+	font-size: 13px;
+	color: #475569;
+}
+.bdrvw-source-box__url {
+	font-size: 12.5px;
+	color: #2563eb;
+	word-break: break-all;
+	text-decoration: none;
+}
+.bdrvw-source-box__url:hover {
+	text-decoration: underline;
+}
+.bdrvw-source-box__action {
+	background: #2563eb;
+	color: #fff;
+	border: 0;
+	border-radius: 6px;
+	padding: 9px 22px;
+	font-size: 13px;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background .12s ease;
+	flex-shrink: 0;
+	align-self: center;
+}
+.bdrvw-source-box__action:hover { background: #1d4ed8; }
+
+@media (max-width: 600px) {
+	.bdrvw-source-box {
+		flex-wrap: wrap;
+	}
+	.bdrvw-source-box__action {
+		margin-left: auto;
+	}
+}
+
+/* === Layout chooser =================================================== */
+.bdrvw-gr__layouts {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+	gap: 10px;
+	padding: 16px;
+}
+.bdrvw-gr__layout {
+	position: relative;
+	display: flex;
+	align-items: flex-start;
+	gap: 10px;
+	padding: 12px;
+	background: #fff;
+	border: 1.5px solid #e5e7eb;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: border-color .15s ease, box-shadow .15s ease;
+}
+.bdrvw-gr__layout:hover { border-color: #cbd5e1; }
+.bdrvw-gr__layout.is-active {
+	border-color: var(--bdrvw-brand, #6c5ce7);
+	box-shadow: 0 0 0 3px rgba(108,92,231,.15);
+}
+.bdrvw-gr__layout input { position: absolute; opacity: 0; pointer-events: none; }
+.bdrvw-gr__layout-icon {
+	color: var(--bdrvw-brand, #6c5ce7);
+	flex-shrink: 0;
+	margin-top: 1px;
+}
+.bdrvw-gr__layout-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.bdrvw-gr__layout-text strong { font-size: 13px; color: #0f172a; }
+.bdrvw-gr__layout-text span  { font-size: 11px; color: #64748b; line-height: 1.35; }
+/* Pro layout (slider): only the name shows, so vertically centre the row and
+   pin a small "Pro" badge in the top-right corner of the card. */
+.bdrvw-gr__layout.is-pro { align-items: center; }
+.bdrvw-gr__pro-corner {
+	position: absolute;
+	top: 6px;
+	right: 6px;
+	z-index: 2;
+	padding: 2px 8px;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 1.4;
+	letter-spacing: .02em;
+	color: #fff;
+	background: linear-gradient(135deg, #7c5cff, #6c5ce7);
+	border-radius: 999px;
+	box-shadow: 0 2px 6px -2px rgba(108, 92, 231, .6);
+}
+
+/* === Template chooser =================================================
+   Compact 150×150 cards, premium designer feel:
+   - Crisp 1px border that animates to a brand-coloured halo on select
+   - Soft lift on hover + subtle inner gradient on the thumb area
+   - Checkmark badge in the top-right when active
+   - SVG thumb auto-centred + locked aspect so styles look comparable
+======================================================================= */
+.bdrvw-gr__templates {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 14px;
+	padding: 16px;
+}
+.bdrvw-gr__template {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 150px;
+	height: 150px;
+	background: #fff;
+	border: 1px solid #e5e7eb;
+	border-radius: 14px;
+	padding: 10px 10px 8px;
+	cursor: pointer;
+	box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+	transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+}
+.bdrvw-gr__template:hover {
+	border-color: #cbd5e1;
+	transform: translateY(-2px);
+	box-shadow: 0 8px 20px -10px rgba(15, 23, 42, .18);
+}
+.bdrvw-gr__template.is-active {
+	border-color: var(--bdrvw-brand, #6c5ce7);
+	box-shadow: 0 0 0 3px rgba(108, 92, 231, .15), 0 8px 20px -10px rgba(108, 92, 231, .25);
+}
+/* Brand-coloured checkmark badge — only visible when card is active. */
+.bdrvw-gr__template::after {
+	content: "";
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	width: 18px;
+	height: 18px;
+	border-radius: 50%;
+	background: var(--bdrvw-brand, #6c5ce7) url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'><polyline points='20 6 9 17 4 12'/></svg>") center/12px 12px no-repeat;
+	opacity: 0;
+	transform: scale(.6);
+	transition: opacity .18s ease, transform .18s ease;
+}
+.bdrvw-gr__template.is-active::after {
+	opacity: 1;
+	transform: scale(1);
+}
+.bdrvw-gr__template input {
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
+}
+.bdrvw-gr__template-thumb {
+	flex: 1 1 auto;
+	background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+	border-radius: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 6px;
+	overflow: hidden;
+}
+.bdrvw-gr__template-thumb svg {
+	max-width: 100%;
+	max-height: 100%;
+	width: auto;
+	height: auto;
+}
+.bdrvw-gr__template-text {
+	display: block;
+	margin-top: 8px;
+	text-align: center;
+}
+.bdrvw-gr__template-text strong {
+	font-size: 12.5px;
+	font-weight: 600;
+	letter-spacing: .01em;
+	color: #0f172a;
+	display: block;
+	line-height: 1.2;
+}
+/* Description kept in the DOM for screen readers but hidden visually — the
+   thumbnail + "Style N" label communicate the design in the panel. */
+.bdrvw-gr__template-text span {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+/* The "Style N" label lives in a span too, but must stay visible — undo the
+   screen-reader-only treatment above for it. */
+.bdrvw-gr__template-text .bdrvw-gr__template-no {
+	position: static;
+	width: auto;
+	height: auto;
+	overflow: visible;
+	clip: auto;
+	clip-path: none;
+	white-space: normal;
+}
+
+/* === Shortcode card =================================================== */
+.bdrvw-gr__shortcode-row {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 14px 16px 16px;
+	flex-wrap: wrap;
+}
+.bdrvw-gr__shortcode {
+	display: inline-block;
+	font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+	font-size: 13px;
+	background: #0f172a;
+	color: #f1f5f9;
+	padding: 8px 12px;
+	border-radius: 6px;
+	user-select: all;
+	flex: 1 1 auto;
+	min-width: 0;
+	overflow-x: auto;
+	white-space: nowrap;
+}
+.bdrvw-gr__shortcode-copy.is-copied {
+	background: #16a34a;
+	border-color: #16a34a;
+	color: #fff;
+}
+/* Locked state — the code box becomes a "available in Pro" ad instead of code. */
+.bdrvw-gr__shortcode.is-locked {
+	font-family: inherit;
+	font-weight: 600;
+	background: #fffbeb;
+	color: #b45309;
+	border: 1px dashed #f59e0b;
+	white-space: normal;
+	user-select: none;
+	cursor: default;
+}
+
+/* === Layout/Template combined card: divider + sub-header ================ */
+.bdrvw-gr__section-divider {
+	height: 1px;
+	background: #e5e7eb;
+	margin: 18px 16px 4px;
+}
+.bdrvw-card__header--sub {
+	padding-top: 6px;
+	padding-bottom: 10px;
+}
+.bdrvw-card__header--sub h3 {
+	font-size: 15px;
+	margin: 0 0 4px;
+	color: #0f172a;
+}
+
+/* === Preview pane (full-width, below) ================================ */
+.bdrvw-gr__preview-card .bdrvw-card__header p {
+	color: #64748b;
+	font-size: 12.5px;
+}
+.bdrvw-gr__preview {
+	margin: 0 16px 16px;
+	background: #f8fafc;
+	border-radius: 10px;
+	padding: 16px;
+	min-height: 240px;
+	transition: opacity .12s ease;
+}
+.bdrvw-gr__preview.is-loading { opacity: .5; }
+
+/* In the admin preview pane, force the sidebar layout to its typical
+   real-world narrow width (350px) so admins can see how a sidebar widget
+   will look on a live page. Doesn't affect frontend output — the
+   `.bdrvw-gr__preview` ancestor only exists in admin. */
+.bdrvw-gr__preview .bdrvw-google__sidebar-wrap {
+	max-width: 350px;
+	margin: 0 auto;
+}
+
+/* === Paid pill (Display tab) ========================================= */
+.bdrvw-gr__paid-pill {
+	display: inline-block;
+	margin-left: 6px;
+	padding: 1px 8px;
+	background: linear-gradient(135deg, #f59e0b, #f97316);
+	color: #fff;
+	border-radius: 999px;
+	font-size: 10px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: .04em;
+	vertical-align: middle;
+}
+.bdrvw-row.is-paid { opacity: .65; }
+.bdrvw-row.is-paid .bdrvw-switch input { cursor: not-allowed; }
+
+/* === Source letter avatar (when no place icon) ====================== */
+/* (rule already defined above with .bdrvw-gr__source-letter) */
+
+/* === Pro feature badge on the Slider layout (free showcase) ========= */
+.bdrvw-gr__pro-pill {
+	display: inline-block;
+	margin-left: 6px;
+	padding: 1px 8px;
+	border-radius: 999px;
+	background: linear-gradient(135deg, #f59e0b, #d97706);
+	color: #fff;
+	font-size: 10px;
+	font-weight: 700;
+	line-height: 1.6;
+	letter-spacing: .02em;
+	vertical-align: middle;
+	text-transform: uppercase;
+}
+.bdrvw-gr__pro-note {
+	display: block;
+	margin-top: 4px;
+	color: #b45309;
+	font-style: italic;
+	font-size: 11px;
+}
+/* Locked word-filter control — "Available in Pro" shown in a bordered box. */
+.bdrvw-gr__filter-lock {
+	display: inline-block;
+	padding: 8px 14px;
+	border: 1px solid #e7d9a8;
+	border-radius: 8px;
+	background: #fffbeb;
+	color: #b45309;
+	font-size: 12px;
+	font-weight: 600;
+}
+.bdrvw-gr__layout.is-pro {
+	position: relative;
+}
+
+/* === Pro-only shortcode notice (Slider without BoldReview Pro) ====== */
+.bdrvw-gr__shortcode-pro {
+	margin: 0;
+	padding: 12px 14px;
+	border: 1px dashed #f59e0b;
+	border-radius: 8px;
+	background: #fffbeb;
+	color: #b45309;
+	font-size: 13px;
+}
+
+/* === Design-skin "Style 5+" template cards ========================== */
+.bdrvw-gr__template-thumb { position: relative; }
+/* Skinned thumbs show a full mini-card design, so don't pad/clip it. */
+.bdrvw-gr__template-thumb--premium { padding: 0; }
+
+/* Popup layout: swap each style's thumbnail and description for its popup
+   badge variant. */
+.bdrvw-gr__template-thumb--popup { display: none; }
+.bdrvw-gr__template-desc--popup { display: none; }
+.bdrvw-gr__templates.is-layout-popup .bdrvw-gr__template--has-popup .bdrvw-gr__template-thumb--default { display: none; }
+.bdrvw-gr__templates.is-layout-popup .bdrvw-gr__template--has-popup .bdrvw-gr__template-thumb--popup { display: flex; }
+.bdrvw-gr__templates.is-layout-popup .bdrvw-gr__template--has-popup-desc .bdrvw-gr__template-desc--default { display: none; }
+.bdrvw-gr__templates.is-layout-popup .bdrvw-gr__template--has-popup-desc .bdrvw-gr__template-desc--popup { display: block; }
+
+/* List layout: swap Style 3/4 to their list-specific thumbnails. */
+.bdrvw-gr__template-thumb--list { display: none; }
+.bdrvw-gr__templates.is-layout-list .bdrvw-gr__template--has-list .bdrvw-gr__template-thumb--default { display: none; }
+.bdrvw-gr__templates.is-layout-list .bdrvw-gr__template--has-list .bdrvw-gr__template-thumb--list { display: flex; }
+
+/* Grid layout: swap each style to its grid-specific thumbnail + description. */
+.bdrvw-gr__template-thumb--grid { display: none; }
+.bdrvw-gr__template-desc--grid { display: none; }
+.bdrvw-gr__templates.is-layout-grid .bdrvw-gr__template--has-grid .bdrvw-gr__template-thumb--default { display: none; }
+.bdrvw-gr__templates.is-layout-grid .bdrvw-gr__template--has-grid .bdrvw-gr__template-thumb--grid { display: flex; }
+.bdrvw-gr__templates.is-layout-grid .bdrvw-gr__template--has-grid-desc .bdrvw-gr__template-desc--default { display: none; }
+.bdrvw-gr__templates.is-layout-grid .bdrvw-gr__template--has-grid-desc .bdrvw-gr__template-desc--grid { display: block; }

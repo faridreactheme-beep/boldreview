@@ -1,0 +1,27 @@
+{
+    "name": "themewant/bdrvw",
+    "description": "BoldReview - a modern, secure review system for WordPress.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "homepage": "https://themewant.com/downloads/bdrvw/",
+    "authors": [
+        {
+            "name": "Themewant",
+            "homepage": "https://themewant.com/"
+        }
+    ],
+    "require": {
+        "php": ">=7.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "BoldReview\\Plugin\\": "src/"
+        },
+        "files": [ "src/helper-functions.php" ]
+    },
+    "minimum-stability": "stable",
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
