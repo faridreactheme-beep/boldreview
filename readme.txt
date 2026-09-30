@@ -2,9 +2,9 @@
 Contributors: themewant
 Tags: customer reviews, google places reviews, product reviews, google reviews, woocommerce reviews
 Requires at least: 5.8
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Boost WooCommerce business growth with genuine customer reviews, Multi rating cr
 
 **BoldReview** is a powerful WordPress review plugin that helps you collect customer reviews and ratings for WooCommerce products, posts, pages, and custom post types, while also displaying Google Reviews in beautiful, customizable widgets. Whether you run an online store, a business website, or a service platform, BoldReview helps you build trust, strengthen social proof, and increase customer confidence.
 
-With BoldReview, customers can submit detailed ratings, write authentic reviews, and even upload photos and videos to share their real experiences. You can also create custom rating criteria for WooCommerce products, allowing customers to rate aspects such as quality, value, service, or any criteria that fit your business.
+With BoldReview, customers can submit detailed ratings, write authentic reviews, and even upload photos to share their real experiences. You can also create custom rating criteria for WooCommerce products, allowing customers to rate aspects such as quality, value, service, or any criteria that fit your business.
 
 Manage customer feedback effortlessly with a modern review dashboard where you can approve, edit, reply to, and organize reviews. Display verified buyer badges, showcase Google Reviews in attractive layouts, and customize every aspect of your review system to match your website's design and deliver a more engaging customer experience.
 
@@ -40,9 +40,7 @@ https://themewant.com/plugins/demo/boldreview/product/natural-woven-beach-tote-b
 👉 Review moderation dashboard
 👉 Multiple templates and layouts
 👉 Frontend shortcodes
-👉 Filter reviews by rating
 👉 Display reviews with photos
-👉 Widget lazy load
 👉 Responsive design
 
 
@@ -78,9 +76,7 @@ https://themewant.com/plugins/demo/boldreview/product/natural-woven-beach-tote-b
 
 ➤ **Average Rating Display** – Show the overall average score for each criteria group.
 
-➤ **Flexible Review Templates** – Choose different frontend layouts for displaying reviews.
-
-➤ **Toggle Review Elements** – Show or hide avatars, ratings, dates, titles, reviewer emails, websites, review photos and more.
+➤ **Toggle Review Elements** – Show or hide avatars, ratings, dates, titles, reviewer emails, websites and more.
 
 ➤ **Photo with Reviews** – Enable customers to upload photos with their reviews. Real images from buyers help showcase your products, build trust, and give future customers   greater confidence before making a purchase.
 
@@ -99,6 +95,8 @@ https://themewant.com/plugins/demo/boldreview/product/natural-woven-beach-tote-b
 
 ➤ **Duplicate Review Protection** – Reduce spam and duplicate reviews by restricting submissions from the same email or IP address.
 
+➤ **Math Captcha** – Add a simple maths question to the review form to stop spam bots. Three difficulty levels, optional skip for logged-in users, and custom wording — with no third-party account or script needed.
+
 
 
 ## 🌍 Google Business Reviews Features
@@ -109,7 +107,7 @@ https://themewant.com/plugins/demo/boldreview/product/natural-woven-beach-tote-b
 
 ➤ **Review Accumulation** – Store previously fetched reviews to display more than Google's default limit over time.
 
-➤ **Review Card Controls** – Show or hide reviewer photos, ratings, Google logo, verified badges, business replies, and navigation arrows.
+➤ **Review Card Controls** – Show or hide reviewer photos, ratings, Google logo, and navigation arrows.
 
 ➤ **Rating Filter** – Display only reviews that meet your selected minimum star rating.
 
@@ -163,7 +161,7 @@ What the plugin sends, and when:
 * When you connect a place and when reviews are refreshed, the selected Place ID and your API key are sent to Google to retrieve the business details, rating, reviews and profile/photo images.
 * On the admin settings screen, the Google Maps JavaScript API is loaded from Google to assist with place search.
 
-No data from your site visitors is sent to Google by this plugin. Requests are made server-to-server (or, for the Maps JavaScript API, from the admin screen only).
+API requests are made server-to-server (or, for the Maps JavaScript API, from the admin screen only). On the frontend, reviewer profile pictures and the business photo are loaded directly from Google's servers in the visitor's browser, so Google receives the visitor's IP address and browser information for those image requests.
 
 
 Endpoints used:
@@ -184,7 +182,7 @@ Google is a third-party service. Its use is subject to Google's terms and privac
 
 = Social sharing services =
 
-The Google Reviews layouts include an optional "Share" button on each review card. When a site visitor clicks "Share" and then chooses a network, the plugin opens that network's own share page in a new tab. No data is sent automatically: a request is only made when the visitor actively chooses a network, and the only information passed is the page URL of the review (and, for some networks, a generic "Check this out!" message). The plugin does not transmit any visitor data on its own.
+Some Google Reviews card styles include a "Share" button. When a site visitor clicks "Share" and then chooses a network, the plugin opens that network's own share page in a new tab. No data is sent automatically: a request is only made when the visitor actively chooses a network, and the only information passed is the page URL of the review (and, for some networks, a generic "Check this out!" message). The plugin does not transmit any visitor data on its own.
 
 The share targets, and what is sent when a visitor clicks them, are:
 
@@ -270,6 +268,14 @@ Yes. All review forms and review layouts are fully responsive and work well on d
 
 
 == Changelog ==
+
+= 1.0.3 =
+
+* Improve: Criteria Limit issue fix.
+* Fix: Duplicate criteria labels no longer overwrite scores.
+* Removed: Upgrade prompts and locked features.
+* Removed: Google "business replies" option and verified checkmark.
+* Improve: Readme updated.
 
 = 1.0.2 =
 

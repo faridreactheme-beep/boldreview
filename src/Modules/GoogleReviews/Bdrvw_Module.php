@@ -56,8 +56,6 @@ class Bdrvw_Module {
 
 		if ( is_admin() ) {
 			add_action( 'admin_enqueue_scripts', array( $this, 'enqueue_admin_assets' ) );
-			
-			add_action( 'bdrvw_gr_blocked_words_control', array( Bdrvw_SettingsRenderer::class, 'render_filter_words' ) );
 		}
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frontend_assets' ) );
 		add_action( 'bdrvw_google_reviews_refresh', array( $this, 'cron_refresh' ) );

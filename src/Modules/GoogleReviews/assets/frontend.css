@@ -126,21 +126,6 @@
 	text-align: center;
 }
 
-/* Shown when a shortcode requests a premium (Pro) style that isn't active. */
-.bdrvw-google--premium-locked {
-	border-style: solid;
-	border-color: #e7d9a8;
-	background: linear-gradient(180deg, #fffdf5, #fdf6e3);
-	color: #7a6a3a;
-	font-weight: 500;
-}
-.bdrvw-google--premium-locked::before {
-	content: "\1F512"; /* 🔒 */
-	display: block;
-	font-size: 22px;
-	margin-bottom: 6px;
-}
-
 /* Business header (top of most layouts) -------------------------------- */
 .bdrvw-google__header {
 	display: flex;
@@ -545,7 +530,7 @@
 
 /* Layout: grid — cream-card design (Trustindex-style DOM) ----------------
    Reference image: soft #f5f5f5 cards, G logo top-right, avatar + name +
-   relative time, yellow stars + verified check, body text with "Read more"
+   relative time, yellow stars, body text with "Read more"
 ======================================================================== */
 .bdrvw-google__grid-wrap {
 	width: 100%;
@@ -705,12 +690,6 @@
 	color: #6b7280;
 	line-height: 1;
 }
-.bdrvw-google__grid-verified {
-	display: inline-flex;
-	align-items: center;
-	margin-left: 2px;
-}
-.bdrvw-google__grid-verified svg { width: 14px; height: 14px; }
 
 /* Body text ----------------------------------------------------------- */
 .bdrvw-google__grid-text-container {
@@ -768,55 +747,6 @@
 	outline: none;
 }
 
-/* Owner reply (rarely surfaced) -------------------------------------- */
-.bdrvw-google__grid-reply {
-	background: #fff;
-	border-radius: 10px;
-	padding: 10px 12px;
-	margin-top: 2px;
-}
-.bdrvw-google__grid-reply strong {
-	display: block;
-	font-size: 12px;
-	color: #6b7280;
-	margin-bottom: 4px;
-}
-.bdrvw-google__grid-reply p {
-	margin: 0;
-	font-size: 13px;
-	color: #1f2937;
-	line-height: 1.5;
-}
-
-/* Verified badge (shared by list + grid) ------------------------------ */
-.bdrvw-google__verified {
-	display: inline-flex;
-	width: 16px;
-	height: 16px;
-}
-
-/* Owner reply (shared) ------------------------------------------------- */
-.bdrvw-google__reply {
-	margin-top: 8px;
-	padding: 10px 12px;
-	background: var(--brg-bg-alt);
-	border-radius: 8px;
-	border-left: 3px solid var(--bdrvw-brand, #6c5ce7);
-}
-.bdrvw-google__reply strong {
-	display: block;
-	font-size: 12px;
-	color: var(--brg-muted);
-	margin-bottom: 4px;
-	text-transform: uppercase;
-	letter-spacing: .03em;
-}
-.bdrvw-google__reply p {
-	margin: 0;
-	font-size: 13px;
-	color: var(--brg-text);
-}
-
 /* Grid card — template 2 (Quote) -----------------------------------------
    Same data + DOM as Style 1, restructured with flex order: big opening
    quote on top, stars + content first, reviewer (avatar + name + date) pinned
@@ -862,11 +792,10 @@
         max-width: calc(33.333% - 11px);
     }
 }
-/* Reorder the shared children: stars → text → read-more → reply → reviewer. */
+/* Reorder the shared children: stars → text → read-more → reviewer. */
 .bdrvw-google__grid-card--template-2 .bdrvw-google__grid-stars          { order: 1; }
 .bdrvw-google__grid-card--template-2 .bdrvw-google__grid-text-container { order: 2; }
 .bdrvw-google__grid-card--template-2 .bdrvw-google__grid-read-more      { order: 3; }
-.bdrvw-google__grid-card--template-2 .bdrvw-google__grid-reply          { order: 4; }
 .bdrvw-google__grid-card--template-2 .bdrvw-google__grid-head           { order: 5; }
 /* Italic quote-style body to match the card-template-2 treatment. */
 .bdrvw-google__grid-card--template-2 .bdrvw-google__grid-text-container {
@@ -1212,8 +1141,8 @@
 .bdrvw-gr-offcanvas-open { overflow: hidden; }
 
 /* ===================================================================== */
-/* Premium design skins (BoldReview Pro on the frontend; always shown in  */
-/* the admin preview). Each is a soft, minimal treatment layered over the */
+/* Design skins (applied on the frontend and in the admin preview).      */
+/* Each is a soft, minimal treatment layered over the                     */
 /* selected layout/template. They mostly retune the component's CSS vars  */
 /* so text + accents recolour cleanly, plus the card surface itself.      */
 /* ===================================================================== */
@@ -1255,7 +1184,7 @@
 /* sidebar-specific structure elsewhere (Profile Header / Cards Only), so  */
 /* in the Grid layout they get their own free card designs instead — keyed */
 /* on the layout+template wrapper class so they never leak to other        */
-/* layouts. Free: they apply on the frontend without BoldReview Pro.       */
+/* layouts.                                                               */
 /* ===================================================================== */
 
 /* Grid Style 3 — "Spotlight": a centred testimonial card. Big haloed avatar
@@ -1579,7 +1508,7 @@
 
 /* === Review action bar (like / share / Google) =======================
    Rendered on every grid/slider card but hidden by default — individual styles
-   opt in by un-hiding it (e.g. Style 7 in the Pro skins). */
+   opt in by un-hiding it. */
 .bdrvw-google__grid-actions { display: none; }
 
 /* === Share popup (Google-style) — global, used by the share button ==== */

@@ -529,6 +529,20 @@ class Bdrvw_Handler {
 			}
 		}
 
+		/**
+		 * Filter the field-level errors for a submission.
+		 *
+		 * Anything the form carries that isn't a review field validates here —
+		 * the anti-spam question, and whatever provider an add-on puts in
+		 * its place. Keys are the posted field names, so the frontend can pin
+		 * each message to the input it belongs to.
+		 *
+		 * @param array<string,string> $errors  Errors collected so far.
+		 * @param array<string,mixed>  $payload Sanitized review payload.
+		 * @param array<string,mixed>  $raw     Raw, unslashed posted data.
+		 */
+		$errors = (array) apply_filters( 'bdrvw_submit_field_errors', $errors, $payload, $raw );
+
 		if ( $errors ) {
 			wp_send_json_error(
 				array(

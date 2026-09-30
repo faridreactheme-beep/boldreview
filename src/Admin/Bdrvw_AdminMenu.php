@@ -41,12 +41,6 @@ class Bdrvw_AdminMenu {
 	 * Register hooks.
 	 */
 	public function register(): void {
-		
-		add_action( 'bdrvw_cr_advanced_video_review', array( Bdrvw_SettingsPage::class, 'render_video_review_row' ) );
-		add_action( 'bdrvw_cr_advanced_discord', array( Bdrvw_SettingsPage::class, 'render_discord_row' ) );
-		add_action( 'bdrvw_cr_advanced_slack', array( Bdrvw_SettingsPage::class, 'render_slack_row' ) );
-		add_action( 'bdrvw_cr_tab_recaptcha', array( Bdrvw_SettingsPage::class, 'render_recaptcha_rows' ) );
-
 		add_action( 'admin_menu', array( $this, 'add_menus' ) );
 		add_action( 'admin_init', array( $this, 'maybe_save_settings' ) );
 		add_action( 'admin_head', array( $this, 'menu_icon_styles' ) );

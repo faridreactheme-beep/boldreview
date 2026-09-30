@@ -368,24 +368,6 @@
 .bdrvw-gr__layout-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .bdrvw-gr__layout-text strong { font-size: 13px; color: #0f172a; }
 .bdrvw-gr__layout-text span  { font-size: 11px; color: #64748b; line-height: 1.35; }
-/* Pro layout (slider): only the name shows, so vertically centre the row and
-   pin a small "Pro" badge in the top-right corner of the card. */
-.bdrvw-gr__layout.is-pro { align-items: center; }
-.bdrvw-gr__pro-corner {
-	position: absolute;
-	top: 6px;
-	right: 6px;
-	z-index: 2;
-	padding: 2px 8px;
-	font-size: 10px;
-	font-weight: 700;
-	line-height: 1.4;
-	letter-spacing: .02em;
-	color: #fff;
-	background: linear-gradient(135deg, #7c5cff, #6c5ce7);
-	border-radius: 999px;
-	box-shadow: 0 2px 6px -2px rgba(108, 92, 231, .6);
-}
 
 /* === Template chooser =================================================
    Compact 150×150 cards, premium designer feel:
@@ -525,17 +507,6 @@
 	border-color: #16a34a;
 	color: #fff;
 }
-/* Locked state — the code box becomes a "available in Pro" ad instead of code. */
-.bdrvw-gr__shortcode.is-locked {
-	font-family: inherit;
-	font-weight: 600;
-	background: #fffbeb;
-	color: #b45309;
-	border: 1px dashed #f59e0b;
-	white-space: normal;
-	user-select: none;
-	cursor: default;
-}
 
 /* === Layout/Template combined card: divider + sub-header ================ */
 .bdrvw-gr__section-divider {
@@ -577,73 +548,8 @@
 	margin: 0 auto;
 }
 
-/* === Paid pill (Display tab) ========================================= */
-.bdrvw-gr__paid-pill {
-	display: inline-block;
-	margin-left: 6px;
-	padding: 1px 8px;
-	background: linear-gradient(135deg, #f59e0b, #f97316);
-	color: #fff;
-	border-radius: 999px;
-	font-size: 10px;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: .04em;
-	vertical-align: middle;
-}
-.bdrvw-row.is-paid { opacity: .65; }
-.bdrvw-row.is-paid .bdrvw-switch input { cursor: not-allowed; }
-
 /* === Source letter avatar (when no place icon) ====================== */
 /* (rule already defined above with .bdrvw-gr__source-letter) */
-
-/* === Pro feature badge on the Slider layout (free showcase) ========= */
-.bdrvw-gr__pro-pill {
-	display: inline-block;
-	margin-left: 6px;
-	padding: 1px 8px;
-	border-radius: 999px;
-	background: linear-gradient(135deg, #f59e0b, #d97706);
-	color: #fff;
-	font-size: 10px;
-	font-weight: 700;
-	line-height: 1.6;
-	letter-spacing: .02em;
-	vertical-align: middle;
-	text-transform: uppercase;
-}
-.bdrvw-gr__pro-note {
-	display: block;
-	margin-top: 4px;
-	color: #b45309;
-	font-style: italic;
-	font-size: 11px;
-}
-/* Locked word-filter control — "Available in Pro" shown in a bordered box. */
-.bdrvw-gr__filter-lock {
-	display: inline-block;
-	padding: 8px 14px;
-	border: 1px solid #e7d9a8;
-	border-radius: 8px;
-	background: #fffbeb;
-	color: #b45309;
-	font-size: 12px;
-	font-weight: 600;
-}
-.bdrvw-gr__layout.is-pro {
-	position: relative;
-}
-
-/* === Pro-only shortcode notice (Slider without BoldReview Pro) ====== */
-.bdrvw-gr__shortcode-pro {
-	margin: 0;
-	padding: 12px 14px;
-	border: 1px dashed #f59e0b;
-	border-radius: 8px;
-	background: #fffbeb;
-	color: #b45309;
-	font-size: 13px;
-}
 
 /* === Design-skin "Style 5+" template cards ========================== */
 .bdrvw-gr__template-thumb { position: relative; }

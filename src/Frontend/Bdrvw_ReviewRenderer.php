@@ -301,8 +301,8 @@ class Bdrvw_ReviewRenderer {
 				/**
 				 * Fires just above the submit button, inside the form element.
 				 *
-				 * Anything a submission has to carry belongs here — BoldReview Pro
-				 * puts the CAPTCHA widget in this spot, and because it is inside
+				 * Anything a submission has to carry belongs here — a captcha add-on
+				 * can put its widget in this spot, and because it is inside
 				 * the form, whatever field it renders is collected with the rest.
 				 *
 				 * @param int                 $post_id Post being reviewed.

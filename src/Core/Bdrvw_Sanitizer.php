@@ -112,6 +112,41 @@ class Bdrvw_Sanitizer {
 					);
 					break;
 
+				case 'captcha':
+					$cap_in     = isset( $data['captcha'] ) && is_array( $data['captcha'] ) ? $data['captcha'] : array();
+					$cap_def    = (array) $defaults['captcha'];
+					$provider   = isset( $cap_in['provider'] ) ? sanitize_key( (string) $cap_in['provider'] ) : '';
+					$difficulty = isset( $cap_in['difficulty'] ) ? sanitize_key( (string) $cap_in['difficulty'] ) : '';
+
+					// An unavailable provider (e.g. one whose add-on is gone) falls
+					// back to the math question rather than silently disabling
+					// protection the admin thought they had switched on.
+					if ( ! array_key_exists( $provider, Bdrvw_Captcha::providers() ) ) {
+						$provider = (string) $cap_def['provider'];
+					}
+					if ( ! array_key_exists( $difficulty, Bdrvw_Captcha::difficulties() ) ) {
+						$difficulty = (string) $cap_def['difficulty'];
+					}
+
+					$clean['captcha'] = array(
+						'enabled'        => ! empty( $cap_in['enabled'] ) ? 1 : 0,
+						'provider'       => $provider,
+						'difficulty'     => $difficulty,
+						'skip_logged_in' => ! empty( $cap_in['skip_logged_in'] ) ? 1 : 0,
+						'label'          => isset( $cap_in['label'] ) ? sanitize_text_field( (string) $cap_in['label'] ) : '',
+						'error'          => isset( $cap_in['error'] ) ? sanitize_text_field( (string) $cap_in['error'] ) : '',
+					);
+
+					/**
+					 * Sanitize captcha keys this plugin has no case for — the
+					 * site/secret keys an add-on provider adds to this same section.
+					 *
+					 * @param array<string,mixed> $clean_captcha Cleaned captcha settings.
+					 * @param array<string,mixed> $cap_in        Raw posted captcha settings.
+					 */
+					$clean['captcha'] = (array) apply_filters( 'bdrvw_captcha_sanitize_settings', $clean['captcha'], $cap_in );
+					break;
+
 				case 'comment_fields':
 					$clean['comment_fields'] = array();
 					foreach ( $defaults['comment_fields'] as $cf_key => $_unused ) {
@@ -165,14 +200,7 @@ class Bdrvw_Sanitizer {
 
 				case 'criteria':
 					$criteria = array();
-					/**
-					 * Filter the maximum number of form criteria that can be saved.
-					 * The free plugin caps at 3; BoldReview Pro raises this so its
-					 * "Add more" button can persist additional criteria.
-					 *
-					 * @param int $max Maximum criteria count.
-					 */
-					$max_criteria = max( 1, (int) apply_filters( 'bdrvw_max_criteria', 3 ) );
+					$seen     = array();
 					if ( isset( $data['criteria'] ) && is_array( $data['criteria'] ) ) {
 						foreach ( $data['criteria'] as $row ) {
 							if ( ! is_array( $row ) ) {
@@ -187,13 +215,19 @@ class Bdrvw_Sanitizer {
 							if ( '' === $key ) {
 								$key = 'crit_' . substr( md5( $label ), 0, 8 );
 							}
-							$criteria[] = array(
+							// Two rows with the same label would share a key and
+							// overwrite each other's scores, so suffix repeats.
+							$base = $key;
+							$n    = 2;
+							while ( isset( $seen[ $key ] ) ) {
+								$key = $base . '_' . $n;
+								$n++;
+							}
+							$seen[ $key ] = true;
+							$criteria[]   = array(
 								'key'   => $key,
 								'label' => $label,
 							);
-							if ( count( $criteria ) >= $max_criteria ) {
-								break;
-							}
 						}
 					}
 					$clean['criteria'] = $criteria;
@@ -259,8 +293,6 @@ class Bdrvw_Sanitizer {
 							// Display tab.
 							'hide_no_comment'    => 'bool',
 							'hide_rating_text'   => 'bool',
-							'show_reply'         => 'bool',
-							'show_verified'      => 'bool',
 							'show_arrows'        => 'bool',
 							'show_reviewer_pic'  => 'bool',
 							'show_platform_logo' => 'bool',
@@ -305,8 +337,8 @@ class Bdrvw_Sanitizer {
 					}
 
 					/**
-					 * Sanitize add-on Google Reviews settings the free build doesn't
-					 * know about (e.g. the Pro word filter's `blocked_words`). Add-ons
+					 * Sanitize add-on Google Reviews settings this plugin doesn't
+					 * know about (e.g. a word filter's `blocked_words`). Add-ons
 					 * read their raw value from $gr_in and add the cleaned key; when a
 					 * key isn't posted they must leave it out so partial saves from
 					 * other tabs don't wipe it.
@@ -320,9 +352,9 @@ class Bdrvw_Sanitizer {
 		}
 
 		/**
-		 * Sanitize top-level settings keys the free build has no case for.
+		 * Sanitize top-level settings keys this plugin has no case for.
 		 *
-		 * An add-on that renders a control into one of the free plugin's tabs
+		 * An add-on that renders a control into one of the plugin's tabs
 		 * (see `bdrvw_cr_advanced_notification_template`) owns that key's
 		 * sanitisation: it reads the raw value from $data and adds the cleaned
 		 * one. A key that wasn't posted must be left out entirely, so saving a

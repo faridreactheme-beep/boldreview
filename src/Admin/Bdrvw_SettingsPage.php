@@ -7,6 +7,7 @@
 
 namespace BoldReview\Plugin\Admin;
 
+use BoldReview\Plugin\Core\Bdrvw_Captcha;
 use BoldReview\Plugin\Core\Bdrvw_Modules;
 use BoldReview\Plugin\Core\Bdrvw_Settings;
 
@@ -94,10 +95,6 @@ class Bdrvw_SettingsPage {
 						</div>
 					</div>
 					<div class="bdrvw-app__meta">
-						<a href="https://themewant.com/" target="_blank" rel="noopener noreferrer" class="bdrvw-btn-upgrade">
-							<span class="dashicons dashicons-star-filled" aria-hidden="true"></span>
-							<?php esc_html_e( 'Upgrade to Pro', 'boldreview' ); ?>
-						</a>
 						<a href="<?php echo esc_url( admin_url( 'admin.php?page=bdrvw' ) ); ?>" class="bdrvw-btn-secondary">
 							<?php esc_html_e( '← Back to Dashboard', 'boldreview' ); ?>
 						</a>
@@ -233,7 +230,7 @@ class Bdrvw_SettingsPage {
 			'fields'  => __( 'Form Fields', 'boldreview' ),
 			'summary'  => __( 'Rating Summary', 'boldreview' ),
 			'display'  => __( 'Display', 'boldreview' ),
-			'recaptcha' => __( 'reCAPTCHA', 'boldreview' ),
+			'recaptcha' => __( 'Captcha', 'boldreview' ),
 			'advanced' => __( 'Advanced Settings', 'boldreview' ),
 			'uses'     => __( 'Uses', 'boldreview' ),
 		);
@@ -720,22 +717,14 @@ class Bdrvw_SettingsPage {
 	}
 
 	/**
-	 * Collection Review → "reCAPTCHA" tab content.
-	 *
-	 * The free plugin only exposes the tab shell; the actual reCAPTCHA
-	 * settings UI is a Pro feature. BoldReview Pro hooks into
-	 * `bdrvw_cr_tab_recaptcha` to render its fields. When no add-on is
-	 * hooked in (Pro inactive) we fall back to an upsell so the tab is
-	 * never empty.
+	 * Collection Review → "Captcha" tab content.
 	 */
 	protected function cr_tab_recaptcha( array $s ): void {
+		$this->render_captcha_card( $s );
+
 		/**
-		 * Renders the reCAPTCHA tab.
-		 *
-		 * The free plugin always hooks its own callback here (see
-		 * Bdrvw_AdminMenu::register), so the tab is drawn the same way on every
-		 * install. BoldReview Pro removes that callback and renders the working
-		 * v2/v3 configuration in its place.
+		 * Fires after the math-question card in the Captcha tab, so add-ons can
+		 * render settings for the captcha providers they register.
 		 *
 		 * @param array<string,mixed> $s Current settings.
 		 */
@@ -743,31 +732,92 @@ class Bdrvw_SettingsPage {
 	}
 
 	/**
-	 * Default reCAPTCHA tab body. Registered by the free plugin on the
-	 * `bdrvw_cr_tab_recaptcha` action; BoldReview Pro removes this callback and
-	 * renders the real fields instead.
+	 * The math-question card — the built-in spam protection.
 	 *
-	 * Same shape as the Advanced Settings rows: the feature is named and
-	 * explained, with the crown and padlock where its controls would be.
-	 *
-	 * @param array<string,mixed> $s Current settings (unused here).
+	 * @param array<string,mixed> $s Current settings.
 	 */
-	public static function render_recaptcha_rows( $s = array() ): void {
-		unset( $s );
+	protected function render_captcha_card( array $s ): void {
+		$c = array_merge( Bdrvw_Captcha::defaults(), (array) ( $s['captcha'] ?? array() ) );
+
+		$providers = Bdrvw_Captcha::providers();
+		$provider  = isset( $providers[ (string) $c['provider'] ] ) ? (string) $c['provider'] : Bdrvw_Captcha::PROVIDER;
+
+		$difficulties = Bdrvw_Captcha::difficulties();
+		$difficulty   = isset( $difficulties[ (string) $c['difficulty'] ] ) ? (string) $c['difficulty'] : 'easy';
 		?>
 		<div class="bdrvw-card">
 			<header class="bdrvw-card__header bdrvw-card__header--with-icon">
 				<span class="bdrvw-card__header-icon"><span class="dashicons dashicons-shield-alt"></span></span>
 				<div class="bdrvw-card__header-body">
-					<h2><?php esc_html_e( 'reCAPTCHA', 'boldreview' ); ?></h2>
-					<p><?php esc_html_e( 'Protect the review submission form from spam and bot entries with Google reCAPTCHA.', 'boldreview' ); ?></p>
+					<h2><?php esc_html_e( 'Captcha', 'boldreview' ); ?></h2>
+					<p><?php esc_html_e( 'Put a challenge on the review form so bots cannot post through it. It asks a small maths question — nothing to sign up for and no third-party script on your pages.', 'boldreview' ); ?></p>
 				</div>
 			</header>
 
 			<?php
-			self::pro_row(
-				__( 'Google reCAPTCHA', 'boldreview' ),
-				__( 'Verify every submission with reCAPTCHA v2 or v3 — site key, secret key and the score threshold that decides what gets through.', 'boldreview' )
+			$this->toggle_row(
+				'captcha[enabled]',
+				__( 'Enable captcha', 'boldreview' ),
+				__( 'Add the challenge to every review form. Visitors must get it right before their review is accepted.', 'boldreview' ),
+				(int) $c['enabled']
+			);
+			?>
+
+			<div class="bdrvw-row">
+				<div class="bdrvw-row__label">
+					<label for="bdrvw-captcha-provider"><?php esc_html_e( 'Captcha type', 'boldreview' ); ?></label>
+					<p class="bdrvw-row__hint"><?php esc_html_e( 'Which challenge the form asks. Every captcha installed on this site is listed here.', 'boldreview' ); ?></p>
+				</div>
+				<div class="bdrvw-row__control">
+					<?php // Only what this install can actually use — add-ons append theirs through `bdrvw_captcha_providers`. ?>
+					<select id="bdrvw-captcha-provider" class="bdrvw-input bdrvw-input--block" name="<?php echo esc_attr( $this->name( 'captcha[provider]' ) ); ?>">
+						<?php foreach ( $providers as $value => $label ) : ?>
+							<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $provider, $value ); ?>>
+								<?php echo esc_html( $label ); ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+
+			<div class="bdrvw-row">
+				<div class="bdrvw-row__label">
+					<label for="bdrvw-captcha-difficulty"><?php esc_html_e( 'Question difficulty', 'boldreview' ); ?></label>
+					<p class="bdrvw-row__hint"><?php esc_html_e( 'How hard the maths gets. Easy stops the usual spam bots without making real reviewers think twice.', 'boldreview' ); ?></p>
+				</div>
+				<div class="bdrvw-row__control">
+					<select id="bdrvw-captcha-difficulty" class="bdrvw-input bdrvw-input--block" name="<?php echo esc_attr( $this->name( 'captcha[difficulty]' ) ); ?>">
+						<?php foreach ( $difficulties as $value => $label ) : ?>
+							<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $difficulty, $value ); ?>>
+								<?php echo esc_html( $label ); ?>
+							</option>
+						<?php endforeach; ?>
+					</select>
+				</div>
+			</div>
+
+			<?php
+			$this->toggle_row(
+				'captcha[skip_logged_in]',
+				__( 'Skip for logged-in users', 'boldreview' ),
+				__( 'Ask only guests. Signed-in visitors have already proved who they are — note that this hides the question from you too while you are logged in, so turn it off if you want to check the form yourself.', 'boldreview' ),
+				(int) $c['skip_logged_in']
+			);
+
+			$this->text_row(
+				'captcha[label]',
+				__( 'Question label', 'boldreview' ),
+				__( 'The wording above the question on the form. Leave empty to use the default.', 'boldreview' ),
+				(string) $c['label'],
+				__( 'Anti-spam question', 'boldreview' )
+			);
+
+			$this->text_row(
+				'captcha[error]',
+				__( 'Wrong-answer message', 'boldreview' ),
+				__( 'Shown under the field when the answer does not match. Leave empty to use the default.', 'boldreview' ),
+				(string) $c['error'],
+				__( 'That answer is not right. Please try again.', 'boldreview' )
 			);
 			?>
 		</div>
@@ -776,12 +826,6 @@ class Bdrvw_SettingsPage {
 
 	/**
 	 * Collection Review → "Advanced Settings" tab content.
-	 *
-	 * The tab is a shell: every control in it is rendered by whoever hooks the
-	 * action for that row. With only the free plugin installed nothing hooks, so
-	 * each row falls back to a description of what the feature does — the setting
-	 * is named and explained here, and BoldReview Pro replaces the placeholder
-	 * with the working control in the same spot.
 	 *
 	 * @param array<string,mixed> $s Current settings.
 	 */
@@ -857,22 +901,12 @@ class Bdrvw_SettingsPage {
 
 			<?php
 			/**
-			 * Fires where the notification email template editor belongs.
-			 *
-			 * BoldReview Pro hooks here to render the template editor — the
-			 * placeholder buttons ({review_title}, {review_content}, …) and the
-			 * textarea whose contents replace the default admin notification email.
+			 * Fires before the photo-review row, for add-ons that render extra
+			 * Advanced Settings rows.
 			 *
 			 * @param array<string,mixed> $s Current settings.
 			 */
 			do_action( 'bdrvw_cr_advanced_notification_template', $s );
-
-			if ( ! has_action( 'bdrvw_cr_advanced_notification_template' ) ) {
-				self::pro_row(
-					__( 'Notification email template', 'boldreview' ),
-					__( 'Write your own admin notification email instead of the built-in one, using placeholders such as {review_title}, {review_content}, {review_author} and {review_rating}.', 'boldreview' )
-				);
-			}
 
 			$this->toggle_row(
 				'allow_photo_review',
@@ -882,114 +916,23 @@ class Bdrvw_SettingsPage {
 			);
 
 			/**
-			 * Renders the "Allow video review" row.
-			 *
-			 * The free plugin always hooks its own callback here (see
-			 * Bdrvw_AdminMenu::register) — the row is part of this screen, not
-			 * something conditioned on what else is installed. BoldReview Pro
-			 * removes that callback and prints the working control instead.
+			 * Fire after the photo-review row, for add-ons that render extra
+			 * Advanced Settings rows.
 			 *
 			 * @param array<string,mixed> $s Current settings.
 			 */
 			do_action( 'bdrvw_cr_advanced_video_review', $s );
-
-			/**
-			 * Renders the Discord notification row.
-			 *
-			 * Registered by the free plugin (see Bdrvw_AdminMenu::register);
-			 * BoldReview Pro removes that callback and renders the enable
-			 * checkbox plus its webhook field.
-			 *
-			 * @param array<string,mixed> $s Current settings.
-			 */
 			do_action( 'bdrvw_cr_advanced_discord', $s );
-
-			/**
-			 * Renders the Slack notification row. Same arrangement as Discord.
-			 *
-			 * @param array<string,mixed> $s Current settings.
-			 */
 			do_action( 'bdrvw_cr_advanced_slack', $s );
 
 			/**
 			 * Fires at the end of the Advanced Settings card, after the rows the
-			 * free plugin defines. Anything hooked here renders as a further row.
+			 * plugin defines. Anything hooked here renders as a further row.
 			 *
 			 * @param array<string,mixed> $s Current settings.
 			 */
 			do_action( 'bdrvw_cr_tab_advanced', $s );
 			?>
-		</div>
-		<?php
-	}
-
-	/**
-	 * Default "Allow video review" row. Registered by the free plugin on the
-	 * `bdrvw_cr_advanced_video_review` action; BoldReview Pro removes this
-	 * callback and renders the working toggle in its place.
-	 *
-	 * @param array<string,mixed> $s Current settings (unused here).
-	 */
-	public static function render_video_review_row( $s = array() ): void {
-		unset( $s );
-		self::pro_row(
-			__( 'Allow video review', 'boldreview' ),
-			__( 'Let customers attach a short video to their review, alongside the photos the free plugin already accepts.', 'boldreview' )
-		);
-	}
-
-	/**
-	 * Default Discord notification row. Registered by the free plugin on
-	 * `bdrvw_cr_advanced_discord`; BoldReview Pro removes it and renders the
-	 * working control.
-	 *
-	 * @param array<string,mixed> $s Current settings (unused here).
-	 */
-	public static function render_discord_row( $s = array() ): void {
-		unset( $s );
-		self::pro_row(
-			__( 'Discord notifications', 'boldreview' ),
-			__( 'Post every new review straight into a Discord channel through an incoming webhook.', 'boldreview' )
-		);
-	}
-
-	/**
-	 * Default Slack notification row. Registered by the free plugin on
-	 * `bdrvw_cr_advanced_slack`; BoldReview Pro removes it and renders the
-	 * working control.
-	 *
-	 * @param array<string,mixed> $s Current settings (unused here).
-	 */
-	public static function render_slack_row( $s = array() ): void {
-		unset( $s );
-		self::pro_row(
-			__( 'Slack notifications', 'boldreview' ),
-			__( 'Send new reviews to a Slack channel through an incoming webhook, so the team sees them without opening the admin.', 'boldreview' )
-		);
-	}
-
-	/**
-	 * A settings row for a feature this plan does not include: the name, the
-	 * crown badge and the explanation, with no control at all.
-	 *
-	 * Deliberately inert — no disabled input, nothing that looks half-usable.
-	 *
-	 * @param string $label Feature name.
-	 * @param string $hint  What the feature does.
-	 */
-	protected static function pro_row( string $label, string $hint ): void {
-		?>
-		<div class="bdrvw-row bdrvw-row--pro">
-			<div class="bdrvw-row__label">
-				<span class="bdrvw-pro-row__title">
-					<?php echo esc_html( $label ); ?>
-					<span class="bdrvw-pro-row__badge">
-						<?php echo Bdrvw_ReviewPanel::crown_svg( 15 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static markup. ?>
-						<?php esc_html_e( 'Available on Higher Plans', 'boldreview' ); ?>
-					</span>
-				</span>
-				<p class="bdrvw-row__hint"><?php echo esc_html( $hint ); ?></p>
-			</div>
 		</div>
 		<?php
 	}
@@ -1207,7 +1150,7 @@ class Bdrvw_SettingsPage {
 				<span class="bdrvw-card__header-icon"><span class="dashicons dashicons-chart-bar"></span></span>
 				<div class="bdrvw-card__header-body">
 					<h2><?php esc_html_e( 'Review Criteria', 'boldreview' ); ?></h2>
-					<p><?php esc_html_e( 'Add up to 3 custom criteria (e.g. Quality, Value, Service). Each criterion gets its own 1–5 star rating on the form.', 'boldreview' ); ?></p>
+					<p><?php esc_html_e( 'Add as many custom criteria as you need (e.g. Quality, Value, Service). Each criterion gets its own 1–5 star rating on the form.', 'boldreview' ); ?></p>
 				</div>
 			</header>
 
@@ -1221,69 +1164,87 @@ class Bdrvw_SettingsPage {
 				</div>
 			</div>
 
-			<div class="bdrvw-criteria" id="bdrvw-criteria">
+			<?php
+			$criteria     = array_values( (array) $s['criteria'] );
+			$placeholders = array(
+				__( 'e.g. Quality', 'boldreview' ),
+				__( 'e.g. Value for money', 'boldreview' ),
+				__( 'e.g. Customer service', 'boldreview' ),
+			);
+			// Always offer at least three rows so a fresh install has somewhere to type.
+			$rows = max( 3, count( $criteria ) );
+			?>
+			<div class="bdrvw-criteria" id="bdrvw-criteria" data-bdrvw-criteria data-next-index="<?php echo (int) $rows; ?>">
 				<?php
-				$criteria     = (array) $s['criteria'];
-				$placeholders = array(
-					__( 'e.g. Quality', 'boldreview' ),
-					__( 'e.g. Value for money', 'boldreview' ),
-					__( 'e.g. Customer service', 'boldreview' ),
-				);
-				for ( $i = 0; $i < 3; $i++ ) :
-					$row    = $criteria[ $i ] ?? array( 'key' => '', 'label' => '' );
-					$label  = (string) $row['label'];
-					$key    = (string) $row['key'];
-					$filled = '' !== $label;
-					?>
-					<div class="bdrvw-criterion<?php echo $filled ? ' is-filled' : ''; ?>">
-						<div class="bdrvw-criterion__index"><?php echo (int) ( $i + 1 ); ?></div>
-						<div class="bdrvw-criterion__body">
-							<div class="bdrvw-criterion__row">
-								<input
-									type="text"
-									class="bdrvw-input bdrvw-criterion__input"
-									placeholder="<?php echo esc_attr( $placeholders[ $i ] ); ?>"
-									name="bdrvw_settings[criteria][<?php echo (int) $i; ?>][label]"
-									value="<?php echo esc_attr( $label ); ?>"
-									maxlength="60"
-								/>
-								<span class="bdrvw-criterion__preview" aria-hidden="true">
-									<?php for ( $star = 0; $star < 5; $star++ ) : ?>
-										<span class="bdrvw-criterion__star">&#9733;</span>
-									<?php endfor; ?>
-								</span>
-							</div>
-						</div>
-						<input type="hidden" name="bdrvw_settings[criteria][<?php echo (int) $i; ?>][key]" value="<?php echo esc_attr( $key ); ?>" />
-					</div>
-				<?php endfor; ?>
+				for ( $i = 0; $i < $rows; $i++ ) {
+					$row = $criteria[ $i ] ?? array( 'key' => '', 'label' => '' );
+					$this->render_criterion_row(
+						(string) $i,
+						(string) ( $row['label'] ?? '' ),
+						(string) ( $row['key'] ?? '' ),
+						$placeholders[ $i ] ?? __( 'e.g. Delivery', 'boldreview' )
+					);
+				}
+				?>
 			</div>
+
+			<button type="button" class="bdrvw-cgroup__crit-add bdrvw-criteria__add" data-bdrvw-criterion-add>
+				<span class="dashicons dashicons-plus" aria-hidden="true"></span>
+				<?php esc_html_e( 'Add criterion', 'boldreview' ); ?>
+			</button>
+
+			<template id="bdrvw-criterion-template">
+				<?php $this->render_criterion_row( '__INDEX__', '', '', __( 'e.g. Delivery', 'boldreview' ) ); ?>
+			</template>
 
 			<?php
 			/**
-			 * Fires at the bottom of the Review Criteria card, after the built-in
-			 * (free) criteria rows. BoldReview Pro hooks here to render an
-			 * "Add more" button plus extra criteria rows so multiple/unlimited
-			 * criteria can be added. Rows must post to
-			 * bdrvw_settings[criteria][<i>][label] / [key] to be saved.
+			 * Fires at the bottom of the Review Criteria card, after the criteria
+			 * rows and the "Add criterion" button.
 			 *
 			 * @param array<string,mixed>             $s        Current settings.
 			 * @param array<int,array<string,mixed>>  $criteria Saved criteria rows.
 			 */
 			do_action( 'bdrvw_criteria_card_footer', $s, (array) $s['criteria'] );
 			?>
+		</div>
+		<?php
+	}
 
-			<?php if ( ! has_action( 'bdrvw_criteria_card_footer' ) ) : ?>
-				<div class="bdrvw-upsell">
-					<span class="bdrvw-upsell__icon">★</span>
-					<div>
-						<strong><?php esc_html_e( 'Need more than 3 criteria?', 'boldreview' ); ?></strong>
-						<a class="bdrvw-upsell__link" href="https://themewant.com/" target="_blank" rel="noopener noreferrer">
-							<?php esc_html_e( 'Upgrade to Pro', 'boldreview' ); ?>
-						</a>
-					</div>
+	/**
+	 * One row of the Review Criteria repeater.
+	 *
+	 * @param string $index       Row index used in the field names ('__INDEX__' for the JS template).
+	 * @param string $label       Saved label.
+	 * @param string $key         Saved key.
+	 * @param string $placeholder Input placeholder.
+	 */
+	protected function render_criterion_row( string $index, string $label, string $key, string $placeholder ): void {
+		$filled = '' !== $label;
+		?>
+		<div class="bdrvw-criterion<?php echo $filled ? ' is-filled' : ''; ?>" data-bdrvw-criterion>
+			<div class="bdrvw-criterion__index" aria-hidden="true"></div>
+			<div class="bdrvw-criterion__body">
+				<div class="bdrvw-criterion__row">
+					<input
+						type="text"
+						class="bdrvw-input bdrvw-criterion__input"
+						placeholder="<?php echo esc_attr( $placeholder ); ?>"
+						name="bdrvw_settings[criteria][<?php echo esc_attr( $index ); ?>][label]"
+						value="<?php echo esc_attr( $label ); ?>"
+						maxlength="60"
+					/>
+					<span class="bdrvw-criterion__preview" aria-hidden="true">
+						<?php for ( $star = 0; $star < 5; $star++ ) : ?>
+							<span class="bdrvw-criterion__star">&#9733;</span>
+						<?php endfor; ?>
+					</span>
 				</div>
-			<?php endif; ?>
+			</div>
+			<button type="button" class="bdrvw-cgroup__crit-remove bdrvw-criterion__remove" data-bdrvw-criterion-remove aria-label="<?php esc_attr_e( 'Remove criterion', 'boldreview' ); ?>">
+				<span class="dashicons dashicons-no-alt" aria-hidden="true"></span>
+			</button>
+			<input type="hidden" name="bdrvw_settings[criteria][<?php echo esc_attr( $index ); ?>][key]" value="<?php echo esc_attr( $key ); ?>" />
 		</div>
 		<?php
 	}

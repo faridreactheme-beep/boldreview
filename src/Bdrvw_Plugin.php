@@ -17,6 +17,7 @@ use BoldReview\Plugin\Admin\Bdrvw_PostStyleMetaBox;
 use BoldReview\Plugin\Admin\Bdrvw_ReviewPanel;
 use BoldReview\Plugin\Admin\Bdrvw_ToolsPage;
 use BoldReview\Plugin\Ajax\Bdrvw_Handler as AjaxHandler;
+use BoldReview\Plugin\Core\Bdrvw_Captcha;
 use BoldReview\Plugin\Core\Bdrvw_Notifier;
 use BoldReview\Plugin\Core\Bdrvw_Settings;
 use BoldReview\Plugin\Frontend\Bdrvw_Assets as FrontendAssets;
@@ -98,11 +99,15 @@ final class Bdrvw_Plugin {
 		$this->services['shortcodes']      = new Bdrvw_Shortcodes( $settings );
 		$this->services['ajax']            = new AjaxHandler( $settings );
 		$this->services['notifier']        = new Bdrvw_Notifier( $settings );
+		// Renders on the frontend, verifies during admin-ajax — so it boots on
+		// both sides, not inside the is_admin() block above.
+		$this->services['captcha']         = new Bdrvw_Captcha( $settings );
 
 		$this->services['frontend_assets']->register();
 		$this->services['shortcodes']->register();
 		$this->services['ajax']->register();
 		$this->services['notifier']->register();
+		$this->services['captcha']->register();
 
 		$this->services['module_google_reviews'] = new GoogleReviewsModule( $settings );
 		$this->services['module_google_reviews']->register();

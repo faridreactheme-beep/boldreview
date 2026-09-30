@@ -53,6 +53,37 @@
 }
 .bdrvw-form__row { margin-bottom: 14px; display: flex; flex-direction: column; gap: 6px; }
 
+/* ---------- Anti-spam question ---------- */
+.bdrvw-captcha {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px;
+}
+.bdrvw-captcha__question {
+	font-size: 17px;
+	font-weight: 600;
+	line-height: 1.2;
+	color: #111;
+	padding: 10px 14px;
+	border: 1px solid #e5e7eb;
+	border-radius: 10px;
+	background: #f9fafb;
+	white-space: nowrap;
+	/* The question is the one thing a bot would want to lift out of the
+	   markup, and a reviewer never needs to copy it. */
+	-webkit-user-select: none;
+	user-select: none;
+}
+/* Beats the width:100% the shared .bdrvw-input rule sets further down. */
+.bdrvw-form-wrap input.bdrvw-captcha__input {
+	width: 110px;
+	flex: 0 0 auto;
+	text-align: center;
+}
+/* The error is appended to this wrapper, so it needs the full row to itself. */
+.bdrvw-captcha .bdrvw-field-error { flex: 1 0 100%; }
+
 /* ---------- Photo review uploader ---------- */
 .bdrvw-uploader {
 	display: flex;

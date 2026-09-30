@@ -397,7 +397,6 @@
 			var $copyBtn  = $root.find('[data-bdrvw-gr-copy]');
 
 			if ($card.length)    { $card.removeAttr('hidden'); }
-			$shortcode.removeClass('is-locked');
 			if ($copyBtn.length) { $copyBtn.removeAttr('hidden'); }
 
 			var slug      = String($layout.attr('data-shortcode') || 'bdrvw_google_grid');
@@ -457,7 +456,7 @@
 					if (window.BdrvwGR && window.BdrvwGR.initReadMore) {
 						window.BdrvwGR.initReadMore($preview.get(0));
 					}
-					// Notify add-ons (e.g. a Pro slider layout) that fresh preview
+					// Notify add-ons (e.g. a slider layout) that fresh preview
 					// markup was injected so they can (re)initialise their widgets.
 					document.dispatchEvent(new CustomEvent("bdrvw-gr-preview-rendered", { detail: { root: $preview.get(0) } }));
 				}

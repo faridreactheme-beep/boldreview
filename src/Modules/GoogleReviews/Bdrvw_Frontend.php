@@ -108,11 +108,6 @@ class Bdrvw_Frontend {
 
 		$layout = (string) $atts['layout'];
 
-		$locked = self::premium_unavailable_template( (string) $atts['template'] );
-		if ( '' !== $locked ) {
-			return self::premium_template_notice( $locked );
-		}
-
 		return $this->render_with_atts( $layout, (string) $atts['template'], self::resolve_limit( $atts ), self::clamp_columns( $atts['columns'] ), self::extra_opts_from_atts( $layout, $raw ), (string) $atts['order'], self::parse_rating_att( $atts['min_rating'] ), self::parse_rating_att( $atts['rating'] ) );
 	}
 
@@ -139,14 +134,6 @@ class Bdrvw_Frontend {
 			$raw,
 			'bdrvw_google_' . $layout
 		);
-
-		// Resolve against the full canonical style list first: if this style points
-		// at a premium design whose add-on is inactive, show a notice rather than
-		// falling back to style 1.
-		$locked = self::premium_unavailable_template( $this->template_from_style_full( (string) $atts['style'], $layout ) );
-		if ( '' !== $locked ) {
-			return self::premium_template_notice( $locked );
-		}
 
 		$template = $this->template_from_style( (string) $atts['style'], $layout );
 		return $this->render_with_atts( $layout, $template, self::resolve_limit( $atts ), self::clamp_columns( $atts['columns'] ), self::extra_opts_from_atts( $layout, $raw ), (string) $atts['order'], self::parse_rating_att( $atts['min_rating'] ), self::parse_rating_att( $atts['rating'] ) );
@@ -175,7 +162,7 @@ class Bdrvw_Frontend {
 	/**
 	 * Collect extra, layout-specific options from the raw (unparsed) shortcode
 	 * attributes. The core shortcode only knows about layout/template/limit/columns;
-	 * add-ons that register their own layout (e.g. the Pro Slider, with `autoplay`,
+	 * add-ons that register their own layout (e.g. a slider, with `autoplay`,
 	 * `speed`, `space_between`, `navigation`, `pagination`) read their own attributes
 	 * off `$raw` here. The result is threaded through to `bdrvw_gr_render_layout` as
 	 * its `$extra` argument. Layouts with no extras just get an empty array.
@@ -240,26 +227,6 @@ class Bdrvw_Frontend {
 			$n       = (int) $m[1];
 			if ( $n >= 1 && $n <= count( $offered ) ) {
 				return self::normalize_template( (string) $offered[ $n - 1 ] );
-			}
-		}
-		return 'template_1';
-	}
-
-	/**
-	 * Resolve a `style="styleN"` attribute against the *full* canonical style list
-	 * (including premium add-on styles), so a saved shortcode still points at the
-	 * right premium slug after the add-on is deactivated. Used only to detect a
-	 * premium-locked request; the actual render uses template_from_style().
-	 *
-	 * @param string $style  The `style` attribute value (e.g. "style7").
-	 * @param string $layout Layout the shortcode renders in.
-	 */
-	protected function template_from_style_full( string $style, string $layout ): string {
-		if ( preg_match( '/(\d+)/', $style, $m ) ) {
-			$offered = Bdrvw_SettingsRenderer::all_templates_for_layout( self::normalize_layout( $layout ) );
-			$n       = (int) $m[1];
-			if ( $n >= 1 && $n <= count( $offered ) ) {
-				return (string) $offered[ $n - 1 ];
 			}
 		}
 		return 'template_1';
@@ -444,7 +411,7 @@ class Bdrvw_Frontend {
 	/**
 	 * Layout: "grid" — responsive cream-card grid matching the reference
 	 * mockup: soft `#f5f5f5` cards, Google "G" pinned top-right, avatar +
-	 * name + relative date, stars + verified check, body text with optional
+	 * name + relative date, stars, body text with optional
 	 * "Read more" toggle when content is long.
 	 *
 	 * DOM mirrors the Trustindex-style structure (inner wrapper + dedicated
@@ -467,7 +434,7 @@ class Bdrvw_Frontend {
 
 
 	/**
-	 * Single review card for the "grid" layout — white card, verified check,
+	 * Single review card for the "grid" layout — white card, star rating,
 	 * Google "G" pinned top-right.
 	 *
 	 * @param array<string,mixed> $r        Review row.
@@ -490,7 +457,6 @@ class Bdrvw_Frontend {
 		$rating = (float) ( $r['rating'] ?? 0 );
 		$time   = self::review_date( $r );
 		$body   = (string) ( $r['content'] ?? '' );
-		$reply  = (string) ( $r['reply'] ?? '' );
 
 		$is_long   = mb_strlen( $body ) > 180;
 		$text_mode = self::text_display_mode();
@@ -536,20 +502,11 @@ class Bdrvw_Frontend {
 					<?php endif; ?>
 				</div>
 
-				<?php
-				$show_stars    = ! empty( $opts['show_platform_stars'] );
-				$show_verified = ! empty( $opts['show_verified'] );
-				?>
-				<?php if ( $show_stars || $show_verified ) : ?>
+				<?php if ( ! empty( $opts['show_platform_stars'] ) ) : ?>
 					<span class="bdrvw-google__grid-stars">
-						<?php if ( $show_stars ) : ?>
-							<?php echo wp_kses( self::stars_html( $rating ), bdrvw_allowed_html() ); ?>
-							<?php if ( empty( $opts['hide_rating_text'] ) ) : ?>
-								<span class="bdrvw-google__grid-rating-text"><?php echo esc_html( sprintf( /* translators: %s: rating value, e.g. 4.6. */ __( '%s out of 5', 'boldreview' ), number_format_i18n( $rating, 1 ) ) ); ?></span>
-							<?php endif; ?>
-						<?php endif; ?>
-						<?php if ( $show_verified ) : ?>
-							<span class="bdrvw-google__grid-verified" aria-label="<?php esc_attr_e( 'Verified Google review', 'boldreview' ); ?>"><?php echo wp_kses( self::verified_svg(), bdrvw_allowed_html() ); ?></span>
+						<?php echo wp_kses( self::stars_html( $rating ), bdrvw_allowed_html() ); ?>
+						<?php if ( empty( $opts['hide_rating_text'] ) ) : ?>
+							<span class="bdrvw-google__grid-rating-text"><?php echo esc_html( sprintf( /* translators: %s: rating value, e.g. 4.6. */ __( '%s out of 5', 'boldreview' ), number_format_i18n( $rating, 1 ) ) ); ?></span>
 						<?php endif; ?>
 					</span>
 				<?php endif; ?>
@@ -568,13 +525,6 @@ class Bdrvw_Frontend {
 							<span data-bdrvw-label-less hidden><?php echo esc_html( (string) apply_filters( 'bdrvw_gr_read_less_label', __( 'Hide', 'boldreview' ) ) ); ?></span>
 						</span>
 					<?php endif; ?>
-				<?php endif; ?>
-
-				<?php if ( ! empty( $opts['show_reply'] ) && '' !== $reply ) : ?>
-					<div class="bdrvw-google__grid-reply">
-						<strong><?php echo esc_html( (string) apply_filters( 'bdrvw_gr_owner_reply_label', __( 'Owner reply', 'boldreview' ) ) ); ?></strong>
-						<p><?php echo esc_html( $reply ); ?></p>
-					</div>
 				<?php endif; ?>
 
 				<?php
@@ -633,8 +583,6 @@ class Bdrvw_Frontend {
 		$defaults = array(
 			'hide_no_comment'    => 0,
 			'hide_rating_text'   => 0,
-			'show_reply'         => 1,
-			'show_verified'      => 1,
 			'show_arrows'        => 1,
 			'show_reviewer_pic'  => 1,
 			'show_platform_logo' => 1,
@@ -691,13 +639,6 @@ class Bdrvw_Frontend {
 			. '<path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.99.66-2.25 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/>'
 			. '<path fill="#FBBC05" d="M5.84 14.1A6.6 6.6 0 0 1 5.5 12c0-.73.13-1.44.34-2.1V7.06H2.18A11 11 0 0 0 1 12c0 1.77.43 3.45 1.18 4.94l3.66-2.84z"/>'
 			. '<path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.65l3.15-3.15C17.46 2.15 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84C6.71 7.31 9.14 5.38 12 5.38z"/>'
-			. '</svg>';
-	}
-
-	protected static function verified_svg(): string {
-		return '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true">'
-			. '<circle cx="12" cy="12" r="10" fill="#1d9bf0"/>'
-			. '<path d="M7.5 12.5l3 3 6-6" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>'
 			. '</svg>';
 	}
 
@@ -1220,54 +1161,6 @@ class Bdrvw_Frontend {
 	}
 
 	/**
-	 * Every template slug this design family *knows about*, in canonical order —
-	 * the currently-registered ones plus the premium add-on styles (7–11) that an
-	 * add-on (BoldReview Pro) registers when it's active.
-	 *
-	 * When Pro is deactivated its skins drop out of valid_templates(), so a saved
-	 * shortcode that points at a premium style would otherwise normalise to
-	 * template_1 and silently render the wrong design. Keeping the premium slugs
-	 * listed here lets the shortcode recognise them and show an "available in Pro"
-	 * notice instead. The union with valid_templates() preserves the canonical
-	 * 1→11 order whether or not Pro is loaded.
-	 *
-	 * @return array<int,string>
-	 */
-	public static function all_known_templates(): array {
-		$premium = (array) apply_filters(
-			'bdrvw_gr_premium_templates',
-			array( 'template_7', 'template_8', 'template_9', 'template_10', 'template_11' )
-		);
-		return array_values( array_unique( array_merge( self::valid_templates(), $premium ) ) );
-	}
-
-	/**
-	 * When a shortcode asks for a template that isn't currently registered but is
-	 * a known premium (add-on) style, return that slug — the caller renders an
-	 * "available in Pro" notice. Returns '' when the template is available (render
-	 * normally) or is unknown/garbage (let normalize_template() fall back).
-	 */
-	public static function premium_unavailable_template( string $template ): string {
-		if ( '' === $template || in_array( $template, self::valid_templates(), true ) ) {
-			return '';
-		}
-		return in_array( $template, self::all_known_templates(), true ) ? $template : '';
-	}
-
-	/**
-	 * The notice shown in place of the reviews when a shortcode requests a premium
-	 * style whose add-on isn't active.
-	 */
-	public static function premium_template_notice( string $template ): string {
-		$msg = (string) apply_filters(
-			'bdrvw_gr_premium_template_message',
-			__( 'This review template is available in BoldReview Pro. Activate the Pro add-on to display it.', 'boldreview' ),
-			$template
-		);
-		return '<div class="bdrvw-google bdrvw-google--empty bdrvw-google--premium-locked">' . esc_html( $msg ) . '</div>';
-	}
-
-	/**
 	 * Map of design-skin template slugs → skin slug. Ships the free skins only;
 	 * add-ons register additional skinned templates by hooking the filter below.
 	 *
@@ -1356,8 +1249,8 @@ class Bdrvw_Frontend {
 
 		/**
 		 * Filter the review list before it's ordered and sliced to the limit.
-		 * Add-ons use this to drop reviews — the Pro word filter removes any whose
-		 * text contains a blocked word. The free build ships no listener.
+		 * Add-ons use this to drop reviews — e.g. a word filter removing any whose
+		 * text contains a blocked word.
 		 *
 		 * @param array<int,array<string,mixed>> $filtered Surviving review rows.
 		 * @param array<string,mixed>            $gr       Google Reviews settings.

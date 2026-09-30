@@ -467,11 +467,6 @@ class Bdrvw_ReviewsListTable extends \WP_List_Table {
 		if ( Bdrvw_ReviewPanel::edit_enabled( $item ) ) {
 			$out .= '<button type="button" class="bdrvw-rowmenu__item" role="menuitem" data-bdrvw-edit="' . esc_attr( (string) $id ) . '">'
 				. esc_html( $label ) . '</button>';
-		} else {
-			
-			$out .= '<span class="bdrvw-rowmenu__item is-plan" role="menuitem" aria-disabled="true">'
-				. esc_html( $label )
-				. '<span class="bdrvw-rowmenu__crown">' . Bdrvw_ReviewPanel::crown_svg( 15 ) . '</span></span>';
 		}
 
 		foreach ( $this->build_row_actions( $item ) as $link ) {

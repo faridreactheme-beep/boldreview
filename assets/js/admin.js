@@ -27,7 +27,7 @@
 		$('.bdrvw-row__label').each(function () {
 			var $label = $(this);
 			var $hint = $label.children('.bdrvw-row__hint').first();
-			var $anchor = $label.children('label, .bdrvw-pro-row__title').first();
+			var $anchor = $label.children('label').first();
 			if (!$hint.length || !$anchor.length || $label.find('.bdrvw-tip').length) {
 				return;
 			}
@@ -108,6 +108,27 @@
 		});
 		$('select[data-bdrvw-cpt-filter]').each(function () {
 			bdrvwSyncCptFilter($(this));
+		});
+
+		// === Review Criteria card: add / remove rows ===
+
+		$(document).on('click', '[data-bdrvw-criterion-add]', function () {
+			var $list = $('[data-bdrvw-criteria]').first();
+			var idx   = parseInt($list.attr('data-next-index') || '0', 10) || 0;
+			var tpl   = $('#bdrvw-criterion-template').html();
+			if (!tpl) { return; }
+			var $row = $(tpl.split('__INDEX__').join(String(idx)));
+			$list.append($row);
+			$list.attr('data-next-index', String(idx + 1));
+			$row.find('input[type="text"]').trigger('focus');
+		});
+
+		$(document).on('click', '[data-bdrvw-criterion-remove]', function () {
+			$(this).closest('[data-bdrvw-criterion]').remove();
+		});
+
+		$(document).on('input', '.bdrvw-criterion__input', function () {
+			$(this).closest('[data-bdrvw-criterion]').toggleClass('is-filled', $.trim(this.value) !== '');
 		});
 
 		// === Rating Summary tab: accordion + criteria repeaters ===
@@ -579,13 +600,6 @@
 			$(this).attr('aria-expanded', open ? 'true' : 'false');
 			// Flip upward when the menu would run past the bottom of the viewport.
 			$menu.toggleClass('is-up', open && $menu[0].getBoundingClientRect().bottom + 240 > window.innerHeight);
-		});
-
-		// A crowned entry does nothing — swallow the click so it doesn't reach the
-		// document handler below and collapse the menu the user is reading.
-		$(document).on('click', '.bdrvw-rowmenu__item.is-plan', function (e) {
-			e.preventDefault();
-			e.stopPropagation();
 		});
 
 		$(document).on('click', function () { closeRowMenus(); });

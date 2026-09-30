@@ -474,20 +474,6 @@ class Bdrvw_ReviewPanel {
 	}
 
 	/**
-	 * The crown badge marking a control that belongs to a higher plan.
-	 *
-	 * @param int $size Rendered width/height in pixels.
-	 */
-	public static function crown_svg( int $size = 16 ): string {
-		$size = max( 10, min( 32, $size ) );
-		return '<svg width="' . $size . '" height="' . $size . '" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'
-			. '<circle cx="9" cy="9" r="8.42" stroke="#FF8A00" stroke-width="1.16" />'
-			. '<path d="M6.006 11.63h5.98a.75.75 0 0 0 .764-.591l.957-3.7a.42.42 0 0 0-.646-.454l-1.219.812a.42.42 0 0 1-.62-.181L9.553 4.618a.61.61 0 0 0-1.117 0L7.192 7.265a.42.42 0 0 1-.62.21L5.223 6.663a.42.42 0 0 0-.646.453l.957 3.7a.75.75 0 0 0 .472.814Z" fill="#FF8A00" />'
-			. '<path d="M12.513 13.607H5.478a.44.44 0 0 1 0-1.024h7.035a.44.44 0 0 1 0 1.024Z" fill="#FF8A00" />'
-			. '</svg>';
-	}
-
-	/**
 	 * The "Reply" panel: a summary of what is being answered, then the box to
 	 * answer it in.
 	 *

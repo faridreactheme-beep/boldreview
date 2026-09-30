@@ -291,8 +291,8 @@ msgstr ""
 
 #: src/Admin/Bdrvw_SettingsPage.php:1210
 msgid ""
-"Add up to 3 custom criteria (e.g. Quality, Value, Service). Each criterion "
-"gets its own 1–5 star rating on the form."
+"Add as many custom criteria as you need (e.g. Quality, Value, Service). Each "
+"criterion gets its own 1–5 star rating on the form."
 msgstr ""
 
 #: src/Admin/Bdrvw_SettingsPage.php:829
@@ -359,10 +359,6 @@ msgid ""
 "remove any others."
 msgstr ""
 
-#: src/Admin/Bdrvw_SettingsPage.php:936
-msgid "Allow video review"
-msgstr ""
-
 #: src/Admin/Bdrvw_SettingsPage.php:527
 msgid "Allow visitors and registered users to submit reviews."
 msgstr ""
@@ -427,14 +423,6 @@ msgstr ""
 
 #: src/Admin/Bdrvw_SettingsPage.php:526
 msgid "Auto-approve reviews"
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1157
-msgid "Available in Pro"
-msgstr ""
-
-#: src/Admin/Bdrvw_SettingsPage.php:988
-msgid "Available on Higher Plans"
 msgstr ""
 
 #: src/Admin/Bdrvw_SettingsPage.php:707
@@ -882,10 +870,6 @@ msgstr ""
 msgid "Disconnect"
 msgstr ""
 
-#: src/Admin/Bdrvw_SettingsPage.php:951
-msgid "Discord notifications"
-msgstr ""
-
 #: src/Admin/Bdrvw_SettingsPage.php:235
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:44
 msgid "Display"
@@ -903,10 +887,6 @@ msgstr ""
 
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:317
 msgid "Display profile pictures for reviewers when available."
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:302
-msgid "Display responses from the business owner beneath reviews."
 msgstr ""
 
 #: src/Admin/Bdrvw_SettingsPage.php:552
@@ -1251,10 +1231,6 @@ msgstr ""
 msgid "Google Maps URL"
 msgstr ""
 
-#: src/Admin/Bdrvw_SettingsPage.php:769
-msgid "Google reCAPTCHA"
-msgstr ""
-
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:577
 msgid ""
 "Google returns at most 5 reviews per request. With this on, each refresh "
@@ -1328,10 +1304,6 @@ msgstr ""
 
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:291
 msgid "Hide reviews without text"
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:307
-msgid "Highlight verified reviewers with a checkmark badge."
 msgstr ""
 
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1096
@@ -1472,12 +1444,6 @@ msgstr ""
 msgid "Layout"
 msgstr ""
 
-#: src/Admin/Bdrvw_SettingsPage.php:937
-msgid ""
-"Let customers attach a short video to their review, alongside the photos the "
-"free plugin already accepts."
-msgstr ""
-
 #: src/Admin/Bdrvw_SettingsPage.php:1217
 msgid ""
 "Let visitors rate each criterion on the review form so they can score "
@@ -1608,8 +1574,8 @@ msgstr ""
 msgid "Move your reviews in and out, and roll the plugin back"
 msgstr ""
 
-#: src/Admin/Bdrvw_SettingsPage.php:1280
-msgid "Need more than 3 criteria?"
+#: src/Admin/Bdrvw_SettingsPage.php
+msgid "e.g. Delivery"
 msgstr ""
 
 #: src/Admin/Bdrvw_Assets.php:112 src/Admin/Bdrvw_SettingsPage.php:1427
@@ -1663,10 +1629,6 @@ msgstr ""
 
 #: src/Admin/Bdrvw_ReviewsListTable.php:637
 msgid "No reviews found."
-msgstr ""
-
-#: src/Admin/Bdrvw_SettingsPage.php:872
-msgid "Notification email template"
 msgstr ""
 
 #. %s: singular name of the post type being edited, e.g. "product".
@@ -1786,16 +1748,8 @@ msgstr ""
 msgid "Overview"
 msgstr ""
 
-#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:575
-msgid "Owner reply"
-msgstr ""
-
 #: src/Admin/Bdrvw_SettingsPage.php:533
 msgid "Pagination limit for the frontend reviews list."
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1005
-msgid "Paid"
 msgstr ""
 
 #. 1: setup guide link, 2: Google Cloud Console link.
@@ -1899,12 +1853,6 @@ msgstr ""
 msgid "post"
 msgstr ""
 
-#: src/Admin/Bdrvw_SettingsPage.php:952
-msgid ""
-"Post every new review straight into a Discord channel through an incoming "
-"webhook."
-msgstr ""
-
 #: src/Modules/GoogleReviews/Bdrvw_Frontend.php:533
 #: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1093
 msgid "Posted on Google"
@@ -1929,12 +1877,6 @@ msgstr ""
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:107
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:889
 msgid "Profile Header"
-msgstr ""
-
-#: src/Admin/Bdrvw_SettingsPage.php:763
-msgid ""
-"Protect the review submission form from spam and bot entries with Google "
-"reCAPTCHA."
 msgstr ""
 
 #: src/Core/Bdrvw_Modules.php:60
@@ -2002,10 +1944,6 @@ msgstr ""
 #: src/Modules/GoogleReviews/Bdrvw_Frontend.php:567
 #: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1035
 msgid "Read more"
-msgstr ""
-
-#: src/Admin/Bdrvw_SettingsPage.php:236 src/Admin/Bdrvw_SettingsPage.php:762
-msgid "reCAPTCHA"
 msgstr ""
 
 #: src/Admin/Bdrvw_ToolsPage.php:702
@@ -2232,13 +2170,6 @@ msgstr ""
 msgid "Reviewer name"
 msgstr ""
 
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:975
-msgid ""
-"Reviewer photos, star ratings, the Google logo, verified badges, business "
-"replies, the minimum rating and date format are set once on the Display tab "
-"— they apply to every shortcode automatically."
-msgstr ""
-
 #: src/Admin/Bdrvw_SettingsPage.php:707
 msgid "Reviewer’s avatar image."
 msgstr ""
@@ -2362,12 +2293,6 @@ msgid ""
 "review."
 msgstr ""
 
-#: src/Admin/Bdrvw_SettingsPage.php:967
-msgid ""
-"Send new reviews to a Slack channel through an incoming webhook, so the team "
-"sees them without opening the admin."
-msgstr ""
-
 #: src/Admin/Bdrvw_ReviewPanel.php:564
 msgid "Send Reply"
 msgstr ""
@@ -2420,10 +2345,6 @@ msgstr ""
 
 #: src/Admin/Bdrvw_SettingsPage.php:562 src/Admin/Bdrvw_SettingsPage.php:1595
 msgid "Show average rating"
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:301
-msgid "Show business replies"
 msgstr ""
 
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:1045
@@ -2490,10 +2411,6 @@ msgid ""
 "criteria averages still show in the summary at the top."
 msgstr ""
 
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:306
-msgid "Show verified badge"
-msgstr ""
-
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:806
 msgid "Showing connected business data."
 msgstr ""
@@ -2522,41 +2439,9 @@ msgstr ""
 msgid "Site default (%s)"
 msgstr ""
 
-#: src/Admin/Bdrvw_SettingsPage.php:966
-msgid "Slack notifications"
-msgstr ""
-
 #: src/Admin/Bdrvw_PostStyleMetaBox.php:142
 #: src/Admin/Bdrvw_SettingsPage.php:1132
 msgid "Slider"
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:879
-msgid ""
-"Slider layout only: auto-advance delay in milliseconds. Leave out to keep "
-"autoplay off."
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:881
-msgid "Slider layout only: gap between slides in pixels. Defaults to 16."
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:883
-msgid ""
-"Slider layout only: show the pagination dots (true or false). Defaults to "
-"true."
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:882
-msgid ""
-"Slider layout only: show the prev/next arrows (true or false). Defaults to "
-"the Display-tab setting."
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:880
-msgid ""
-"Slider layout only: slide transition duration in milliseconds. Defaults to "
-"Swiper’s built-in speed."
 msgstr ""
 
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:891
@@ -2815,12 +2700,6 @@ msgid ""
 "then keep <strong>Accumulate reviews</strong> turned on below."
 msgstr ""
 
-#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1264
-msgid ""
-"This review template is available in BoldReview Pro. Activate the Pro add-on "
-"to display it."
-msgstr ""
-
 #: src/Admin/Bdrvw_PostStyleMetaBox.php:129
 #: src/Admin/Bdrvw_SettingsPage.php:1442 src/Admin/Bdrvw_SettingsPage.php:1761
 msgid "Tiles"
@@ -2888,10 +2767,6 @@ msgstr ""
 msgid "Update Interval"
 msgstr ""
 
-#: src/Admin/Bdrvw_SettingsPage.php:99 src/Admin/Bdrvw_SettingsPage.php:1282
-msgid "Upgrade to Pro"
-msgstr ""
-
 #: src/Core/Bdrvw_Photos.php:138
 msgid "Upload"
 msgstr ""
@@ -2928,16 +2803,6 @@ msgstr ""
 
 #: src/Modules/GoogleReviews/Bdrvw_SettingsRenderer.php:960
 msgid "Value"
-msgstr ""
-
-#: src/Modules/GoogleReviews/Bdrvw_Frontend.php:552
-msgid "Verified Google review"
-msgstr ""
-
-#: src/Admin/Bdrvw_SettingsPage.php:770
-msgid ""
-"Verify every submission with reCAPTCHA v2 or v3 — site key, secret key and "
-"the score threshold that decides what gets through."
 msgstr ""
 
 #: src/Modules/GoogleReviews/Bdrvw_Frontend.php:1057
@@ -2993,13 +2858,6 @@ msgstr ""
 
 #: src/Admin/Bdrvw_ReviewPanel.php:368
 msgid "Write Review Title"
-msgstr ""
-
-#: src/Admin/Bdrvw_SettingsPage.php:873
-msgid ""
-"Write your own admin notification email instead of the built-in one, using "
-"placeholders such as {review_title}, {review_content}, {review_author} and "
-"{review_rating}."
 msgstr ""
 
 #: src/Admin/Bdrvw_ReviewPanel.php:554

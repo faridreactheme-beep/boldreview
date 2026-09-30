@@ -185,23 +185,7 @@ class Bdrvw_SettingsRenderer {
 	}
 
 	/**
-	 * Like templates_for_layout(), but computed against the full canonical style
-	 * set (base + free skins + the premium add-on styles) rather than only the
-	 * styles currently registered. Lets a `style="styleN"` shortcode resolve to
-	 * the premium slug it points at even after the add-on is deactivated, so the
-	 * frontend can show an "available in Pro" notice instead of rendering style 1.
-	 *
-	 * @param string $layout Layout slug.
-	 * @return array<int,string>
-	 */
-	public static function all_templates_for_layout( string $layout ): array {
-		return self::filter_templates_for_layout( Bdrvw_Frontend::all_known_templates(), $layout );
-	}
-
-	/**
 	 * Apply the per-layout style exclusions to an ordered list of template slugs.
-	 * Shared by templates_for_layout() (current styles) and
-	 * all_templates_for_layout() (full canonical styles).
 	 *
 	 * @param array<int,string> $base_keys Ordered template slugs to filter.
 	 * @param string            $layout    Layout slug.
@@ -280,7 +264,7 @@ class Bdrvw_SettingsRenderer {
 	}
 
 	/**
-	 * Display tab toggles. Settings key + label + hint + paid-only flag.
+	 * Display tab toggles. Settings key + label + hint.
 	 *
 	 * @return array<int,array<string,mixed>>
 	 */
@@ -295,16 +279,6 @@ class Bdrvw_SettingsRenderer {
 				'key'   => 'hide_rating_text',
 				'label' => __( 'Hide rating label', 'boldreview' ),
 				'hint'  => __( 'Remove the "X out of 5" text shown beside star ratings.', 'boldreview' ),
-			),
-			array(
-				'key'   => 'show_reply',
-				'label' => __( 'Show business replies', 'boldreview' ),
-				'hint'  => __( 'Display responses from the business owner beneath reviews.', 'boldreview' ),
-			),
-			array(
-				'key'   => 'show_verified',
-				'label' => __( 'Show verified badge', 'boldreview' ),
-				'hint'  => __( 'Highlight verified reviewers with a checkmark badge.', 'boldreview' ),
 			),
 			array(
 				'key'   => 'show_arrows',
@@ -876,11 +850,6 @@ class Bdrvw_SettingsRenderer {
 			array( 'columns', __( 'Cards per row for the Grid layout only, 1 to 4. Defaults to 3.', 'boldreview' ), '[bdrvw_google_grid columns="4"]' ),
 			array( 'layout', __( 'For the all-in-one [bdrvw_google] tag only: grid, list, sidebar, or popup.', 'boldreview' ), '[bdrvw_google layout="list"]' ),
 			array( 'template', __( 'For [bdrvw_google] only: template_1 to template_6 (same as style1 to style6).', 'boldreview' ), '[bdrvw_google template="template_2"]' ),
-			array( 'autoplay_delay', __( 'Slider layout only: auto-advance delay in milliseconds. Leave out to keep autoplay off.', 'boldreview' ), '[bdrvw_google_slider autoplay_delay="4000"]' ),
-			array( 'speed', __( 'Slider layout only: slide transition duration in milliseconds. Defaults to Swiper’s built-in speed.', 'boldreview' ), '[bdrvw_google_slider speed="800"]' ),
-			array( 'space_between', __( 'Slider layout only: gap between slides in pixels. Defaults to 16.', 'boldreview' ), '[bdrvw_google_slider space_between="30"]' ),
-			array( 'navigation', __( 'Slider layout only: show the prev/next arrows (true or false). Defaults to the Display-tab setting.', 'boldreview' ), '[bdrvw_google_slider navigation="true"]' ),
-			array( 'pagination', __( 'Slider layout only: show the pagination dots (true or false). Defaults to true.', 'boldreview' ), '[bdrvw_google_slider pagination="true"]' ),
 		);
 
 		$styles = array(
@@ -972,7 +941,7 @@ class Bdrvw_SettingsRenderer {
 
 			<div class="bdrvw-uses__note">
 				<span class="dashicons dashicons-info-outline" aria-hidden="true"></span>
-				<p><?php esc_html_e( 'Reviewer photos, star ratings, the Google logo, verified badges, business replies, the minimum rating and date format are set once on the Display tab — they apply to every shortcode automatically.', 'boldreview' ); ?></p>
+				<p><?php esc_html_e( 'Reviewer photos, star ratings, the Google logo, the minimum rating and date format are set once on the Display tab — they apply to every shortcode automatically.', 'boldreview' ); ?></p>
 			</div>
 		</div>
 		<?php
@@ -994,24 +963,18 @@ class Bdrvw_SettingsRenderer {
 				$key   = (string) $t['key'];
 				$label = (string) $t['label'];
 				$hint  = (string) ( $t['hint'] ?? '' );
-				$paid  = ! empty( $t['paid'] );
 				$val   = (int) ( $gr[ $key ] ?? 0 );
 				?>
-				<div class="bdrvw-row<?php echo $paid ? ' is-paid' : ''; ?>">
+				<div class="bdrvw-row">
 					<div class="bdrvw-row__label">
-						<label>
-							<?php echo esc_html( $label ); ?>
-							<?php if ( $paid ) : ?>
-								<span class="bdrvw-gr__paid-pill"><?php esc_html_e( 'Paid', 'boldreview' ); ?></span>
-							<?php endif; ?>
-						</label>
+						<label><?php echo esc_html( $label ); ?></label>
 						<?php if ( '' !== $hint ) : ?>
 							<p class="bdrvw-row__hint"><?php echo esc_html( $hint ); ?></p>
 						<?php endif; ?>
 					</div>
 					<div class="bdrvw-row__control">
 						<label class="bdrvw-switch">
-							<input type="checkbox" name="bdrvw_settings[google_reviews][<?php echo esc_attr( $key ); ?>]" value="1" <?php checked( $val, 1 ); ?> <?php disabled( $paid ); ?> />
+							<input type="checkbox" name="bdrvw_settings[google_reviews][<?php echo esc_attr( $key ); ?>]" value="1" <?php checked( $val, 1 ); ?> />
 							<span class="bdrvw-switch__track"></span>
 						</label>
 					</div>
@@ -1122,6 +1085,7 @@ class Bdrvw_SettingsRenderer {
 					</div>
 				</div>
 
+				<?php if ( has_action( 'bdrvw_gr_blocked_words_control' ) ) : ?>
 				<div class="bdrvw-row">
 					<div class="bdrvw-row__label">
 						<label><?php esc_html_e( 'Blocked words', 'boldreview' ); ?></label>
@@ -1130,9 +1094,8 @@ class Bdrvw_SettingsRenderer {
 					<div class="bdrvw-row__control">
 						<?php
 						/**
-						 * Renders the "Blocked words" control. The free plugin hooks a
-						 * locked "Available in Pro" box (render_filter_words); BoldReview
-						 * Pro removes that and outputs the real textarea instead.
+						 * Renders the "Blocked words" control. The row only appears
+						 * when an add-on hooks here.
 						 *
 						 * @param array<string,mixed> $gr Saved Google Reviews settings.
 						 */
@@ -1140,21 +1103,9 @@ class Bdrvw_SettingsRenderer {
 						?>
 					</div>
 				</div>
+				<?php endif; ?>
 		</div>
 		<?php
-	}
-
-	/**
-	 * Default "Blocked words" control — a small locked upsell box. Registered by
-	 * the free plugin on the `bdrvw_gr_blocked_words_control` action (admin only).
-	 * BoldReview Pro removes this callback and renders the real textarea, so this
-	 * only shows while the word-filter feature is locked.
-	 *
-	 * @param array<string,mixed> $gr Saved Google Reviews settings (unused here).
-	 */
-	public static function render_filter_words( $gr = array() ): void {
-		unset( $gr );
-		echo '<div class="bdrvw-gr__filter-lock">' . esc_html__( 'Available in Pro', 'boldreview' ) . '</div>';
 	}
 
 	/**

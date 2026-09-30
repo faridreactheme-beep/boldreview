@@ -5,7 +5,7 @@
  * Plugin URI:  https://themewant.com/
  * Author:      Themewant
  * Author URI:  http://themewant.com/
- * Version:     1.0.2
+ * Version:     1.0.3
  * Requires at least: 5.8
  * Requires PHP: 7.4
  * License:     GPLv2 or later
@@ -23,7 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Plugin constants.
  */
-define( 'BDRVW_VERSION', '1.0.2' );
+define( 'BDRVW_VERSION', '1.0.3' );
 define( 'BDRVW_FILE', __FILE__ );
 define( 'BDRVW_DIR', plugin_dir_path( __FILE__ ) );
 define( 'BDRVW_URL', plugin_dir_url( __FILE__ ) );

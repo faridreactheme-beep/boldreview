@@ -51,7 +51,7 @@ class Bdrvw_Modules {
 					'show_author_average', 'show_user_average',
 					'wc_review_who_can', 'wc_review_verified_label', 'wc_review_order_status',
 					'review_limit_by', 'email_whitelist', 'blocked_ips',
-					'recaptcha',
+					'captcha', 'recaptcha',
 					'notification_template', 'allow_video_review', 'notifications',
 				),
 			),
